@@ -22,3 +22,27 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.border-shadow{
+  position: relative;
+  border-radius: 25px;    
+  padding: 5px;
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, .5);
+  margin: 10px;
+}
+
+.gradient {
+  background: #D6C497; /* For browsers that do not support gradients */
+  background: -webkit-radial-gradient(#D6C497, #D6C497, #DDBC6F); /* Safari 5.1 to 6.0 */
+  background: -o-radial-gradient(#D6C497, #D6CBAF, #DDBC6F); /* For Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(#D6C497, #D6C497, #DDBC6F); /* For Firefox 3.6 to 15 */
+  background: radial-gradient(#D6C497, #D6C497, #DDBC6F); /* Standard syntax */
+}
+
+.hrColor {
+  border: none;
+  height: 6px;
+  /* Set the hr color */
+  color: #DDBC6F; /* old IE */
+  background-color: #DDBC6F; /* Modern Browsers */
+}
