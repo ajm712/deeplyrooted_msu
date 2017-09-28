@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+var $ = require('jquery')
+$.ajaxSetup({
+  async: false
+});
 
 class App extends Component {
   render() {
