@@ -4,6 +4,10 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import ApiWrapper from './ApiWrapper.js';
+var $ = require('jquery')
+$.ajaxSetup({
+  async: false
+});
 
 var results = ApiWrapper.makeCall("portraits--georgia")
 console.log(results)
