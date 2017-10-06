@@ -46,3 +46,38 @@
   color: #DDBC6F; /* old IE */
   background-color: #DDBC6F; /* Modern Browsers */
 }
+
+.dropDown {
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.textBox {
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+.inLine{  
+  display: inline-block;  
+}
+
+.submitButton{
+  cursor: pointer;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.submitButton:hover{
+  opacity: .7;
+}
+
