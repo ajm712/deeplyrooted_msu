@@ -9,7 +9,7 @@ $.ajaxSetup({
   async: false
 });
 
-var results = ApiWrapper.makeCall("portraits--georgia")
+var results = ApiWrapper.makeCall({language:"english"})
 console.log(results)
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
