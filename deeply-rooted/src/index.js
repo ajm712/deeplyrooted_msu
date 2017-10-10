@@ -2,8 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Books from './DisplayBook'
 import registerServiceWorker from './registerServiceWorker';
+import ApiWrapper from './ApiWrapper.js';
+import Books from './DisplayBook.js';
 
-ReactDOM.render(<Books />, document.getElementById('root'));
-registerServiceWorker();
+var $ = require('jquery')
+$.ajaxSetup({
+  async: false
+});
+
+var results = ApiWrapper.makeCall({language:"english"})
+console.log(results)
+
+ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<Books results={results}/>, document.getElementById('bookDisplay'))
+
+registerServiceWorker(); 
+
