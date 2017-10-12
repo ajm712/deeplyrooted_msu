@@ -1,9 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
-import { Button, Popover, PopoverHeader, PopoverBody } from 'react-bootstrap';
-//import '../node_modules/font-awesome/css/font-awesome.min.css'; 
-//npm install --save react-grid-gallery
-
+import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 
 class Books extends React.Component {
     render() {
@@ -101,59 +98,72 @@ class Books extends React.Component {
                  language={b.language}
                  publisher={b.publisher}
                  rights={b.rights}
-                 state={b.state}  />);
-      });
-  
-    }
+                 state={b.state}  />
+                 );         
+        });
+      }
   }
   
   class BookDisplay extends React.Component {
-    render() {
-      /* All the info pulled in to this class 
-      <h3>Book Number {this.props.itemNum}</h3>
-      <p><b>Title:</b> {this.props.title}</p>
-      <p><b>Author:</b> {this.props.creator}</p>
-      <p><b>Collection:</b> {this.props.collection}</p>
-      <p><b>Date:</b> {this.props.date}</p>
-      <p><b>Description:</b> {this.props.description}</p>
-      <p><b>Language:</b> {this.props.language}</p>
-      <p><b>Publisher:</b> {this.props.publisher}</p>
-      <p><b>Rights:</b> {this.props.rights}</p>
-      <p><b>State:</b> {this.props.state}</p>
-      <a href={this.props.link}>Link to source website</a>
-      <img alt="Image of book" src={this.props.image} />
-      The stuff below is just me playing around with the dispaly
-      */
-      return(
-        <table className="bookTable">
-          <thead>
-            <tr className="bookTitleRow">
-              <td>
-                <p><b>{this.props.title}</b> (by {this.props.creator})</p>
-              </td>
-            </tr>
 
+    displayInfo(event) {
+      var trID = "hidden" + (event.target.id);
+      var buttonID = event.target.id;
+
+      var x = document.getElementById(trID);
+      var y = document.getElementById(buttonID);
+
+      if (x.style.display === "none") {
+        x.style.display='table-row'; 
+        y.className='arrowButton pull-right fa-lg fa fa-chevron-circle-down';
+      } 
+      
+      else {
+          x.style.display = "none";
+          y.className='arrowButton pull-right fa-lg fa fa-chevron-circle-left';          
+      }
+    }
+
+    render() {
+      return(
+        <div>
+          <table className="bookTable">
+            <thead>
+              <tr className="bookTitleRow">
+                <td  colSpan="2">
+                  <p><b>{this.props.title}</b> <br/> (by {this.props.creator})</p>
+                </td>
+              </tr>
+            </thead>
             <tbody>
               <tr>
                 <td>
                   <a href={this.props.link}>
-                    <img className="" src={this.props.image} />
+                    <img alt="Book Thumbnail" src={this.props.image} />
                   </a>
                 </td>
                 <td>
-                  <p><b>Description: </b>{this.props.description}</p>
-                  <p><b>State:</b> {this.props.state} <b>Date:</b> {this.props.date}</p>
+                  <p>
+                    <b>Description: </b>{this.props.description}
+                    <hr />
+                    <b>Location:</b> {this.props.state} &nbsp;
+                    <b>Date:</b> {this.props.date} &nbsp;
+                    <button id={this.props.itemNum} className="arrowButton pull-right fa-lg fa fa-chevron-circle-left" onClick={this.displayInfo} aria-hidden="true"></button>
+                  </p>
+                </td>
+              </tr>
+              <tr id={"hidden" + this.props.itemNum} colSpan="2" style={{display: 'none'}}>
+                <td colSpan="2">
+                  <hr />
+                  <p><b>Publisher:</b> {this.props.publisher}</p>
+                  <p><b>Collection:</b> {this.props.collection}</p>
+                  <p><b>Rights:</b> {this.props.rights}</p>
+                  <p><b>Language:</b> {this.props.language}</p>
                 </td>
               </tr>
             </tbody>
-          </thead>
-          <tbody>
-            <tr>
-              <p><b>Publisher:</b> {this.props.publisher}</p>
-              <p><b>Rights:</b> {this.props.rights}</p>
-            </tr>
-          </tbody>
-        </table>
+          </table>
+        </div>
       );
     }
   }

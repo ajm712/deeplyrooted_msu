@@ -39,21 +39,18 @@
   background: radial-gradient(#D6C497, #D6C497, #DDBC6F); /* Standard syntax */
 }
 
-.hrColor {
-  border: none;
-  height: 6px;
-  /* Set the hr color */
-  color: #DDBC6F; /* old IE */
-  background-color: #DDBC6F; /* Modern Browsers */
+.vr {
+  width:15px;
+  display: inline-block;
+  border: 0px;
 }
 
 .bookTable {
   /*display: inline-block;*/
-  padding: 5px;
+  margin: 15px;
   border: 2px solid rgba(10, 10, 10, 0.3);
-  padding: 10px; 
-  width: 500px;
-  height: 150px; 
+  width: 550px;
+  height: 150px;
 }
 
 .bookBackground {
@@ -65,13 +62,9 @@
 
 .bookTitleRow {
   background-color: #DDBC6F;
-  width: 100%;
 }
 
-.bookTitleName {
-  display: inline-block;
-}
-
-.bookAuthorName {
-  display: inline-block;
+.arrowButton {
+  border: 0px;
+  background-color: transparent;
 }
