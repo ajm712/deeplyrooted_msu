@@ -4,10 +4,17 @@ import './index.css';
 import App from './App';
 import Form from './Form.js';
 import TextBox from './TextBox.js';
+import ApiWrapper from './ApiWrapper.js';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(<Form />, document.getElementById('dropbox')); //Displays the dropdownbox
 ReactDOM.render(<App />, document.getElementById('header')); //Displays the spinning react label
 ReactDOM.render(<TextBox selection="Subject"/>, document.getElementById('text-box')); //Displays the defualt textbox  
+
+/* The uncommented code is how to make an api call
+var results = ApiWrapper.makeCall({language:"english", subject:"cooking", page:"2"})
+console.log(results)
+ReactDOM.render(<App />, document.getElementById('root'));
+*/
 registerServiceWorker();
 
