@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import ApiWrapper from './ApiWrapper.js';
-import Books from './DisplayBook.js';
+import Books from './DisplayBookTwo.js';
 
 var $ = require('jquery')
 $.ajaxSetup({

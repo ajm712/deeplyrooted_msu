@@ -68,3 +68,19 @@
   border: 0px;
   background-color: transparent;
 }
+
+.bookTable2 {
+  display: inline-block;
+  margin: 15px;
+  border: 2px solid rgba(10, 10, 10, 0.3);
+  width: 200px;
+  height: 150px;
+  border-radius: 10px;
+  background: radial-gradient(rgb(203, 196, 180), rgb(203, 196, 180), #DDBC6F);
+}
+
+.bookDiv {
+  position: relative;
+  top: 7%;
+  border: 4px solid rgba(10, 10, 10, 0.583);
+}
