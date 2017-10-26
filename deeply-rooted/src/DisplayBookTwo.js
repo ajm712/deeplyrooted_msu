@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
-import { Manager, Target, Popper, Arrow } from 'react-popper'
-import Popover from 'react-bootstrap/lib/Popover.js'
+import {Popover, ButtonToolbar, OverlayTrigger, Button} from 'react-bootstrap'
 
 class Books extends React.Component {
     render() {
@@ -107,56 +106,46 @@ class Books extends React.Component {
   }
   
   class BookDisplay extends React.Component {
-    render() { 
+    AutoRotate(event){
+      //TODO: IMplement popover flip
+      var window = document.documentElement.getBoundingClientRect();
+      var elementPosition = event.clientY;
+      if (window.bottom - elementPosition < 300)
+      {
+        setTimeout(function(){    
+        var c = document.getElementById("abc");
+        console.log(c);
+      }, 2);    
+      }
+      /*   
+      console.log("X Value: " + event.clientX);
+      console.log("Window Y: " + windowSize.bottom);
+      console.log("Y Value: " + event.clientY);
+      */
+    }
+    
 
-      const popoverClick = (
-        <Popover id="popover-trigger-click" title="Popover bottom">
-          <strong>Holy guacamole!</strong> Check this info.
-        </Popover>
-      );
-      
-      const popoverHoverFocus = (
-        <Popover id="popover-trigger-hover-focus" title="Popover bottom">
-          <strong>Holy guacamole!</strong> Check this info.
-        </Popover>
-      );
-      
-      const popoverFocus = (
-        <Popover id="popover-trigger-focus" title="Popover bottom">
-          <strong>Holy guacamole!</strong> Check this info.
-        </Popover>
-      );
-      
-      const popoverClickRootClose = (
-        <Popover id="popover-trigger-click-root-close" title="Popover bottom">
-          <strong>Holy guacamole!</strong> Check this info.
+    render() { 
+      const popoverHoverFocusBottom= (
+        <Popover id="popover-trigger-hover-focus" title={this.props.title}>
+          <p><b>Author: </b>{this.props.creator}</p>
+          <p><b>Description: </b>{this.props.description}</p>
+          <p><b>Location:</b> {this.props.state}</p>
+          <p><b>Date:</b> {this.props.date}</p>
+          <p><b>Publisher:</b> {this.props.publisher}</p>
+          <p><b>Collection:</b> {this.props.collection}</p>
+          <p><b>Rights:</b> {this.props.rights}</p>
+          <p><b>Language:</b> {this.props.language}</p>
         </Popover>
       );
 
       return(
-        <div>
-          <div className="bookTable2">
-            <span>
-            <a href={this.props.link}>
-              <img className="bookDiv" alt="Book Thumbnail" src={this.props.image} onMouseOver={this.displayInfo}/>
-            </a>
-            </span>
-          </div>
-   
-       <ButtonToolbar>
-          <OverlayTrigger trigger="click" placement="bottom" overlay={popoverClick}>
-            <Button>Click</Button>
-          </OverlayTrigger>
-          <OverlayTrigger trigger={['hover', 'focus']} placement="bottom" overlay={popoverHoverFocus}>
-            <Button>Hover + Focus</Button>
-          </OverlayTrigger>
-          <OverlayTrigger trigger="focus" placement="bottom" overlay={popoverFocus}>
-            <Button>Focus</Button>
-          </OverlayTrigger>
-          <OverlayTrigger trigger="click" rootClose placement="bottom" overlay={popoverClickRootClose}>
-            <Button>Click w/rootClose</Button>
-          </OverlayTrigger>
-        </ButtonToolbar>
+        <div className="bookTable2">
+          <a href={this.props.link}>
+            <OverlayTrigger id="abc" trigger={['hover', 'focus']} placement="bottom" overlay={popoverHoverFocusBottom}>
+              <img className="bookDiv" alt="Book Thumbnail" src={this.props.image} onMouseOver={this.AutoRotate}/>
+              </OverlayTrigger>
+          </a>
         </div>
         );
     }

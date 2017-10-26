@@ -84,3 +84,15 @@
   top: 7%;
   border: 4px solid rgba(10, 10, 10, 0.583);
 }
+
+.popover
+{
+  min-width: 400px;
+  height: auto;
+}
+.popover-title{
+  background: #ffff99;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
