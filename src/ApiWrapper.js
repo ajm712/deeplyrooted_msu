@@ -26,10 +26,9 @@ class ApiWrapper{
         
         props["api_key"] = "304ebe4fa961241e648edf1035166735"
         $.getJSON(url, props, function(result){
-            results = result.docs
+        	// properties of results are "count", "start", "limit", "docs"
+            results = result
         });
-        // get json directly returns the json object returned from the dpla api
-        // results returns the array contained in the docs field of the response
         return results
     }
 }
