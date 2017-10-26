@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import ApiWrapper from './ApiWrapper.js';
+import Books from './DisplayBookTwo.js';
 import registerServiceWorker from './registerServiceWorker';
 
 class TextBox extends React.Component {
@@ -19,17 +20,16 @@ class TextBox extends React.Component {
     
     handleDrop(event) {
         var name = event.target.name;
-        var selection = event.target.value; //selection is equal to the current value of the dropdown box
-        alert(selection);
-        
+        var selection = event.target.value; //selection is equal to the current value of the dropdown box        
         var results = ApiWrapper.makeCall(name,selection);
-        console.log(results)
+        console.log(results);
+        ReactDOM.render(<Books results={results}/>, document.getElementById('bookDisplay'));
+        
     }
   
     handleSubmit(event) { //Currently just prints the search result to the screen but eventually will send info to the API call
       var name = event.target.name;
       var search = this.state[name];
-      alert(search);
       //Implement API Call Here's an example provided by Joesph you may have to change things to get it implemented
       //The commented code is how to make an api call
       
@@ -43,6 +43,7 @@ class TextBox extends React.Component {
       Once results are renturned the display class will be called, but this will be implemented later for now you can check the console for results
       Also page has not been implemented yet so you can leave this at 1 for now
       */
+      ReactDOM.render(<Books results={results}/>, document.getElementById('bookDisplay'));
       event.preventDefault();
     }
       
