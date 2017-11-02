@@ -31,10 +31,10 @@ class Hamburger extends Component {
     return (
     <div className="Hamburger">
       <Menu>
-            <Button type="button" onClick={this.home}>Home</Button>
-            <Button type="button" onClick={this.adv_search}>Advanced Search</Button>
-            <Button type="button" onClick={this.about}>About</Button>
-            <Button type="button" onClick={this.contact}>Contact</Button>
+            <Button className="btn_burger" onClick={this.home}>Home</Button>
+            <Button className="btn_burger" onClick={this.adv_search}>Advanced Search</Button>
+            <Button className="btn_burger" onClick={this.about}>About</Button>
+            <Button className="btn_burger" onClick={this.contact}>Contact</Button>
       </Menu>
      </div>
     );

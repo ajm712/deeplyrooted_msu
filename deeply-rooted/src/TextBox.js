@@ -23,7 +23,7 @@ class TextBox extends React.Component {
         var selection = event.target.value; //selection is equal to the current value of the dropdown box
         var results = ApiWrapper.makeCall(name,selection);
         console.log(results);
-        ReactDOM.render(<Books results={results}/>, document.getElementById('bookDisplay'));
+        ReactDOM.render(<Books results={results}/>, document.getElementById('root'));
     }
 
     handleSubmit(event) { //Currently just prints the search result to the screen but eventually will send info to the API call
@@ -42,7 +42,7 @@ class TextBox extends React.Component {
       Once results are renturned the display class will be called, but this will be implemented later for now you can check the console for results
       Also page has not been implemented yet so you can leave this at 1 for now
       */
-      ReactDOM.render(<Books results={results}/>, document.getElementById('bookDisplay'));
+      ReactDOM.render(<Books results={results}/>, document.getElementById('root'));
       event.preventDefault();
     }
 

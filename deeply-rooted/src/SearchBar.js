@@ -23,7 +23,7 @@ class SearchBar extends React.Component {
         var selection = event.target.value; //selection is equal to the current value of the dropdown box
         var results = ApiWrapper.makeCall(name,selection);
         console.log(results);
-        ReactDOM.render(<Books results={results}/>, document.getElementById('bookDisplay'));
+        ReactDOM.render(<Books results={results}/>, document.getElementById('root'));
     }
 
     handleSubmit(event) { //Currently just prints the search result to the screen but eventually will send info to the API call
@@ -32,7 +32,7 @@ class SearchBar extends React.Component {
       //alert(search);
       var results = ApiWrapper.makeCall(name,search);
       console.log(results);
-      ReactDOM.render(<Books results={results}/>, document.getElementById('bookDisplay'));
+      ReactDOM.render(<Books results={results}/>, document.getElementById('root'));
       event.preventDefault();
     }
 
