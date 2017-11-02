@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+//import App from './App';
 import TextBox from './TextBox.js';
-import registerServiceWorker from './registerServiceWorker';
+//import registerServiceWorker from './registerServiceWorker';
 
 class Form extends React.Component {
   changeInput(event) {
     var selection = event.target.value; //selection is equal to the current value of the dropdown box
-    ReactDOM.render(<TextBox selection={selection}/>, document.getElementById('text-box')); //Calls TextBox class which decides which user input to display   
+    ReactDOM.render(<TextBox selection={selection}/>, document.getElementById('text-box')); //Calls TextBox class which decides which user input to display
   }
 
   /*Renders a dropdown box with the following selections*/
@@ -37,5 +37,5 @@ class Form extends React.Component {
     );
   }
 }
-  
+
 export default Form;

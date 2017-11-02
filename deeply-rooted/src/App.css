@@ -3,15 +3,15 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
+  /*animation: App-logo-spin infinite 20s linear;*/
   height: 80px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  background-color: #CCC7B3;
+  height: 130px;
   padding: 20px;
-  color: white;
+  color: black;
 }
 
 .App-intro {
@@ -25,7 +25,7 @@
 
 .border-shadow{
   position: relative;
-  border-radius: 25px;    
+  border-radius: 25px;
   padding: 5px;
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, .5);
   margin: 10px;
@@ -73,8 +73,8 @@
 }
 
 
-.inLine{  
-  display: inline-block;  
+.inLine{
+  display: inline-block;
 }
 
 .submitButton{
@@ -89,4 +89,3 @@
 .submitButton:hover{
   opacity: .7;
 }
-
