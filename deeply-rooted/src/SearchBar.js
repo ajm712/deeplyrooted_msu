@@ -29,7 +29,7 @@ class SearchBar extends React.Component {
     handleSubmit(event) { //Currently just prints the search result to the screen but eventually will send info to the API call
       var name = event.target.name;
       var search = this.state[name];
-      alert(search);
+      //alert(search);
       var results = ApiWrapper.makeCall(name,search);
       console.log(results);
       ReactDOM.render(<Books results={results}/>, document.getElementById('bookDisplay'));

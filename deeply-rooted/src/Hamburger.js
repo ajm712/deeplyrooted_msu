@@ -3,50 +3,42 @@ import ReactDOM from 'react-dom';
 import { slide as Menu } from 'react-burger-menu';
 import './Hamburger.css';
 import About from './About.js';
+import Home from './Home.js';
 import {ButtonToolbar, ButtonGroup, Button} from 'react-bootstrap'
+import Form from './Form.js';
+import TextBox from './TextBox.js';
 
 
 class Hamburger extends Component {
-    constructor(props) {
-    super(props);
-    this.state = {
-      showComponent: false,
-    };
-    this._onButtonClick = this._onButtonClick.bind(this);
+  about() {
+      ReactDOM.render(<About />, document.getElementById('root'));
   }
 
-  _onButtonClick() {
-    this.setState({
-      showComponent: true,
-    });
+  home() {
+      ReactDOM.render(<Home />, document.getElementById('root'));
   }
 
-  // showSettings (event) {
-  //   event.preventDefault();
-  // }
-  // _onButtonClick(destination) {
-  //     if (destination === 'about') {
-  //         ReactDOM.render(<About />, document.getElementById('root'));
-  //     }
-  //     if (destination === 'home') {
-  //         ReactDOM.render(<About />, document.getElementById('root'));
-  //     }
-  // }
-  //
+  adv_search() {
+      ReactDOM.render(<Form />, document.getElementById('dropbox'));
+      ReactDOM.render(<TextBox selection="Subject"/>, document.getElementById('text-box'));
+  }
+
+  contact() {
+      ReactDOM.render(<About />, document.getElementById('root'));
+  }
+
   render () {
     return (
     <div className="Hamburger">
       <Menu>
-            <Button onClick={this._onButtonClick}>Home</Button>
-            {this.state.showComponent ? <About /> : null}
-            <Button onClick={this._onButtonClick}>Advanced Search</Button>
-            <Button onClick={this._onButtonClick}>About</Button>
-            <Button onClick={this._onButtonClick}>Contact</Button>
+            <Button type="button" onClick={this.home}>Home</Button>
+            <Button type="button" onClick={this.adv_search}>Advanced Search</Button>
+            <Button type="button" onClick={this.about}>About</Button>
+            <Button type="button" onClick={this.contact}>Contact</Button>
       </Menu>
      </div>
     );
   }
-
 
 }
 
