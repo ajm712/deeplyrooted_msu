@@ -16,7 +16,7 @@ class Books extends React.Component {
     }
   
     _getAPI() {
-      var allBooks = this.props.results;
+      var allBooks = this.props.results.docs;
       var formattedBook = [];      
       var bookObject = {}
       var metaData;
@@ -143,7 +143,7 @@ class Books extends React.Component {
         <div className="bookTable2">
           <a href={this.props.link}>
             <OverlayTrigger id="abc" trigger={['hover', 'focus']} placement="bottom" overlay={popoverHoverFocusBottom}>
-              <img className="bookDiv" alt="Book Thumbnail" src={this.props.image} onMouseOver={this.AutoRotate}/>
+              <img className="bookDiv" alt="Book Thumbnail" src={this.props.image} />
               </OverlayTrigger>
           </a>
         </div>

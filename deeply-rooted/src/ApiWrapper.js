@@ -4,7 +4,7 @@ $.ajaxSetup({
   });
 
 class ApiWrapper{
-    static makeCall({subject="", rights="", title="", format="", collection="", state="", creator="", date="", other="", language="", page="", page_size="10"} = {}) {
+    static makeCall({subject="", rights="", title="", format="", collection="", state="", creator="", date="", other="", language="", page="", page_size="25"} = {}) {
         // sends a request to the dpla api and returns a list of json objects
         // example call: ApiWrapper.makeCall({language:"english"})
         // date should be YYYY-MM-DD 

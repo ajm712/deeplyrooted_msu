@@ -21,36 +21,25 @@ class TextBox extends React.Component {
     handleDrop(event) {
         var name = event.target.name;
         var selection = event.target.value; //selection is equal to the current value of the dropdown box        
-        var results = ApiWrapper.makeCall(name,selection);
+        var results = ApiWrapper.makeCall({name: selection});
         console.log(results);
-        ReactDOM.render(<Books results={results}/>, document.getElementById('bookDisplay'));
+        //ReactDOM.render(<Books results={results}/>, document.getElementById('bookDisplay'));
         
     }
   
-    handleSubmit(event) { //Currently just prints the search result to the screen but eventually will send info to the API call
+    handleSubmit(event) { 
       var name = event.target.name;
       var search = this.state[name];
-      //Implement API Call Here's an example provided by Joesph you may have to change things to get it implemented
-      //The commented code is how to make an api call
-      
       var results = ApiWrapper.makeCall(name,search);
-      console.log(results);      
-      /*Explanation:
-      var results is a variable to store the results from the api call
-      ApiWrapper.makeCall() is a function to call api calls
-      langauge is what im searching by so this will be replaces by subject, title, date, etc. depending on the search
-      "english" is the language im searching for this should be replaced by the variable search
-      Once results are renturned the display class will be called, but this will be implemented later for now you can check the console for results
-      Also page has not been implemented yet so you can leave this at 1 for now
-      */
-      ReactDOM.render(<Books results={results}/>, document.getElementById('bookDisplay'));
+      console.log(results); 
+      ReactDOM.render(<Books results={results}/>, document.getElementById('bookDisplay'));     
       event.preventDefault();
     }
       
     render() {
       var selection = this.props.selection; //Based on the selection value passed in from Form.js return the appropriate text box 
 
-      if(selection == "Subject")
+      if(selection === "Subject")
       {
         return (
           <div className="inLine">
@@ -62,7 +51,7 @@ class TextBox extends React.Component {
         );
       }
   
-      else if(selection == "Topic")
+      else if(selection === "Topic")
       {
         return (
           <div className="inLine">
@@ -74,7 +63,7 @@ class TextBox extends React.Component {
         );
       }
 
-      else if(selection == "Title")
+      else if(selection === "Title")
       {
         return (
           <div className="inLine">
@@ -86,7 +75,7 @@ class TextBox extends React.Component {
         );
       }
 
-      else if(selection == "Rights")
+      else if(selection === "Rights")
       {
         return (
           <div className="inLine">
@@ -98,7 +87,7 @@ class TextBox extends React.Component {
         );
       }
 
-      else if(selection == "Format")
+      else if(selection === "Format")
       {
         return (
           <div className="inLine">
@@ -110,7 +99,7 @@ class TextBox extends React.Component {
         );
       }
 
-      else if(selection == "Collection")
+      else if(selection === "Collection")
       {
         return (
           <div className="inLine">
@@ -122,7 +111,7 @@ class TextBox extends React.Component {
         );
       }
 
-      else if(selection == "State")
+      else if(selection === "State")
       {
         return (
           <div className="inLine">
@@ -187,7 +176,7 @@ class TextBox extends React.Component {
         );
       }
 
-      else if(selection == "Creator")
+      else if(selection === "Creator")
       {
         return (
           <div className="inLine">
@@ -199,7 +188,7 @@ class TextBox extends React.Component {
         );
       }
 
-      else if(selection == "Date")
+      else if(selection === "Date")
       {
         return (
           <div className="inLine">
@@ -211,7 +200,7 @@ class TextBox extends React.Component {
         );
       }
 
-      else if(selection == "Description")
+      else if(selection === "Description")
       {
         return (
           <div className="inLine">
@@ -223,7 +212,7 @@ class TextBox extends React.Component {
         );
       }
 
-      else if(selection == "Language")
+      else if(selection === "Language")
       {
         return (
           <div className="inLine">
