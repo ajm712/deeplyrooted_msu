@@ -32,7 +32,7 @@ class TextBox extends React.Component {
       var search = this.state[name];
       var results = ApiWrapper.makeCall(name,search);
       console.log(results);
-      ReactDOM.render(<Books results={results}/>, document.getElementById('bookDisplay'));
+      ReactDOM.render(<Books results={results}/>, document.getElementById('root'));
       event.preventDefault();
     }
 

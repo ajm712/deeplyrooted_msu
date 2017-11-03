@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Books from './DisplayBooks.js';
+import Books from './DisplayBookTwo.js';
 import './SearchBar.css';
 import SimpleSearch from './SimpleSearch.js';
 
