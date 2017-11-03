@@ -82,6 +82,8 @@
 .bookDiv {
   position: relative;
   top: 7%;
+  width: 80%;
+  height: 80%;
   border: 4px solid rgba(10, 10, 10, 0.583);
 }
 

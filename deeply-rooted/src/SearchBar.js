@@ -33,11 +33,15 @@ class SearchBar extends React.Component {
         event.preventDefault();
     }
 
+    componentDidMount(){
+        this.nameInput.focus();
+    }
+
     render() {
         return (
           <div className="nbarsearch">
             <form className="form">
-              <input className="searchBox" type="text"  value={this.state.value} onChange={this.handleChange}/>
+              <input ref={(input) => { this.nameInput = input; }} className="searchBox" type="text"  value={this.state.value} onChange={this.handleChange}/>
               <input className="searchButton" type="submit" name="subject" value="&#xf002;" onClick={this.handleSubmit}/>
             </form>
           </div>
