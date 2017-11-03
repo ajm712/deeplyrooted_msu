@@ -11,7 +11,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(<Header />, document.getElementById('header')); //Displays the spinning react label
 ReactDOM.render(<NavBar><Hamburger /><SearchBar /></NavBar>, document.getElementById('navbar')); //Displays the navbar
-ReactDOM.render(<Home />, document.getElementById('home'));
+ReactDOM.render(<Home />, document.getElementById('root'));
 ReactDOM.render(<Footer />, document.getElementById('footer'));
 
 registerServiceWorker();
