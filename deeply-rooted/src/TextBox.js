@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Books from './DisplayBooks.js';
 import './index.css';
 import ApiWrapper from './ApiWrapper.js';
-//import registerServiceWorker from './registerServiceWorker';
+import Books from './DisplayBookTwo.js';
+import registerServiceWorker from './registerServiceWorker';
 
 class TextBox extends React.Component {
     constructor(props) {
@@ -21,28 +21,18 @@ class TextBox extends React.Component {
     handleDrop(event) {
         var name = event.target.name;
         var selection = event.target.value; //selection is equal to the current value of the dropdown box
-        var results = ApiWrapper.makeCall(name,selection);
+        var results = ApiWrapper.makeCall({name: selection});
         console.log(results);
-        ReactDOM.render(<Books results={results}/>, document.getElementById('root'));
+        //ReactDOM.render(<Books results={results}/>, document.getElementById('bookDisplay'));
+
     }
 
-    handleSubmit(event) { //Currently just prints the search result to the screen but eventually will send info to the API call
+    handleSubmit(event) {
       var name = event.target.name;
       var search = this.state[name];
-      //alert(search);
-      //Implement API Call Here's an example provided by Joesph you may have to change things to get it implemented
-      //The commented code is how to make an api call
       var results = ApiWrapper.makeCall(name,search);
       console.log(results);
-      /*Explanation:
-      var results is a variable to store the results from the api call
-      ApiWrapper.makeCall() is a function to call api calls
-      langauge is what im searching by so this will be replaces by subject, title, date, etc. depending on the search
-      "english" is the language im searching for this should be replaced by the variable search
-      Once results are renturned the display class will be called, but this will be implemented later for now you can check the console for results
-      Also page has not been implemented yet so you can leave this at 1 for now
-      */
-      ReactDOM.render(<Books results={results}/>, document.getElementById('root'));
+      ReactDOM.render(<Books results={results}/>, document.getElementById('bookDisplay'));
       event.preventDefault();
     }
 
@@ -65,10 +55,10 @@ class TextBox extends React.Component {
       {
         return (
           <div className="inLine">
-          <form>
-          <input className="textBox" type="text" name="Topic" value={this.state.name} onChange={this.handleChange}/>
-          <input className="submitButton" type="submit" name="Topic" value="Submit" onClick={this.handleSubmit}/>
-          </form>
+            <form>
+                <input className="textBox" type="text" name="topic" value={this.state.name} onChange={this.handleChange}/>
+                <input className="submitButton" type="submit" name="topic" value="Submit" onClick={this.handleSubmit}/>
+            </form>
           </div>
         );
       }
@@ -77,10 +67,10 @@ class TextBox extends React.Component {
       {
         return (
           <div className="inLine">
-          <form>
-          <input className="textBox" type="text" name="Title" value={this.state.name} onChange={this.handleChange}/>
-          <input className="submitButton" type="submit" name="Title" value="Submit" onClick={this.handleSubmit}/>
-          </form>
+            <form>
+                <input className="textBox" type="text" name="title" value={this.state.name} onChange={this.handleChange}/>
+                <input className="submitButton" type="submit" name="title" value="Submit" onClick={this.handleSubmit}/>
+            </form>
           </div>
         );
       }
@@ -89,10 +79,10 @@ class TextBox extends React.Component {
       {
         return (
           <div className="inLine">
-          <form>
-          <input className="textBox" type="text" name="Rights" value={this.state.name} onChange={this.handleChange}/>
-          <input className="submitButton" type="submit" name="Rights" value="Submit" onClick={this.handleSubmit}/>
-          </form>
+            <form>
+                <input className="textBox" type="text" name="=rights" value={this.state.name} onChange={this.handleChange}/>
+                <input className="submitButton" type="submit" name="rights" value="Submit" onClick={this.handleSubmit}/>
+            </form>
           </div>
         );
       }
@@ -101,10 +91,10 @@ class TextBox extends React.Component {
       {
         return (
           <div className="inLine">
-          <form>
-          <input className="textBox" type="text" name="Format" value={this.state.name} onChange={this.handleChange}/>
-          <input className="submitButton" type="submit" name="Format" value="Submit" onClick={this.handleSubmit}/>
-          </form>
+            <form>
+                <input className="textBox" type="text" name="format" value={this.state.name} onChange={this.handleChange}/>
+                <input className="submitButton" type="submit" name="format" value="Submit" onClick={this.handleSubmit}/>
+            </form>
           </div>
         );
       }
@@ -113,10 +103,10 @@ class TextBox extends React.Component {
       {
         return (
           <div className="inLine">
-          <form>
-          <input className="textBox" type="text" name="Collection" value={this.state.name} onChange={this.handleChange}/>
-          <input className="submitButton" type="submit" name="Collection" value="Submit" onClick={this.handleSubmit}/>
-          </form>
+            <form>
+                <input className="textBox" type="text" name="collection" value={this.state.name} onChange={this.handleChange}/>
+                <input className="submitButton" type="submit" name="collection" value="Submit" onClick={this.handleSubmit}/>
+            </form>
           </div>
         );
       }
@@ -127,7 +117,7 @@ class TextBox extends React.Component {
           <div className="inLine">
             <form>
               <label>
-                <select className="dropDownState" onChange={this.handleSubmit}>
+                <select className="dropDownState" name="state" onChange={this.handleDrop}>
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
                   <option value="AZ">Arizona</option>
@@ -181,20 +171,19 @@ class TextBox extends React.Component {
                   <option value="WY">Wyoming</option>
                 </select>
               </label>
-              <input className="submitButton" type="submit" name="State" value="Submit" onClick={this.handleSubmit}/>
             </form>
           </div>
         );
       }
 
-      else if(selection === "Author")
+      else if(selection === "Creator")
       {
         return (
           <div className="inLine">
-          <form>
-          <input className="textBox" type="text" name="topic" value={this.state.name} onChange={this.handleChange}/>
-          <input className="submitButton" type="submit" name="topic" value="Submit" onClick={this.handleSubmit}/>
-          </form>
+            <form>
+                <input className="textBox" type="text" name="creator" value={this.state.name} onChange={this.handleChange}/>
+                <input className="submitButton" type="submit" name="creator" value="Submit" onClick={this.handleSubmit}/>
+            </form>
           </div>
         );
       }
@@ -203,7 +192,10 @@ class TextBox extends React.Component {
       {
         return (
           <div className="inLine">
-          <p> Implement Calender </p>
+            <form>
+              <input className="textBox" type="date" name="date" value={this.state.name} onChange={this.handleChange}/>
+              <input className="submitButton" type="submit" name="date" value="Submit" onClick={this.handleSubmit}/>
+            </form>
           </div>
         );
       }
@@ -212,10 +204,10 @@ class TextBox extends React.Component {
       {
         return (
           <div className="inLine">
-          <form>
-          <input className="textBox" type="text" name="Description" value={this.state.name} onChange={this.handleChange}/>
-          <input className="submitButton" type="submit" name="Description" value="Submit" onClick={this.handleSubmit}/>
-          </form>
+            <form>
+                <input className="textBox" type="text" name="description" value={this.state.name} onChange={this.handleChange}/>
+                <input className="submitButton" type="submit" name="description" value="Submit" onClick={this.handleSubmit}/>
+            </form>
           </div>
         );
       }
@@ -224,10 +216,19 @@ class TextBox extends React.Component {
       {
         return (
           <div className="inLine">
-          <form>
-          <input className="textBox" type="text" name="Language" value={this.state.name} onChange={this.handleChange}/>
-          <input className="submitButton" type="submit" name="Language" value="Submit" onClick={this.handleSubmit}/>
-          </form>
+           <form>
+             <label>
+                <select className="dropDown" name="language" onChange={this.handleDrop}>
+                  <option value="EN">English</option>
+                  <option value="SP">Spanish</option>
+                  <option value="GE">German</option>
+                  <option value="SW">Swedish</option>
+                  <option value="FR">French</option>
+                  <option value="PE">Portugese</option>
+                  <option value="RM">Romanian</option>
+                </select>
+              </label>
+            </form>
           </div>
         );
       }
@@ -246,4 +247,4 @@ class TextBox extends React.Component {
     }
   }
 
-  export default TextBox;
+export default TextBox;
