@@ -30,9 +30,34 @@ class TextBox extends React.Component {
     handleSubmit(event) { 
       var name = event.target.name;
       var search = this.state[name];
-      var results = ApiWrapper.makeCall(name,search);
+      var formData = {
+        subject: "",
+        rights: "",
+        title: "",
+        format: "",
+        collection: "",
+        state: "",
+        language: "",
+        creator: "",
+        date: ""
+      };
+
+      formData[name] = search;
+      console.log(formData);
+
+      var results = ApiWrapper.makeCall({subject: formData.subject, 
+                                         rights: formData.rights, 
+                                         title: formData.title, 
+                                         format: formData.format, 
+                                         collection: formData.collection, 
+                                         state: formData.state, 
+                                         language: formData.language, 
+                                         creator: formData.creator,
+                                         date: formData.date, 
+                                        });
+
       console.log(results); 
-      ReactDOM.render(<Books results={results}/>, document.getElementById('bookDisplay'));     
+      ReactDOM.render(<Books results={results}/>, document.getElementById('bookDisplay')); 
       event.preventDefault();
     }
       
