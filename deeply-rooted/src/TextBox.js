@@ -12,7 +12,7 @@ class TextBox extends React.Component {
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
-  
+
     handleChange(event) { //Stores the user input value
       var name = event.target.name;
       this.setState({[name]: event.target.value});
@@ -21,9 +21,9 @@ class TextBox extends React.Component {
     handleDrop(event) {
         var name = event.target.name;
         var selection = event.target.value; //selection is equal to the current value of the dropdown box        
-        var results = ApiWrapper.makeCall({name: selection});
+        var results = ApiWrapper.makeCall({name: selection, page_size: "25"});
         console.log(results);
-        //ReactDOM.render(<Books results={results}/>, document.getElementById('bookDisplay'));
+        ReactDOM.render(<Books results={results}/>, document.getElementById('root'));
         
     }
   
@@ -39,7 +39,8 @@ class TextBox extends React.Component {
         state: "",
         language: "",
         creator: "",
-        date: ""
+        date: "",
+        page: "30"
       };
 
       formData[name] = search;
@@ -54,22 +55,23 @@ class TextBox extends React.Component {
                                          language: formData.language, 
                                          creator: formData.creator,
                                          date: formData.date, 
+                                         page_size: formData.page,
                                         });
 
       console.log(results); 
-      ReactDOM.render(<Books results={results}/>, document.getElementById('bookDisplay')); 
+      ReactDOM.render(<Books results={results}/>, document.getElementById('root')); 
       event.preventDefault();
     }
-      
+
     render() {
-      var selection = this.props.selection; //Based on the selection value passed in from Form.js return the appropriate text box 
+      var selection = this.props.selection; //Based on the selection value passed in from Form.js return the appropriate text box
 
       if(selection === "Subject")
       {
         return (
           <div className="inLine">
             <form>
-              <input className="textBox" type="text"  name="subject" value={this.state.name} onChange={this.handleChange}/> 
+              <input className="textBox" type="text"  name="subject" value={this.state.name} onChange={this.handleChange}/>
               <input className="submitButton" type="submit" name="subject" value="Submit" onClick={this.handleSubmit}/>
             </form>
           </div>
@@ -257,13 +259,13 @@ class TextBox extends React.Component {
           </div>
         );
       }
-  
+
       else
       {
         return (
           <div className="inLine">
             <form>
-              <input className="textBox" type="text"  name="subject" value={this.state.name} onChange={this.handleChange}/> 
+              <input className="textBox" type="text"  name="subject" value={this.state.name} onChange={this.handleChange}/>
               <input className="submitButton" type="submit" name="subject" value="Submit" onClick={this.handleSubmit}/>
             </form>
           </div>
