@@ -19,17 +19,43 @@ class TextBox extends React.Component {
     }
     
     handleDrop(event) {
-        var name = event.target.name;
-        var selection = event.target.value; //selection is equal to the current value of the dropdown box        
-        var results = ApiWrapper.makeCall({name: selection, page_size: "25"});
+        var searchType = event.target.name;
+        var userInput = event.target.value; //selection is equal to the current value of the dropdown box   
+        var formData = {
+          subject: "",
+          rights: "",
+          title: "",
+          format: "",
+          collection: "",
+          state: "",
+          language: "",
+          creator: "",
+          date: "",
+          page: "30"
+        };
+
+        formData[searchType] = userInput;
+
+        var results = ApiWrapper.makeCall({subject: formData.subject, 
+          rights: formData.rights, 
+          title: formData.title, 
+          format: formData.format, 
+          collection: formData.collection, 
+          state: formData.state, 
+          language: formData.language, 
+          creator: formData.creator,
+          date: formData.date, 
+          page_size: formData.page,
+         });
+        
         console.log(results);
         ReactDOM.render(<Books results={results}/>, document.getElementById('root'));
         
     }
   
     handleSubmit(event) { 
-      var name = event.target.name;
-      var search = this.state[name];
+      var searchType = event.target.name;
+      var userInput = this.state[searchType];
       var formData = {
         subject: "",
         rights: "",
@@ -43,8 +69,52 @@ class TextBox extends React.Component {
         page: "30"
       };
 
-      formData[name] = search;
+      formData[searchType] = userInput;
       console.log(formData);
+
+      var results = ApiWrapper.makeCall({subject: formData.subject, 
+                                         rights: formData.rights, 
+                                         title: formData.title, 
+                                         format: formData.format, 
+                                         collection: formData.collection, 
+                                         state: formData.state, 
+                                         language: formData.language, 
+                                         creator: formData.creator,
+                                         date: formData.date, 
+                                         page_size: formData.page,
+                                        });
+
+      console.log(results); 
+      ReactDOM.render(<Books results={results}/>, document.getElementById('root')); 
+      event.preventDefault();
+    }
+
+    handleAdvancedSearch(event) { 
+      var searchParameters = ["subject", "rights", "title", "format", "collection", "state", "language", "creator", "date"];
+      var searchType;
+      var userInput;
+      var formData = {
+        subject: "",
+        rights: "",
+        title: "",
+        format: "",
+        collection: "",
+        state: "",
+        language: "",
+        creator: "",
+        date: "",
+        page: "30"
+      };
+
+      for (var i = 0; i < searchParameters.length; i++)
+      {
+        searchType = searchParameters[i]
+        userInput = this.state[searchType]; 
+        
+        if (userInput !== "")
+          formData[searchType] = userInput;
+      }
+      
 
       var results = ApiWrapper.makeCall({subject: formData.subject, 
                                          rights: formData.rights, 

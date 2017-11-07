@@ -20,7 +20,7 @@ class Form extends React.Component {
           <label>
             <select className="dropDown" onChange={this.changeInput}>
               <option selected="selected" value="Subject">Subject</option>
-              <option value="Topic">Topic</option>
+              {/*<option value="Topic">Topic</option>*/}
               <option value="Title">Title</option>
               <option value="Rights">Rights</option>
               <option value="Format">Format</option>
@@ -28,7 +28,7 @@ class Form extends React.Component {
               <option value="State">State</option>
               <option value="Author">Author</option>
               <option value="Date">Date</option>
-              <option value="Description">Description</option>
+              {/*<option value="Description">Description</option>*/}
               <option value="Language">Language</option>
             </select>
           </label>
