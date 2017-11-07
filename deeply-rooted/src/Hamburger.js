@@ -14,10 +14,14 @@ import Books from './DisplayBookTwo.js';
 class Hamburger extends Component {
   about() {
       ReactDOM.render(<About />, document.getElementById('root'));
+      ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
+      ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
   }
 
   home() {
       ReactDOM.render(<Home />, document.getElementById('root'));
+      ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
+      ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
   }
 
   adv_search() {
@@ -29,6 +33,8 @@ class Hamburger extends Component {
 
   contact() {
       ReactDOM.render(<About />, document.getElementById('root'));
+      ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
+      ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
   }
 
   render () {
