@@ -305,13 +305,13 @@ class TextBox extends React.Component {
            <form>
              <label>
                 <select className="dropDown" name="language" onChange={this.handleDrop}>
-                  <option value="EN">English</option>
-                  <option value="SP">Spanish</option>
-                  <option value="GE">German</option>
-                  <option value="SW">Swedish</option>
-                  <option value="FR">French</option>
-                  <option value="PE">Portugese</option>
-                  <option value="RM">Romanian</option>
+                  <option value="English">English</option>
+                  <option value="Spanish">Spanish</option>
+                  <option value="German">German</option>
+                  <option value="Swedish">Swedish</option>
+                  <option value="French">French</option>
+                  <option value="Portugese">Portugese</option>
+                  <option value="Romanian">Romanian</option>
                 </select>
               </label>
             </form>
