@@ -10,7 +10,7 @@ class Home extends Component {
           <div className="homepage">
             <h2>Deeply Rooted</h2>
             <img src={logo} alt="logo" />
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Knowledge. It makes the world grow. It connects people. It helps people achieve their dreams. Deeply Rooted believes in the power of knowledge.  Deeply Rooted has a shared digital collection filled with photographs, maps, books, news footages, and other media items. They have a wide range of contributors including Auburn University Libraries, Mississippi State Libraries, University of Kentucky, University of Florida, University of Georgia, and Wake Forrest University. Their goals include bringing in new materials and partners into Deeply Rooted, and connecting people through curation, education, and community.</p>
           </div>
         </div>
     );
