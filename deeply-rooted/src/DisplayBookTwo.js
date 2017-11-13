@@ -1,8 +1,14 @@
 import React from 'react';
 import './Header.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
-import {Popover, ButtonToolbar, OverlayTrigger, Button} from 'react-bootstrap'
-var $ = require('jquery')
+import {Popover, ButtonToolbar, OverlayTrigger, Button} from 'react-bootstrap';
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import '../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+
+
+var $ = require('jquery');
+var ReactDOM = require('react-dom');
+var ReactBsTable  = require('react-bootstrap-table');
 
 class Books extends React.Component {
     render() {
@@ -116,28 +122,40 @@ class Books extends React.Component {
         formattedBook[i] = bookObject;
       }
 
-      //TODO: Search trhough formattedBook and delete any entries that have major unknow categories
+      //TODO: Search through formattedBook and delete any entries that have major unknow categories
       
-      //Send each element in formattedBooks to the BookDisplay Class
-      return formattedBook.map((b) => {
-        return (<BookDisplay
-                 key={b.id}
-                 image={b.image}
-                 link={b.link}
-                 itemNum={b.itemNum}
-                 title={b.title}
-                 creator={b.creator}
-                 collection={b.collection} 
-                 date={b.date}
-                 description={b.description}
-                 language={b.language}
-                 publisher={b.publisher}
-                 rights={b.rights}
-                 state={b.state}
-                 totalResults={allBooks.length}  />
-                 );         
+      //Send each element in formattedBooks to the BookDisplay Classzz
+
+      
+      var x = 0;
+      if (x === 1)
+      {
+        return formattedBook.map((b) => {
+          return (<BookDisplay
+                   key={b.id}
+                   image={b.image}
+                   link={b.link}
+                   itemNum={b.itemNum}
+                   title={b.title}
+                   creator={b.creator}
+                   collection={b.collection} 
+                   date={b.date}
+                   description={b.description}
+                   language={b.language}
+                   publisher={b.publisher}
+                   rights={b.rights}
+                   state={b.state}
+                   totalResults={allBooks.length}  />
+                   );         
         });
       }
+
+      else if (x === 0)
+      {
+        console.log("return" + formattedBook);
+          return (<BookDisplaytt tableInfo ={formattedBook}  />);         
+      }
+    }
   }
   
   class BookDisplay extends React.Component {
@@ -195,4 +213,68 @@ class Books extends React.Component {
     }
   }
 
+
+ 
+  class BookDisplaytt extends React.Component {
+
+    render() {
+
+      console.log(this);
+      var products = this.props.tableInfo;
+      var products = [];
+      for (var i = 0; i < this.props.tableInfo.length; i++)
+      {
+        products[i] = {
+                        id: this.props.tableInfo[i].itemNum,
+                        title: this.props.tableInfo[i].title,
+                        creator: this.props.tableInfo[i].creator,
+                        collection: this.props.tableInfo[i].collection,
+                        date: this.props.tableInfo[i].date,
+                        description: this.props.tableInfo[i].description,
+                        language: this.props.tableInfo[i].language,
+                        publisher: this.props.tableInfo[i].publisher,
+                        rights: this.props.tableInfo[i].rights,
+                        state: this.props.tableInfo[i].state,
+                        link: this.props.tableInfo[i].link
+        }
+      }
+      console.log(products);
+     
+      
+      return(
+        <div>
+         <BootstrapTable data = {products} striped hover condensed >
+         <TableHeaderColumn isKey dataField='id'>Item Num</TableHeaderColumn>
+         <TableHeaderColumn dataField='title'>Book Title</TableHeaderColumn>
+         <TableHeaderColumn dataField='creator'>Creator</TableHeaderColumn>
+         <TableHeaderColumn dataField='collection'>Collection</TableHeaderColumn>
+         <TableHeaderColumn dataField='date'>Date</TableHeaderColumn>
+         <TableHeaderColumn dataField='description'>Description</TableHeaderColumn>
+         <TableHeaderColumn dataField='language'>Language</TableHeaderColumn>
+         <TableHeaderColumn dataField='publisher'>Publisher</TableHeaderColumn>
+         <TableHeaderColumn dataField='rights'>Rights</TableHeaderColumn>
+         <TableHeaderColumn dataField='state'>State</TableHeaderColumn>
+         <TableHeaderColumn dataField='link'>More Info</TableHeaderColumn>
+         </BootstrapTable>
+         
+        </div>
+      );
+    }
+  }
+
 export default Books;
+
+/*key={b.id}
+image={b.image}
+link={b.link}
+itemNum={b.itemNum}
+title={b.title}
+creator={b.creator}
+collection={b.collection} 
+date={b.date}
+description={b.description}
+language={b.language}
+publisher={b.publisher}
+rights={b.rights}
+state={b.state}
+totalResults={allBooks.length}  />*/
