@@ -71,6 +71,8 @@ class TextBox extends React.Component {
 
       formData[searchType] = userInput;
       console.log(formData);
+      console.log('search type:'+ searchType);
+      console.log('userInput:'+userInput);
 
       var results = ApiWrapper.makeCall({subject: formData.subject, 
                                          rights: formData.rights, 
@@ -133,6 +135,7 @@ class TextBox extends React.Component {
       event.preventDefault();
     }
 
+
     render() {
       var selection = this.props.selection; //Based on the selection value passed in from Form.js return the appropriate text box
 
@@ -172,13 +175,34 @@ class TextBox extends React.Component {
         );
       }
 
+      //if user selects format, it displays dropbox input
       else if(selection === "Format")
       {
+        //pulls all format types from api 
+        var result =ApiWrapper.getFormatFacet();
+        var formatlist=[];
+        var formatFacets=result.facets["sourceResource.format"].terms;
+   
+      //adds items from "format" facets to the drop down box
+      for(var i=0; i<formatFacets.length; i++){
+        formatlist[i]=formatFacets[i].term;
+      }
+      formatlist.sort();
+      console.log(formatlist)
+        //returns a list of formats composed of items in formatlist
         return (
           <div className="inLine">
           <form>
-          <input className="textBox" type="text" name="format" placeholder="Insert Format Here" value={this.state.name} onChange={this.handleChange}/>
-          <input className="submitButton" type="submit" name="format" value="Submit" onClick={this.handleSubmit}/>
+          <label>
+                <select name="format" className="dropDown" onChange={this.handleSubmit}>
+                  <option value="ALL">--Select a Format--</option>
+                  {
+                    formatlist.map(function(formats){
+                      return <option value={formats}>{formats}</option>;
+                    })
+                  }
+                </select>
+              </label>
           </form>
           </div>
         );
@@ -196,65 +220,32 @@ class TextBox extends React.Component {
         );
       }
 
+      //if user selects state, dropbox input is displayed 
       else if(selection === "State")
       {
+        //pulls all states from api calls 
+        var result = ApiWrapper.getLocationFacet();
+        var stateList = [];
+        var stateFacets=result.facets["sourceResource.spatial.state"].terms;
+     
+        //places all states from states facets in the statelist list 
+        for(var i = 0; i<stateFacets.length; i++){
+          stateList[i] = stateFacets[i].term;
+        }
+        console.log(stateList);
+
+        //returns list of states composed of states from statelist
         return (
           <div className="inLine">
             <form>
               <label>
-                <select className="dropDownState" onChange={this.handleSubmit}>
-                  <option value="ALL">--Select a State--</option>
-                  <option value="Alabama">Alabama</option>
-                  <option value="Alaska">Alaska</option>
-                  <option value="Arizona">Arizona</option>
-                  <option value="Arizona">Arkansas</option>
-                  <option value="California">California</option>
-                  <option value="Colorado">Colorado</option>
-                  <option value="Connecticut">Connecticut</option>
-                  <option value="Delaware">Delaware</option>
-                  <option value="District Of Columbia">District Of Columbia</option>
-                  <option value="Florida">Florida</option>
-                  <option value="Georgia">Georgia</option>
-                  <option value="Hawaii">Hawaii</option>
-                  <option value="Idaho">Idaho</option>
-                  <option value="Illinois">Illinois</option>
-                  <option value="Indiana">Indiana</option>
-                  <option value="Iowa">Iowa</option>
-                  <option value="Kansas">Kansas</option>
-                  <option value="Kentucky">Kentucky</option>
-                  <option value="Louisiana">Louisiana</option>
-                  <option value="Maine">Maine</option>
-                  <option value="Maryland">Maryland</option>
-                  <option value="Massachusetts">Massachusetts</option>
-                  <option value="Michigan">Michigan</option>
-                  <option value="Minnesota">Minnesota</option>
-                  <option value="Mississippi">Mississippi</option>
-                  <option value="Missouri">Missouri</option>
-                  <option value="Montana">Montana</option>
-                  <option value="Nebraska">Nebraska</option>
-                  <option value="Nevada">Nevada</option>
-                  <option value="New Hampshire">New Hampshire</option>
-                  <option value="New Jersey">New Jersey</option>
-                  <option value="New Mexico">New Mexico</option>
-                  <option value="New York">New York</option>
-                  <option value="North Carolina">North Carolina</option>
-                  <option value="North Dakota">North Dakota</option>
-                  <option value="Ohio">Ohio</option>
-                  <option value="Oklahoma">Oklahoma</option>
-                  <option value="Oregon">Oregon</option>
-                  <option value="Pennsylvania">Pennsylvania</option>
-                  <option value="Rhode Island">Rhode Island</option>
-                  <option value="South Carolina">South Carolina</option>
-                  <option value="South Dakota">South Dakota</option>
-                  <option value="Tennesee">Tennessee</option>
-                  <option value="Texas">Texas</option>
-                  <option value="Utah">Utah</option>
-                  <option value="Vermont">Vermont</option>
-                  <option value="Virginia">Virginia</option>
-                  <option value="Washington">Washington</option>
-                  <option value="West Virginia">West Virginia</option>
-                  <option value="Wisconsin">Wisconsin</option>
-                  <option value="Wyoming">Wyoming</option>
+                <select name="state" className="dropDownState" onChange={this.handleSubmit}>
+                  <option value="ALL">--Select a Location--</option>
+                  {
+                    stateList.map(function(states){
+                      return <option value={states}>{states}</option>;
+                    })
+                  }
                 </select>
               </label>
             </form>
@@ -274,13 +265,41 @@ class TextBox extends React.Component {
         );
       }
 
+      //if user selects state, dropdown input is displayed
       else if(selection === "Date")
       {
+
+        //pulls all dates from api calls 
+        var result = ApiWrapper.getDateBeforeFacet();
+        var dateFacets=result.facets["sourceResource.date.begin"].entries;
+        var datelist=[];
+        var year;
+      
+        //adds all dates to the datelist list
+        for(var i=0; i<dateFacets.length; i++){
+          //takes only the year from the date rather than month and day too
+          year = dateFacets[i].time[0] + dateFacets[i].time[1] + dateFacets[i].time[2] + dateFacets[i].time[3];
+          datelist[i] = year;
+        }
+
+        //organizes the dates in dropdown box in ascending order 
+        datelist.sort();
+        console.log(datelist);
+
+        //returns dates composed of dates from datelist 
         return (
           <div className="inLine">
             <form>
-              <input className="textBox" type="date" name="date" value={this.state.name} onChange={this.handleChange}/>
-              <input className="submitButton" type="submit" name="date" value="Submit" onClick={this.handleSubmit}/>
+            <label>
+                <select name="date" className="dropDown" onChange={this.handleSubmit}>
+                  <option value="ALL">--Select a Date--</option>
+                  {
+                    datelist.map(function(dates){
+                      return <option value={dates}>{dates}</option>;
+                    })
+                  }
+                </select>
+              </label>
             </form>
           </div>
         );
@@ -298,20 +317,36 @@ class TextBox extends React.Component {
         );
       }
 
+      //if user selects language, dropdown input is displayed 
       else if(selection === "Language")
       {
+      
+      //returns all languages from api calls 
+      var result =ApiWrapper.getLanguageFacet();
+      var languageFacets=result.facets["sourceResource.language.name"].terms;
+      console.log(languageFacets);
+       var languagelist=[];
+        
+        //adds all dates to languagelist list 
+        for(var i=0; i<languageFacets.length; i++){
+          languagelist[i]=languageFacets[i].term;
+        }
+          
+        //returns all languages composed of languages from  languagelist 
         return (
           <div className="inLine">
            <form>
              <label>
                 <select className="dropDown" name="language" onChange={this.handleDrop}>
-                  <option value="English">English</option>
-                  <option value="Spanish">Spanish</option>
-                  <option value="German">German</option>
-                  <option value="Swedish">Swedish</option>
-                  <option value="French">French</option>
-                  <option value="Portugese">Portugese</option>
-                  <option value="Romanian">Romanian</option>
+                  <option value="ALL">--Select a Language--</option>
+                {       
+  
+                  languagelist.map(function(languages){
+                   return <option value={languages}>{languages}</option>;
+                  })
+
+                }
+                
                 </select>
               </label>
             </form>
