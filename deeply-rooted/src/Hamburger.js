@@ -31,12 +31,6 @@ class Hamburger extends Component {
       ReactDOM.render(<Books results={results}/>, document.getElementById('root'));      
   }
 
-  contact() {
-      ReactDOM.render(<About />, document.getElementById('root'));
-      ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
-      ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
-  }
-
   render () {
     return (
     <div className="Hamburger">
@@ -44,7 +38,6 @@ class Hamburger extends Component {
             <Button className="btn_burger" onClick={this.home}>Home</Button>
             <Button className="btn_burger" onClick={this.adv_search}>Advanced Search</Button>
             <Button className="btn_burger" onClick={this.about}>About</Button>
-            <Button className="btn_burger" onClick={this.contact}>Contact</Button>
       </Menu>
      </div>
     );
