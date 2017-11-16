@@ -1,4 +1,54 @@
-.border-shadow{
+/*Toggle Button CSS*/
+
+.toggleButtonLeft{
+    padding: 15px 25px;
+    border-right: none;
+    border-top-left-radius: 4px; 
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 0cm;
+    border-bottom-right-radius: 0cm;
+    background: #ededed;
+    cursor: pointer;
+  }
+
+  .toggleButtonLeft:disabled{
+    padding: 15px 25px;
+    border-right: none;
+    border-top-left-radius: 4px; 
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 0cm;
+    border-bottom-right-radius: 0cm;
+    background: linear-gradient(rgb(170, 170, 170), rgb(206, 205, 204), #ECECEC);
+    box-shadow: inset 0px 0px 4px #ccc;
+    outline: none;
+    cursor: not-allowed;
+  }
+
+  .toggleButtonRight{
+    padding: 15px 25px;
+    border-left: none;
+    border-top-right-radius: 4px; 
+    border-bottom-right-radius: 4px;
+    border-top-left-radius: 0cm;
+    border-bottom-left-radius: 0cm;
+    background: #ededed;
+    cursor: pointer;
+  }
+
+  .toggleButtonRight:disabled{
+    padding: 15px 25px;
+    border-left: none;
+    border-top-right-radius: 4px; 
+    border-bottom-right-radius: 4px;
+    border-top-left-radius: 0cm;
+    border-bottom-left-radius: 0cm;
+    background: linear-gradient(rgb(170, 170, 170), rgb(206, 205, 204), #ECECEC);
+    box-shadow: inset 0px 0px 4px #ccc;
+    outline: none;
+    cursor: not-allowed;
+  }
+
+  .border-shadow{
   position: relative;
   border-radius: 25px;    
   padding: 5px;
@@ -6,14 +56,7 @@
   margin: 10px;
 }
 
-.gradient {
-  background: #D6C497; /* For browsers that do not support gradients */
-  background: -webkit-radial-gradient(#D6C497, #D6C497, #DDBC6F); /* Safari 5.1 to 6.0 */
-  background: -o-radial-gradient(#D6C497, #D6CBAF, #DDBC6F); /* For Opera 11.6 to 12.0 */
-  background: -moz-radial-gradient(#D6C497, #D6C497, #DDBC6F); /* For Firefox 3.6 to 15 */
-  background: radial-gradient(#D6C497, #D6C497, #DDBC6F); /* Standard syntax */
-}
-
+/*Used fo alternate display book*/
 .vr {
   width:15px;
   display: inline-block;
@@ -28,13 +71,6 @@
   height: 150px;
 }
 
-.bookBackground {
-  border-radius: 5px;
-  background: #DDBC6F;
-  padding: 10px;
-  height: 150px; 
-}
-
 .bookTitleRow {
   background-color: #DDBC6F;
 }
@@ -44,6 +80,7 @@
   background-color: transparent;
 }
 
+/*Used for Book Display*/
 .bookTable2 {
   display: inline-block;
   margin: 15px;
@@ -75,14 +112,12 @@
   text-align: center;
 }
 
-.hrColor {
-  border: none;
-  height: 6px;
-  /* Set the hr color */
-  color: #DDBC6F; /* old IE */
-  background-color: #DDBC6F; /* Modern Browsers */
+.inLine{  
+  display: inline-block;  
 }
 
+
+/*Form CSS*/
 .dropDown {
   padding: 12px 20px;
   margin: 8px 0;
@@ -106,35 +141,6 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-}
-
-.inLine{  
-  display: inline-block;  
-}
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  /*animation: App-logo-spin infinite 20s linear;*/
-  height: 80px;
-}
-
-.App-header {
-  background-color: #CCC7B3;
-  height: 155px;
-  padding: 20px;
-  color: black;
-}
-
-.App-intro {
-  font-size: medium;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 .submitButton{

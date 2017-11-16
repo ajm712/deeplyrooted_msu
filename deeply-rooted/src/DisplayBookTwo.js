@@ -1,5 +1,7 @@
 import React from 'react';
 import './Header.css';
+import './Display.css';
+//import './DisplayItem.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 import {Popover, ButtonToolbar, OverlayTrigger, Button} from 'react-bootstrap';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
@@ -11,25 +13,47 @@ var ReactDOM = require('react-dom');
 var ReactBsTable  = require('react-bootstrap-table');
 
 class Books extends React.Component {
+  constructor(props) {
+    super(props);
+    this.displayToggle = this.displayToggle.bind(this);
+  }
     render() {
       //Get a list of books and display the results to the screen
-      const api = this._getBooks();
+      var api = this._getBooks(this.props.view);
       return(
-        <div>
+        <div className="inline">
+          <span className="inline">
+            <button autoFocus id="component" name="componentView" disabled={this.props.view === "componentView"} className="toggleButtonLeft fa fa-th-large" onClick={this.displayToggle}>  Image View</button>
+            <button autoFocus id="table" name="tableView" disabled={this.props.view === "tableView"} className="toggleButtonRight fa fa-table" onClick={this.displayToggle}>  Table View</button>
+          </span>  
           <div>
             {api}
           </div>
         </div>
       );
     }
+
+    displayToggle(event) {
+      var buttonName = event.target.name;
+      var results = this.props.results;
+      if (buttonName === "componentView")
+      {
+        ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
+      }
   
-    _getBooks() {
+      else
+      {
+        ReactDOM.render(<Books view="tableView" results={results}/>, document.getElementById('root'));      
+      }
+    }
+
+    _getBooks(viewType) {
       var allBooks = this.props.results.docs;
       var formattedBook = [];      
       var bookObject = {}
       var metaData;
       var data;
-
+      console.log(allBooks);
       //For each book in results parse throught the data to find relevent information
       for (var i = 0; i < allBooks.length; i++)
       {
@@ -44,6 +68,7 @@ class Books extends React.Component {
           description: "Unknown",
           language: "Unknown",
           publisher: "Unknown",
+          format: "Unknown",
           rights: "Unknown",
           state:  "Unknown",
         };
@@ -110,6 +135,10 @@ class Books extends React.Component {
         if (data.hasOwnProperty('rights'))
         bookObject.rights = data.rights[0];
 
+        //Searches for the format of the book
+        if (data.hasOwnProperty('format'))
+        bookObject.format = data.format[0];
+
         //Searches for the state location of the book
         if (data.hasOwnProperty('stateLocatedIn') && data.stateLocatedIn[0].hasOwnProperty('name'))
           bookObject.state = data.stateLocatedIn[0].name;
@@ -127,8 +156,7 @@ class Books extends React.Component {
       //Send each element in formattedBooks to the BookDisplay Classzz
 
       
-      var x = 0;
-      if (x === 1)
+      if (viewType === "componentView")
       {
         return formattedBook.map((b) => {
           return (<BookDisplay
@@ -145,15 +173,15 @@ class Books extends React.Component {
                    publisher={b.publisher}
                    rights={b.rights}
                    state={b.state}
+                   format={b.format}
                    totalResults={allBooks.length}  />
                    );         
         });
       }
 
-      else if (x === 0)
+      else
       {
-        console.log("return" + formattedBook);
-          return (<BookDisplaytt tableInfo ={formattedBook}  />);         
+        return (<BookDisplaytt tableInfo ={formattedBook}  />);         
       }
     }
   }
@@ -161,8 +189,8 @@ class Books extends React.Component {
   class BookDisplay extends React.Component {
     render() { 
       //Creates the popover for the books
-      const popoverHoverFocusBottom= (
-        <Popover id="popover-trigger-hover-focus" title={this.props.title}>
+      const popoverFocus= (
+        <Popover id="popover-trigger-focus" title={this.props.title}>
           <p><b>Author: </b>{this.props.creator}</p>
           <p><b>Description: </b>{this.props.description}</p>
           <p><b>Location:</b> {this.props.state}</p>
@@ -171,6 +199,8 @@ class Books extends React.Component {
           <p><b>Collection:</b> {this.props.collection}</p>
           <p><b>Rights:</b> {this.props.rights}</p>
           <p><b>Language:</b> {this.props.language}</p>
+          <p><b>Format:</b> {this.props.format}</p>
+          <b><a className="pull-right" href={this.props.link} rel="noopener noreferrer" target="_blank">More Info</a></b>
         </Popover>
       );
       
@@ -203,18 +233,14 @@ class Books extends React.Component {
 
       return(
         <div className="bookTable2">
-          <a href={this.props.link}>
-            <OverlayTrigger id="abc" trigger={['hover', 'focus']} placement={AutoRotate(this.props.itemNum, this.props.totalResults)} overlay={popoverHoverFocusBottom}>
+            <OverlayTrigger id="abc" trigger='click' rootClose placement={AutoRotate(this.props.itemNum, this.props.totalResults)} overlay={popoverFocus}>
               <img className="bookDiv" alt="Book Thumbnail" src={this.props.image} />
-              </OverlayTrigger>
-          </a>
+            </OverlayTrigger>
         </div>
         );
     }
   }
 
-
- 
   class BookDisplaytt extends React.Component {
 
     render() {
@@ -256,7 +282,6 @@ class Books extends React.Component {
          <TableHeaderColumn dataField='state'>State</TableHeaderColumn>
          <TableHeaderColumn dataField='link'>More Info</TableHeaderColumn>
          </BootstrapTable>
-         
         </div>
       );
     }

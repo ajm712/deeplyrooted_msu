@@ -28,7 +28,7 @@ class Hamburger extends Component {
       var results = ApiWrapper.makeCall({language:"english", page_size: "30"});
       ReactDOM.render(<Form />, document.getElementById('dropbox'));
       ReactDOM.render(<TextBox selection="Subject"/>, document.getElementById('text-box'));
-      ReactDOM.render(<Books results={results}/>, document.getElementById('root'));      
+      ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
   }
 
   contact() {

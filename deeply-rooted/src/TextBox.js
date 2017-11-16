@@ -49,7 +49,7 @@ class TextBox extends React.Component {
          });
         
         console.log(results);
-        ReactDOM.render(<Books results={results}/>, document.getElementById('root'));
+        ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
         
     }
   
@@ -85,7 +85,7 @@ class TextBox extends React.Component {
                                         });
 
       console.log(results); 
-      ReactDOM.render(<Books results={results}/>, document.getElementById('root')); 
+      ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root')); 
       event.preventDefault();
     }
 
@@ -129,7 +129,7 @@ class TextBox extends React.Component {
                                         });
 
       console.log(results); 
-      ReactDOM.render(<Books results={results}/>, document.getElementById('root')); 
+      ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root')); 
       event.preventDefault();
     }
 
