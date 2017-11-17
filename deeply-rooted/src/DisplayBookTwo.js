@@ -129,15 +129,21 @@ class Books extends React.Component {
 
         //Searches for the publisher of the book
         if (data.hasOwnProperty('publisher'))
-        bookObject.publisher = data.publisher[0];
+          bookObject.publisher = data.publisher[0];
 
         //Searches for the rights of the book
         if (data.hasOwnProperty('rights'))
-        bookObject.rights = data.rights[0];
+        {
+          bookObject.rights = data.rights[0];
+        //If the entire rights is not stored at index 0 then use the entire rights object
+         if(bookObject.rights.length == 1)
+            bookObject.rights = data.rights;
+        }
+
 
         //Searches for the format of the book
         if (data.hasOwnProperty('format'))
-        bookObject.format = data.format[0];
+          bookObject.format = data.format[0];
 
         //Searches for the state location of the book
         if (data.hasOwnProperty('stateLocatedIn') && data.stateLocatedIn[0].hasOwnProperty('name'))

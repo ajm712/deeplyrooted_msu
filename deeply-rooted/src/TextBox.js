@@ -20,7 +20,17 @@ class TextBox extends React.Component {
     
     handleDrop(event) {
         var searchType = event.target.name;
-        var userInput = event.target.value; //selection is equal to the current value of the dropdown box   
+        var userInput = event.target.value; //selection is equal to the current value of the dropdown box  
+
+        if (userInput === "ALL")
+        {
+          return
+        }
+
+        console.log("Type" + searchType);
+        console.log("Value" + userInput);
+
+
         var formData = {
           subject: "",
           rights: "",
@@ -180,6 +190,7 @@ class TextBox extends React.Component {
       {
         //pulls all format types from api 
         var result =ApiWrapper.getFormatFacet();
+        console.log(result);
         var formatlist=[];
         var formatFacets=result.facets["sourceResource.format"].terms;
    
@@ -194,8 +205,8 @@ class TextBox extends React.Component {
           <div className="inLine">
           <form>
           <label>
-                <select name="format" className="dropDown" onChange={this.handleSubmit}>
-                  <option value="ALL">--Select a Format--</option>
+                <select name="format" className="dropDown" onChange={this.handleDrop}>
+                  <option selected="selected" value="ALL">--Select a Format--</option>
                   {
                     formatlist.map(function(formats){
                       return <option value={formats}>{formats}</option>;
@@ -232,6 +243,7 @@ class TextBox extends React.Component {
         for(var i = 0; i<stateFacets.length; i++){
           stateList[i] = stateFacets[i].term;
         }
+        stateList.sort();
         console.log(stateList);
 
         //returns list of states composed of states from statelist
@@ -239,8 +251,8 @@ class TextBox extends React.Component {
           <div className="inLine">
             <form>
               <label>
-                <select name="state" className="dropDownState" onChange={this.handleSubmit}>
-                  <option value="ALL">--Select a Location--</option>
+                <select name="state" className="dropDownState" onChange={this.handleDrop}>
+                  <option selected="selected" value="ALL">--Select a Location--</option>
                   {
                     stateList.map(function(states){
                       return <option value={states}>{states}</option>;
@@ -291,8 +303,8 @@ class TextBox extends React.Component {
           <div className="inLine">
             <form>
             <label>
-                <select name="date" className="dropDown" onChange={this.handleSubmit}>
-                  <option value="ALL">--Select a Date--</option>
+                <select name="date" className="dropDown" onChange={this.handleDrop}>
+                  <option selected="selected" value="ALL">--Select a Date--</option>
                   {
                     datelist.map(function(dates){
                       return <option value={dates}>{dates}</option>;
@@ -300,18 +312,6 @@ class TextBox extends React.Component {
                   }
                 </select>
               </label>
-            </form>
-          </div>
-        );
-      }
-
-      else if(selection === "Description")
-      {
-        return (
-          <div className="inLine">
-            <form>
-                <input className="textBox" type="text" name="description" value={this.state.name} onChange={this.handleChange}/>
-                <input className="submitButton" type="submit" name="description" value="Submit" onClick={this.handleSubmit}/>
             </form>
           </div>
         );
@@ -338,7 +338,7 @@ class TextBox extends React.Component {
            <form>
              <label>
                 <select className="dropDown" name="language" onChange={this.handleDrop}>
-                  <option value="ALL">--Select a Language--</option>
+                  <option selected="selected" value="ALL">--Select a Language--</option>
                 {       
   
                   languagelist.map(function(languages){
