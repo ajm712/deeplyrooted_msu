@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Books from './DisplayBookTwo.js';
+import Books from './DisplayBook.js';
 import './SearchBar.css';
 import SimpleSearch from './SimpleSearch.js';
 
@@ -17,19 +17,11 @@ class SearchBar extends React.Component {
         this.setState({value: event.target.value});
     }
 
-    // handleDrop(event) {
-    //     var name = event.target.name;
-    //     var selection = event.target.value; //selection is equal to the current value of the dropdown box
-    //     var results = SimpleSearch.makeCall(name,selection);
-    //     console.log(results);
-    //     ReactDOM.render(<Books results={results}/>, document.getElementById('root'));
-    // }
-
     handleSubmit(event) { //Currently just prints the search result to the screen but eventually will send info to the API call
         //console.log(this.state.value)
         var results = SimpleSearch.makeCall(this.state.value);
         console.log(results);
-        ReactDOM.render(<Books results={results}/>, document.getElementById('root'));
+        ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
         event.preventDefault();
     }
 

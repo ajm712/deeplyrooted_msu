@@ -18,8 +18,8 @@ class Form extends React.Component {
       <div className="inLine">
         <form>
           <label>
-            <select className="dropDown" onChange={this.changeInput}>
-              <option selected="selected" value="Subject">Subject</option>
+            <select className="dropDown" onChange={this.changeInput} defaultValue="Subject">
+              <option value="Subject">Subject</option>
               <option value="Title">Title</option>
               <option value="Rights">Rights</option>
               <option value="Format">Format</option>

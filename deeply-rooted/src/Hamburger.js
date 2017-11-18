@@ -4,11 +4,11 @@ import { slide as Menu } from 'react-burger-menu';
 import './Hamburger.css';
 import About from './About.js';
 import Home from './Home.js';
-import {ButtonToolbar, ButtonGroup, Button} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 import Form from './Form.js';
 import TextBox from './TextBox.js';
 import ApiWrapper from './ApiWrapper.js';
-import Books from './DisplayBookTwo.js';
+import Books from './DisplayBook.js';
 
 
 class Hamburger extends Component {

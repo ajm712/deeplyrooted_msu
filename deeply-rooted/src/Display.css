@@ -8,6 +8,8 @@
     border-top-right-radius: 0cm;
     border-bottom-right-radius: 0cm;
     background: #ededed;
+    margin: 15px;  
+    margin-right: 0px;     
     cursor: pointer;
   }
 
@@ -21,6 +23,8 @@
     background: linear-gradient(rgb(170, 170, 170), rgb(206, 205, 204), #ECECEC);
     box-shadow: inset 0px 0px 4px #ccc;
     outline: none;
+    margin: 15px;   
+    margin-right: 0px; 
     cursor: not-allowed;
   }
 
@@ -32,6 +36,8 @@
     border-top-left-radius: 0cm;
     border-bottom-left-radius: 0cm;
     background: #ededed;
+    margin: 15px;   
+    margin-left: 0px;     
     cursor: pointer;
   }
 
@@ -45,6 +51,8 @@
     background: linear-gradient(rgb(170, 170, 170), rgb(206, 205, 204), #ECECEC);
     box-shadow: inset 0px 0px 4px #ccc;
     outline: none;
+    margin: 15px;
+    margin-left: 0px;     
     cursor: not-allowed;
   }
 
@@ -56,32 +64,8 @@
   margin: 10px;
 }
 
-/*Used fo alternate display book*/
-.vr {
-  width:15px;
-  display: inline-block;
-  border: 0px;
-}
-
-.bookTable {
-  /*display: inline-block;*/
-  margin: 15px;
-  border: 2px solid rgba(10, 10, 10, 0.3);
-  width: 550px;
-  height: 150px;
-}
-
-.bookTitleRow {
-  background-color: #DDBC6F;
-}
-
-.arrowButton {
-  border: 0px;
-  background-color: transparent;
-}
-
-/*Used for Book Display*/
-.bookTable2 {
+/*Used for Component Book Display*/
+.componentBoxBackground {
   display: inline-block;
   margin: 15px;
   border: 2px solid rgba(10, 10, 10, 0.3);
@@ -91,7 +75,7 @@
   background: radial-gradient(rgb(203, 196, 180), rgb(203, 196, 180), #DDBC6F);
 }
 
-.bookDiv {
+.bookImage {
   position: relative;
   height: 90%;
   max-width: 75%;
@@ -139,7 +123,10 @@
   padding: 12px 20px;
   margin: 8px 0;
   border: 1px solid #ccc;
+  border-right: 0px;
   border-radius: 4px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
   box-sizing: border-box;
 }
 
@@ -148,7 +135,10 @@
   padding: 12px 20px;
   margin: 8px 0;
   border: 1px solid #ccc;
+  border-left: 0px;
   border-radius: 4px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
   box-sizing: border-box;
 }
 

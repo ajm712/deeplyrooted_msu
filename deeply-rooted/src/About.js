@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import './About.css';
 
 class About extends Component {
   render() {
     return (
       <div>
-        <div>
+        <div className="aboutpage">
           <h2>About Deeply Rooted</h2>
           <p>Deeply Rooted is a massive digital collection of research material for agriculture in the southeaster United States. Building upon the work of Mississippi State University Libraries, Deeply Rooted seeks to provide digital access to these original archives.
              Deeply Rooted is a sub library of ASERL pulling primarily from MSU Libraries Consortium for the History of Agricultural and Rural Mississippi (CHARM) and plans of using the Digital Public Library of America as a primary discovery platform.

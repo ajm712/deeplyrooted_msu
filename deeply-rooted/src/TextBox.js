@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './Display.css';
 import ApiWrapper from './ApiWrapper.js';
-import Books from './DisplayBookTwo.js';
-import registerServiceWorker from './registerServiceWorker';
+import Books from './DisplayBook.js';
 
 class TextBox extends React.Component {
     constructor(props) {
@@ -205,8 +204,8 @@ class TextBox extends React.Component {
           <div className="inLine">
           <form>
           <label>
-                <select name="format" className="dropDown" onChange={this.handleDrop}>
-                  <option selected="selected" value="ALL">--Select a Format--</option>
+                <select name="format" className="dropDown" onChange={this.handleDrop} defaultValue="ALL">
+                  <option value="ALL">--Select a Format--</option>
                   {
                     formatlist.map(function(formats){
                       return <option value={formats}>{formats}</option>;
@@ -235,12 +234,13 @@ class TextBox extends React.Component {
       else if(selection === "State")
       {
         //pulls all states from api calls 
-        var result = ApiWrapper.getLocationFacet();
         var stateList = [];
         var stateFacets=result.facets["sourceResource.spatial.state"].terms;
+        result = ApiWrapper.getLocationFacet();
+        
      
         //places all states from states facets in the statelist list 
-        for(var i = 0; i<stateFacets.length; i++){
+        for(i = 0; i<stateFacets.length; i++){
           stateList[i] = stateFacets[i].term;
         }
         stateList.sort();
@@ -251,8 +251,8 @@ class TextBox extends React.Component {
           <div className="inLine">
             <form>
               <label>
-                <select name="state" className="dropDownState" onChange={this.handleDrop}>
-                  <option selected="selected" value="ALL">--Select a Location--</option>
+                <select name="state" className="dropDownState" onChange={this.handleDrop} defaultValue="ALL">
+                  <option value="ALL">--Select a Location--</option>
                   {
                     stateList.map(function(states){
                       return <option value={states}>{states}</option>;
@@ -282,13 +282,13 @@ class TextBox extends React.Component {
       {
 
         //pulls all dates from api calls 
-        var result = ApiWrapper.getDateBeforeFacet();
         var dateFacets=result.facets["sourceResource.date.begin"].entries;
         var datelist=[];
         var year;
-      
+        result = ApiWrapper.getDateBeforeFacet();
+        
         //adds all dates to the datelist list
-        for(var i=0; i<dateFacets.length; i++){
+        for(i = 0; i<dateFacets.length; i++){
           //takes only the year from the date rather than month and day too
           year = dateFacets[i].time[0] + dateFacets[i].time[1] + dateFacets[i].time[2] + dateFacets[i].time[3];
           datelist[i] = year;
@@ -303,8 +303,8 @@ class TextBox extends React.Component {
           <div className="inLine">
             <form>
             <label>
-                <select name="date" className="dropDown" onChange={this.handleDrop}>
-                  <option selected="selected" value="ALL">--Select a Date--</option>
+                <select name="date" className="dropDown" onChange={this.handleDrop} defaultValue="ALL">
+                  <option value="ALL">--Select a Date--</option>
                   {
                     datelist.map(function(dates){
                       return <option value={dates}>{dates}</option>;
@@ -322,13 +322,14 @@ class TextBox extends React.Component {
       {
       
       //returns all languages from api calls 
-      var result =ApiWrapper.getLanguageFacet();
       var languageFacets=result.facets["sourceResource.language.name"].terms;
       console.log(languageFacets);
-       var languagelist=[];
+      var languagelist=[];
+      result =ApiWrapper.getLanguageFacet();
+       
         
         //adds all dates to languagelist list 
-        for(var i=0; i<languageFacets.length; i++){
+        for(i = 0; i < languageFacets.length; i++){
           languagelist[i]=languageFacets[i].term;
         }
           
@@ -337,8 +338,8 @@ class TextBox extends React.Component {
           <div className="inLine">
            <form>
              <label>
-                <select className="dropDown" name="language" onChange={this.handleDrop}>
-                  <option selected="selected" value="ALL">--Select a Language--</option>
+                <select className="dropDown" name="language" onChange={this.handleDrop} defaultValue="ALL">
+                  <option value="ALL">--Select a Language--</option>
                 {       
   
                   languagelist.map(function(languages){
