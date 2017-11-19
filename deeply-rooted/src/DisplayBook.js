@@ -40,6 +40,7 @@ class Books extends React.Component {
       state: searchData.state, 
       language: searchData.language, 
       creator: searchData.creator,
+      other: searchData.other,
       date: searchData.date, 
       page_size: "30",
       page: page,

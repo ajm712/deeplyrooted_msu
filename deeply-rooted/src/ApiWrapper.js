@@ -38,6 +38,7 @@ class ApiWrapper{
                 collection: collection,
                 state: state,
                 language: language,
+                other: other,
                 creator: creator,
                 date: date,
                 page: page,
