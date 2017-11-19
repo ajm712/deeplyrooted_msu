@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Books from './DisplayBook.js';
 import './SearchBar.css';
-import SimpleSearch from './SimpleSearch.js';
+import ApiWrapper from './ApiWrapper.js';
 
 
 class SearchBar extends React.Component {
@@ -18,8 +18,20 @@ class SearchBar extends React.Component {
     }
 
     handleSubmit(event) { //Currently just prints the search result to the screen but eventually will send info to the API call
-        //console.log(this.state.value)
-        var results = SimpleSearch.makeCall(this.state.value);
+        var results = ApiWrapper.makeCall({
+            subject: "",
+            rights: "",
+            title: "",
+            format: "",
+            collection: "",
+            state: "",
+            language: "",
+            creator: "",
+            date: "",
+            other:this.state.value,
+            page_size: "30",
+            page: "1"
+           });
         console.log(results);
         ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
         event.preventDefault();

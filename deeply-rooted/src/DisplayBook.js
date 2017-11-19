@@ -16,10 +16,7 @@ class Books extends React.Component {
   constructor(props) {
     super(props);
     this.displayToggle = this.displayToggle.bind(this);
-    this.changePage = this.changePage.bind(this);
-
-    /*Temp fix to simple search problem*/
-    this.calculatePages = this.calculatePages.bind(this);    
+    this.changePage = this.changePage.bind(this);  
   }
 
   calculatePages() {
@@ -27,13 +24,6 @@ class Books extends React.Component {
     var totalBooks = this.props.results.count;
     var booksPerPage = 30;
     var totalPages = Math.ceil(totalBooks/ booksPerPage);
-
-    /*Temp fix to simple search problem*/
-    if(this.props.results.hasOwnProperty('call'))
-      alert('good');
-    else  
-      this.props.results.call = {page: "1"};
-    
     return totalPages;
   }
 

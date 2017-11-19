@@ -328,7 +328,6 @@ class TextBox extends React.Component {
       {
       
       //returns all languages from api calls 
-      console.log(languageFacets);
       var languagelist=[];
       result =ApiWrapper.getLanguageFacet();
       var languageFacets=result.facets["sourceResource.language.name"].terms;      
