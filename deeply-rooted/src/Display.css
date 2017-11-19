@@ -160,3 +160,11 @@
 .pagination li:hover:not(.active) a {
   background-color: rgb(255, 228, 166);
 }
+
+/*Called when no results are found. */
+.NoResults
+{
+  font-size: 80px;
+  color: gray;
+  padding: 190px;
+}

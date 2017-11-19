@@ -199,8 +199,9 @@ class TextBox extends React.Component {
         var formatlist=[];
         var formatFacets=result.facets["sourceResource.format"].terms;
    
-      //adds items from "format" facets to the drop down box
+      //adds items from "format" facets to the drop down box if it's not already there 
       for(var i=0; i<formatFacets.length; i++){
+        if(formatlist.indexOf(result)<0)
         formatlist[i]=formatFacets[i].term;
       }
       formatlist.sort();
@@ -245,8 +246,9 @@ class TextBox extends React.Component {
         var stateFacets=result.facets["sourceResource.spatial.state"].terms;
         
      
-        //places all states from states facets in the statelist list 
+        //places all states from states facets in the statelist list if it's not already there 
         for(i = 0; i<stateFacets.length; i++){
+          if(stateList.indexOf(result)<0)
           stateList[i] = stateFacets[i].term;
         }
         stateList.sort();
@@ -293,11 +295,12 @@ class TextBox extends React.Component {
         result = ApiWrapper.getDateBeforeFacet();
         var dateFacets=result.facets["sourceResource.date.begin"].entries;
         
-        //adds all dates to the datelist list
+        //adds all dates to the datelist list if it's not already there 
         for(i = 0; i<dateFacets.length; i++){
           //takes only the year from the date rather than month and day too
           year = dateFacets[i].time[0] + dateFacets[i].time[1] + dateFacets[i].time[2] + dateFacets[i].time[3];
-          datelist[i] = year;
+          if(datelist.indexOf(year)<0)
+            datelist[i] = year;
         }
         
         //organizes the dates in dropdown box in ascending order 
@@ -333,9 +336,11 @@ class TextBox extends React.Component {
       result =ApiWrapper.getLanguageFacet();
       var languageFacets=result.facets["sourceResource.language.name"].terms;      
         
-        //adds all dates to languagelist list 
+        //adds all dates to languagelist list if it's not already there 
         for(i = 0; i < languageFacets.length; i++){
-          languagelist[i]=languageFacets[i].term;
+          if(languagelist.indexOf(result)<0)
+            languagelist[i]=languageFacets[i].term;
+        
         }
           
         //returns all languages composed of languages from  languagelist 
