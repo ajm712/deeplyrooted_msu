@@ -94,6 +94,12 @@ class Books extends React.Component {
     }
 
     _getBooks(viewType) {
+
+      //checks to see if there are any results 
+      if(this.props.results.count==0){
+        return (<NoResult />);
+      }
+
       var allBooks = this.props.results.docs;
       var formattedBook = [];      
       var bookObject = {}
@@ -338,5 +344,16 @@ class Books extends React.Component {
       );
     }
   }
+
+  //calls the NoResults class to notify user that no results were found 
+  class NoResult extends React.Component {
+      render() {
+        return (
+          <div>
+           <p className="NoResults"> No Results Found </p>
+          </div>
+        );
+      }
+    }
 
 export default Books;
