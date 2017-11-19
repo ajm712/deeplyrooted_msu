@@ -145,3 +145,18 @@
 .submitButton:hover{
   opacity: .7;
 }
+
+/*Pagination CSS*/
+.pagination li.active a {
+  background-color: #DDBC6F;
+  color: white;
+}
+
+.pagination li.active:hover a {
+  background-color: #DDBC6F;
+  color: white;
+}
+
+.pagination li:hover:not(.active) a {
+  background-color: rgb(255, 228, 166);
+}

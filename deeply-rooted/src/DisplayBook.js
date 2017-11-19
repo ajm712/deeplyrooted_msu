@@ -3,9 +3,10 @@ import './Header.css';
 import './Display.css';
 //import './DisplayItem.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
-import {Popover, OverlayTrigger} from 'react-bootstrap';
+import {Popover, OverlayTrigger, Pagination} from 'react-bootstrap';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import '../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+import ApiWrapper from './ApiWrapper.js';
 
 
 var $ = require('jquery');
@@ -15,7 +16,48 @@ class Books extends React.Component {
   constructor(props) {
     super(props);
     this.displayToggle = this.displayToggle.bind(this);
+    this.changePage = this.changePage.bind(this);
+
+    /*Temp fix to simple search problem*/
+    this.calculatePages = this.calculatePages.bind(this);    
   }
+
+  calculatePages() {
+    console.log(this.props);
+    var totalBooks = this.props.results.count;
+    var booksPerPage = 30;
+    var totalPages = Math.ceil(totalBooks/ booksPerPage);
+
+    /*Temp fix to simple search problem*/
+    if(this.props.results.hasOwnProperty('call'))
+      alert('good');
+    else  
+      this.props.results.call = {page: "1"};
+    
+    return totalPages;
+  }
+
+  changePage(event) {
+    var page = event;
+    var searchData = this.props.results.call;
+    console.log(this.props.results.call);
+    var results = ApiWrapper.makeCall({
+      subject: searchData.subject, 
+      rights: searchData.rights, 
+      title: searchData.title, 
+      format: searchData.format, 
+      collection: searchData.collection, 
+      state: searchData.state, 
+      language: searchData.language, 
+      creator: searchData.creator,
+      date: searchData.date, 
+      page_size: "30",
+      page: page,
+     });
+
+     ReactDOM.render(<Books view={this.props.view} results={results}/>, document.getElementById('root'));     
+    }
+
     render() {
       //Get a list of books and display the results to the screen
       var api = this._getBooks(this.props.view);
@@ -27,6 +69,21 @@ class Books extends React.Component {
           </span>  
           <div>
             {api}
+          </div>
+          <div>
+            <Pagination
+            prev
+            next
+            first
+            last
+            ellipsis
+            boundaryLinks
+            bsSize="large"
+            items={this.calculatePages()}
+            maxButtons={5}
+            activePage={Number(this.props.results.call.page)}
+            onSelect={this.changePage}
+            />
           </div>
         </div>
       );

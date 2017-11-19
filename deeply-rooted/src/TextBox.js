@@ -40,7 +40,8 @@ class TextBox extends React.Component {
           language: "",
           creator: "",
           date: "",
-          page: "30"
+          page_size: "30",
+          page: "1"
         };
 
         formData[searchType] = userInput;
@@ -54,7 +55,8 @@ class TextBox extends React.Component {
           language: formData.language, 
           creator: formData.creator,
           date: formData.date, 
-          page_size: formData.page,
+          page_size: formData.page_size,
+          page: formData.page,
          });
         
         console.log(results);
@@ -75,7 +77,8 @@ class TextBox extends React.Component {
         language: "",
         creator: "",
         date: "",
-        page: "30"
+        page_size: "30",
+        page: "1"
       };
 
       formData[searchType] = userInput;
@@ -92,7 +95,8 @@ class TextBox extends React.Component {
                                          language: formData.language, 
                                          creator: formData.creator,
                                          date: formData.date, 
-                                         page_size: formData.page,
+                                         page_size: formData.page_size,
+                                         page: formData.page,
                                         });
 
       console.log(results); 
@@ -114,7 +118,8 @@ class TextBox extends React.Component {
         language: "",
         creator: "",
         date: "",
-        page: "30"
+        page_size: "30",
+        page: "1"
       };
 
       for (var i = 0; i < searchParameters.length; i++)
@@ -136,7 +141,8 @@ class TextBox extends React.Component {
                                          language: formData.language, 
                                          creator: formData.creator,
                                          date: formData.date, 
-                                         page_size: formData.page,
+                                         page_size: formData.page_size,
+                                         page: formData.page,
                                         });
 
       console.log(results); 
@@ -208,7 +214,7 @@ class TextBox extends React.Component {
                   <option value="ALL">--Select a Format--</option>
                   {
                     formatlist.map(function(formats){
-                      return <option value={formats}>{formats}</option>;
+                      return <option key={formats} value={formats}>{formats}</option>;
                     })
                   }
                 </select>
@@ -235,8 +241,8 @@ class TextBox extends React.Component {
       {
         //pulls all states from api calls 
         var stateList = [];
-        var stateFacets=result.facets["sourceResource.spatial.state"].terms;
         result = ApiWrapper.getLocationFacet();
+        var stateFacets=result.facets["sourceResource.spatial.state"].terms;
         
      
         //places all states from states facets in the statelist list 
@@ -255,7 +261,7 @@ class TextBox extends React.Component {
                   <option value="ALL">--Select a Location--</option>
                   {
                     stateList.map(function(states){
-                      return <option value={states}>{states}</option>;
+                      return <option key={states} value={states}>{states}</option>;
                     })
                   }
                 </select>
@@ -282,10 +288,10 @@ class TextBox extends React.Component {
       {
 
         //pulls all dates from api calls 
-        var dateFacets=result.facets["sourceResource.date.begin"].entries;
         var datelist=[];
         var year;
         result = ApiWrapper.getDateBeforeFacet();
+        var dateFacets=result.facets["sourceResource.date.begin"].entries;
         
         //adds all dates to the datelist list
         for(i = 0; i<dateFacets.length; i++){
@@ -293,7 +299,7 @@ class TextBox extends React.Component {
           year = dateFacets[i].time[0] + dateFacets[i].time[1] + dateFacets[i].time[2] + dateFacets[i].time[3];
           datelist[i] = year;
         }
-
+        
         //organizes the dates in dropdown box in ascending order 
         datelist.sort();
         console.log(datelist);
@@ -322,11 +328,10 @@ class TextBox extends React.Component {
       {
       
       //returns all languages from api calls 
-      var languageFacets=result.facets["sourceResource.language.name"].terms;
       console.log(languageFacets);
       var languagelist=[];
       result =ApiWrapper.getLanguageFacet();
-       
+      var languageFacets=result.facets["sourceResource.language.name"].terms;      
         
         //adds all dates to languagelist list 
         for(i = 0; i < languageFacets.length; i++){
@@ -343,7 +348,7 @@ class TextBox extends React.Component {
                 {       
   
                   languagelist.map(function(languages){
-                   return <option value={languages}>{languages}</option>;
+                   return <option key={languages} value={languages}>{languages}</option>;
                   })
 
                 }

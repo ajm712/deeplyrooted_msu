@@ -30,6 +30,18 @@ class ApiWrapper{
         $.getJSON(url, props, function(result){
         	// properties of results are "count", "start", "limit", "docs"
             results = result
+            result.call = {
+                subject: subject,
+                rights: rights,
+                title: title,
+                format: format,
+                collection: collection,
+                state: state,
+                language: language,
+                creator: creator,
+                date: date,
+                page: page,
+            }
         });
         return results
     }

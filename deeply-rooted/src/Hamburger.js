@@ -25,7 +25,7 @@ class Hamburger extends Component {
   }
 
   adv_search() {
-      var results = ApiWrapper.makeCall({language:"english", page_size: "30"});
+      var results = ApiWrapper.makeCall({language:"english", page_size: "30", page: "1"});
       ReactDOM.render(<Form />, document.getElementById('dropbox'));
       ReactDOM.render(<TextBox selection="Subject"/>, document.getElementById('text-box'));
       ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
