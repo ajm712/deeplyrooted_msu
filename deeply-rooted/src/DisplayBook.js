@@ -300,10 +300,8 @@ class Books extends React.Component {
     }
   }
 
+  //display search results in table form
   class TableDisplay extends React.Component {
-    
-    
-
 
     constructor(props) {
       super(props);
@@ -311,10 +309,10 @@ class Books extends React.Component {
       this.options = {
         defaultSortName: 'id',  // default sort column name
         defaultSortOrder: 'asc',  // default sort order
-        insertBtn: this.createCustomInsertButton
       };
     }
 
+    //Formats link to source for use within table
     colFormatter = (cell, row) => {
       return (
         <a href={cell} rel="noopener noreferrer" target="_blank">View</a>
@@ -324,6 +322,8 @@ class Books extends React.Component {
     render() {
 
       console.log(this);
+
+      //creates array of search results for use as the data within the table
       var products = this.props.tableInfo;
       var products = [];
       for (var i = 0; i < this.props.tableInfo.length; i++)
@@ -348,11 +348,14 @@ class Books extends React.Component {
       
       
       return(
+        /*creates table using "react-bootstrap-table" libraries,
+          includes built in dataSort function that numerically and 
+          alphabetically sorts columns of table*/
         <div className="tablesize">
-         <BootstrapTable data = {products} 
-            striped hover condensed 
-            scrollTop={ 'Top' } 
-            options={this.options}>
+         <BootstrapTable data = {products} //sets data to product array 
+            striped hover condensed //highlights rows as moused over
+            scrollTop={ 'Top' } //sets scroll bar to start at top by default
+            options={this.options}> 
          <TableHeaderColumn width='30'dataField='link' dataFormat={ this.colFormatter }></TableHeaderColumn>      
          <TableHeaderColumn width='20' isKey dataField='id' dataSort>#</TableHeaderColumn>
          <TableHeaderColumn width='200' dataField='title' dataSort>Book Title</TableHeaderColumn>
