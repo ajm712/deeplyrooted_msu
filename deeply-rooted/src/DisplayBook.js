@@ -1,27 +1,112 @@
 import React from 'react';
 import './Header.css';
+import './Display.css';
+//import './DisplayItem.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
+import {Popover, OverlayTrigger, Pagination} from 'react-bootstrap';
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import '../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+import ApiWrapper from './ApiWrapper.js';
+
+
+var $ = require('jquery');
+var ReactDOM = require('react-dom');
 
 class Books extends React.Component {
+  constructor(props) {
+    super(props);
+    this.displayToggle = this.displayToggle.bind(this);
+    this.changePage = this.changePage.bind(this);  
+  }
+
+  calculatePages() {
+    console.log(this.props);
+    var totalBooks = this.props.results.count;
+    var booksPerPage = 30;
+    var totalPages = Math.ceil(totalBooks/ booksPerPage);
+    return totalPages;
+  }
+
+  changePage(event) {
+    var page = event;
+    var searchData = this.props.results.call;
+    console.log(this.props.results.call);
+    var results = ApiWrapper.makeCall({
+      subject: searchData.subject, 
+      rights: searchData.rights, 
+      title: searchData.title, 
+      format: searchData.format, 
+      collection: searchData.collection, 
+      state: searchData.state, 
+      language: searchData.language, 
+      creator: searchData.creator,
+      other: searchData.other,
+      date: searchData.date, 
+      page_size: "30",
+      page: page,
+     });
+
+     ReactDOM.render(<Books view={this.props.view} results={results}/>, document.getElementById('root'));     
+    }
+
     render() {
       //Get a list of books and display the results to the screen
-      const api = this._getBooks();
+      var api = this._getBooks(this.props.view);
       return(
-        <div>
+        <div className="inline">
+          <span className="inline">
+            <button autoFocus id="component" name="componentView" disabled={this.props.view === "componentView"} className="toggleButtonLeft fa fa-th-large" onClick={this.displayToggle}>  Image View</button>
+            <button autoFocus id="table" name="tableView" disabled={this.props.view === "tableView"} className="toggleButtonRight fa fa-table" onClick={this.displayToggle}>  Table View</button>
+          </span>  
           <div>
             {api}
+          </div>
+          <div>
+            <Pagination
+            prev
+            next
+            first
+            last
+            ellipsis
+            boundaryLinks
+            bsSize="large"
+            items={this.calculatePages()}
+            maxButtons={5}
+            activePage={Number(this.props.results.call.page)}
+            onSelect={this.changePage}
+            />
           </div>
         </div>
       );
     }
+
+    displayToggle(event) {
+      var buttonName = event.target.name;
+      var results = this.props.results;
+      if (buttonName === "componentView")
+      {
+        ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
+      }
   
-    _getBooks() {
+      else
+      {
+        ReactDOM.render(<Books view="tableView" results={results}/>, document.getElementById('root'));      
+      }
+    }
+
+    _getBooks(viewType) {
+
+      //checks to see if there are any results 
+      if(this.props.results.count==0){
+        return (<NoResult />);
+      }
+
       var allBooks = this.props.results.docs;
       var formattedBook = [];      
       var bookObject = {}
       var metaData;
       var data;
-
+      console.log(allBooks);
       //For each book in results parse throught the data to find relevent information
       for (var i = 0; i < allBooks.length; i++)
       {
@@ -36,6 +121,7 @@ class Books extends React.Component {
           description: "Unknown",
           language: "Unknown",
           publisher: "Unknown",
+          format: "Unknown",
           rights: "Unknown",
           state:  "Unknown",
         };
@@ -65,7 +151,7 @@ class Books extends React.Component {
         {
           bookObject.title = data.title[0];
           //If the entire title is not stored at index 0 then use the entire title object
-          if(bookObject.title.length == 1)
+          if(bookObject.title.length === 1)
             bookObject.title = data.title;
         }
 
@@ -74,7 +160,7 @@ class Books extends React.Component {
         {
           bookObject.creator = data.creator[0];
           //If the entire name is not stored at index 0 then use the entire creator object
-          if(bookObject.creator.length == 1)
+          if(bookObject.creator.length === 1)
             bookObject.creator = data.creator;
         }
 
@@ -96,11 +182,21 @@ class Books extends React.Component {
 
         //Searches for the publisher of the book
         if (data.hasOwnProperty('publisher'))
-        bookObject.publisher = data.publisher[0];
+          bookObject.publisher = data.publisher[0];
 
         //Searches for the rights of the book
         if (data.hasOwnProperty('rights'))
-        bookObject.rights = data.rights[0];
+        {
+          bookObject.rights = data.rights[0];
+        //If the entire rights is not stored at index 0 then use the entire rights object
+         if(bookObject.rights.length === 1)
+            bookObject.rights = data.rights;
+        }
+
+
+        //Searches for the format of the book
+        if (data.hasOwnProperty('format'))
+          bookObject.format = data.format[0];
 
         //Searches for the state location of the book
         if (data.hasOwnProperty('stateLocatedIn') && data.stateLocatedIn[0].hasOwnProperty('name'))
@@ -114,93 +210,167 @@ class Books extends React.Component {
         formattedBook[i] = bookObject;
       }
 
-      //TODO: Search trhough formattedBook and delete any entries that have major unknow categories
+      //TODO: Search through formattedBook and delete any entries that have major unknow categories
       
-      //Send each element in formattedBooks to the BookDisplay Class
-      return formattedBook.map((b) => {
-        return (<BookDisplay
-                 key={b.id}
-                 image={b.image}
-                 link={b.link}
-                 itemNum={b.itemNum}
-                 title={b.title}
-                 creator={b.creator}
-                 collection={b.collection} 
-                 date={b.date}
-                 description={b.description}
-                 language={b.language}
-                 publisher={b.publisher}
-                 rights={b.rights}
-                 state={b.state}
-                 totalResults={allBooks.length}  />
-                 );         
+      //Send each element in formattedBooks to the BookDisplay Classzz
+
+      
+      if (viewType === "componentView")
+      {
+        return formattedBook.map((b) => {
+          return (<BookDisplay
+                   key={b.id}
+                   image={b.image}
+                   link={b.link}
+                   itemNum={b.itemNum}
+                   title={b.title}
+                   creator={b.creator}
+                   collection={b.collection} 
+                   date={b.date}
+                   description={b.description}
+                   language={b.language}
+                   publisher={b.publisher}
+                   rights={b.rights}
+                   state={b.state}
+                   format={b.format}
+                   totalResults={allBooks.length}  />
+                   );         
         });
       }
+
+      else
+      {
+        return (<TableDisplay tableInfo ={formattedBook}  />);         
+      }
+    }
   }
   
   class BookDisplay extends React.Component {
-
-    //Changes additional information from hidden to visible and rotates arrow icon
-    displayInfo(event) {
-      var trID = "hidden" + (event.target.id);
-      var buttonID = event.target.id;
-
-      var x = document.getElementById(trID);
-      var y = document.getElementById(buttonID);
-
-      if (x.style.display === "none") {
-        x.style.display='table-row'; 
-        y.className='arrowButton pull-right fa-lg fa fa-chevron-circle-down';
-      } 
+    render() { 
+      //Creates the popover for the books
+      const popoverFocus= (
+        <Popover id="popover-trigger-focus" title={this.props.title}>
+          <p><b>Author: </b>{this.props.creator}</p>
+          <p><b>Description: </b>{this.props.description}</p>
+          <p><b>Publisher:</b> {this.props.publisher}</p>
+          <p><b>Rights:</b> {this.props.rights}</p>
+          <p><b>Collection:</b> {this.props.collection}</p>
+          <p><b>Date:</b> {this.props.date}</p>
+          <p><b>Language:</b> {this.props.language}</p>
+          <p><b>Location:</b> {this.props.state}</p>
+          <p><b>Format:</b> {this.props.format}</p>
+          <b><a className="pull-right" href={this.props.link} rel="noopener noreferrer" target="_blank">More Info</a></b>
+        </Popover>
+      );
       
-      else {
-          x.style.display = "none";
-          y.className='arrowButton pull-right fa-lg fa fa-chevron-circle-left';          
+      //Switches the popover from displaying below the object to above the object
+      var AutoRotate = function(itemNumber, totalItems){
+        var orientation = "bottom"; //Sets the default popover orientation        
+        var windowHorizontal = $(window).width(); //Finds the size of the current window
+        var booksPerRow = Math.floor(windowHorizontal/ 230); //Calculates how many books can be display per row (Window Size/ Amount of Pixel Each Book Takes Up)
+        var rotatePoint = totalItems/2; //Default rotatation point is set to the half way book point
+
+        if (booksPerRow >= 7) 
+          //If I can display 7 or more books per row then make the rotation point the book at the start of the 3rd row
+          rotatePoint = (2*booksPerRow);
+
+        else if (booksPerRow >= 2 && booksPerRow <=6) 
+          //If I can display between 6 and 2 books per row then make the rotation point the book at the start of the 4th row
+          rotatePoint = (3*booksPerRow);
+
+        else
+          //If I can only display one book a row then make the rotation point the 10th book
+          rotatePoint = (10*booksPerRow); 
+
+        if (itemNumber > rotatePoint)
+          //If the item number is past the rotation point switch the popover orientation
+          orientation = "top"; 
+
+        return orientation;         
       }
+
+
+      return(
+        <div className="componentBoxBackground">
+            <OverlayTrigger id="abc" trigger='click' rootClose placement={AutoRotate(this.props.itemNum, this.props.totalResults)} overlay={popoverFocus}>
+              <img className="bookImage" alt="Book Thumbnail" src={this.props.image} />
+            </OverlayTrigger>
+        </div>
+        );
+    }
+  }
+
+  class TableDisplay extends React.Component {
+    
+    
+
+
+    constructor(props) {
+      super(props);
+  
+      this.options = {
+        defaultSortName: 'id',  // default sort column name
+        defaultSortOrder: 'asc',  // default sort order
+        insertBtn: this.createCustomInsertButton
+      };
+    }
+
+    colFormatter = (cell, row) => {
+      return (
+        <a href={cell} rel="noopener noreferrer" target="_blank">View</a>
+      )
     }
 
     render() {
+
+      console.log(this);
+      var products = this.props.tableInfo;
+      var products = [];
+      for (var i = 0; i < this.props.tableInfo.length; i++)
+      {
+        products[i] = {
+                        id: this.props.tableInfo[i].itemNum,
+                        title: this.props.tableInfo[i].title,
+                        creator: this.props.tableInfo[i].creator,
+                        collection: this.props.tableInfo[i].collection,
+                        date: this.props.tableInfo[i].date,
+                        description: this.props.tableInfo[i].description,
+                        language: this.props.tableInfo[i].language,
+                        publisher: this.props.tableInfo[i].publisher,
+                        rights: this.props.tableInfo[i].rights,
+                        state: this.props.tableInfo[i].state,
+                        link: this.props.tableInfo[i].link 
+                    
+        }
+      }
+      console.log(products);
+
+      
+      
       return(
-        <div>
-          <table className="bookTable">
-            <thead>
-              <tr className="bookTitleRow">
-                <td  colSpan="2">
-                  <p><b>{this.props.title}</b> <br/> (by {this.props.creator})</p>
-                </td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <a href={this.props.link}>
-                    <img alt="Book Thumbnail" src={this.props.image} />
-                  </a>
-                </td>
-                <td>
-                  <p>
-                    <b>Description: </b>{this.props.description}
-                    <hr />
-                    <b>Location:</b> {this.props.state} &nbsp;
-                    <b>Date:</b> {this.props.date} &nbsp;
-                    <button id={this.props.itemNum} className="arrowButton pull-right fa-lg fa fa-chevron-circle-left" onClick={this.displayInfo} aria-hidden="true"></button>
-                  </p>
-                </td>
-              </tr>
-              <tr id={"hidden" + this.props.itemNum} colSpan="2" style={{display: 'none'}}>
-                <td colSpan="2">
-                  <hr />
-                  <p><b>Publisher:</b> {this.props.publisher}</p>
-                  <p><b>Collection:</b> {this.props.collection}</p>
-                  <p><b>Rights:</b> {this.props.rights}</p>
-                  <p><b>Language:</b> {this.props.language}</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="tablesize">
+         <BootstrapTable data = {products} 
+            striped hover condensed 
+            scrollTop={ 'Top' } 
+            options={this.options}>
+         <TableHeaderColumn width='30'dataField='link' dataFormat={ this.colFormatter }></TableHeaderColumn>      
+         <TableHeaderColumn width='20' isKey dataField='id' dataSort>#</TableHeaderColumn>
+         <TableHeaderColumn width='200' dataField='title' dataSort>Book Title</TableHeaderColumn>
+         <TableHeaderColumn width='200' dataField='creator' dataSort>Creator</TableHeaderColumn> 
+         <TableHeaderColumn width='55' dataField='date' dataSort>Date</TableHeaderColumn>
+         <TableHeaderColumn width='200' dataField='publisher' dataSort>Publisher</TableHeaderColumn>
+         <TableHeaderColumn width='150' dataField='rights' dataSort>Rights</TableHeaderColumn>
+         <TableHeaderColumn width='90' dataField='state' dataSort>State</TableHeaderColumn>         
+         </BootstrapTable>
         </div>
       );
     }
   }
 
 export default Books;
+
+/*Other possible table rows
+<TableHeaderColumn width='200' dataField='description' dataSort>Description</TableHeaderColumn>
+<TableHeaderColumn width='200' dataField='language' dataSort>Language</TableHeaderColumn>
+<TableHeaderColumn width='200' dataField='collection' dataSort>Collection</TableHeaderColumn>
+*/
