@@ -1,7 +1,6 @@
 import React from 'react';
 import './Header.css';
 import './Display.css';
-//import './DisplayItem.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 import {Popover, OverlayTrigger, Pagination} from 'react-bootstrap';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
@@ -63,17 +62,17 @@ class Books extends React.Component {
           </div>
           <div>
             <Pagination
-            prev
-            next
-            first
-            last
-            ellipsis
-            boundaryLinks
-            bsSize="large"
-            items={this.calculatePages()}
-            maxButtons={5}
-            activePage={Number(this.props.results.call.page)}
-            onSelect={this.changePage}
+              prev
+              next
+              first
+              last
+              ellipsis
+              boundaryLinks
+              bsSize="large"
+              items={this.calculatePages()}
+              maxButtons={5}
+              activePage={Number(this.props.results.call.page)}
+              onSelect={this.changePage}
             />
           </div>
         </div>
@@ -98,7 +97,7 @@ class Books extends React.Component {
 
       //checks to see if there are any results 
       if(this.props.results.count==0){
-        return (<div className="NoResults"> No Results </div>);
+        return (<NoResult />);
       }
 
       var allBooks = this.props.results.docs;
@@ -193,7 +192,6 @@ class Books extends React.Component {
             bookObject.rights = data.rights;
         }
 
-
         //Searches for the format of the book
         if (data.hasOwnProperty('format'))
           bookObject.format = data.format[0];
@@ -212,9 +210,7 @@ class Books extends React.Component {
 
       //TODO: Search through formattedBook and delete any entries that have major unknow categories
       
-      //Send each element in formattedBooks to the BookDisplay Classzz
-
-      
+      //Send each element in formattedBooks to the BookDisplay Class
       if (viewType === "componentView")
       {
         return formattedBook.map((b) => {
@@ -245,6 +241,7 @@ class Books extends React.Component {
     }
   }
   
+  //display search results in component form
   class BookDisplay extends React.Component {
     render() { 
       //Creates the popover for the books
@@ -356,7 +353,7 @@ class Books extends React.Component {
             striped hover condensed //highlights rows as moused over
             scrollTop={ 'Top' } //sets scroll bar to start at top by default
             options={this.options}> 
-         <TableHeaderColumn width='30'dataField='link' dataFormat={ this.colFormatter }></TableHeaderColumn>      
+         <TableHeaderColumn width='35'dataField='link' dataFormat={ this.colFormatter }>View</TableHeaderColumn>      
          <TableHeaderColumn width='20' isKey dataField='id' dataSort>#</TableHeaderColumn>
          <TableHeaderColumn width='200' dataField='title' dataSort>Book Title</TableHeaderColumn>
          <TableHeaderColumn width='200' dataField='creator' dataSort>Creator</TableHeaderColumn> 
@@ -370,10 +367,22 @@ class Books extends React.Component {
     }
   }
 
-export default Books;
-
 /*Other possible table rows
 <TableHeaderColumn width='200' dataField='description' dataSort>Description</TableHeaderColumn>
 <TableHeaderColumn width='200' dataField='language' dataSort>Language</TableHeaderColumn>
 <TableHeaderColumn width='200' dataField='collection' dataSort>Collection</TableHeaderColumn>
 */
+
+
+  //calls the NoResults class to notify user that no results were found 
+  class NoResult extends React.Component {
+    render() {
+      return (
+        <div>
+         <p className="NoResults"> No Results Found </p>
+        </div>
+      );
+    }
+  }
+
+export default Books;
