@@ -98,7 +98,7 @@ class Books extends React.Component {
 
       //checks to see if there are any results 
       if(this.props.results.count==0){
-        return (<NoResult />);
+        return (<div className="NoResults"> No Results </div>);
       }
 
       var allBooks = this.props.results.docs;
@@ -240,7 +240,7 @@ class Books extends React.Component {
 
       else
       {
-        return (<BookDisplaytt tableInfo ={formattedBook}  />);         
+        return (<TableDisplay tableInfo ={formattedBook}  />);         
       }
     }
   }
@@ -300,13 +300,32 @@ class Books extends React.Component {
     }
   }
 
-  class BookDisplaytt extends React.Component {
+  class TableDisplay extends React.Component {
+    
+    
+
+
+    constructor(props) {
+      super(props);
+  
+      this.options = {
+        defaultSortName: 'id',  // default sort column name
+        defaultSortOrder: 'asc',  // default sort order
+        insertBtn: this.createCustomInsertButton
+      };
+    }
+
+    colFormatter = (cell, row) => {
+      return (
+        <a href={cell} rel="noopener noreferrer" target="_blank">View</a>
+      )
+    }
 
     render() {
 
       console.log(this);
       var products = this.props.tableInfo;
-      products = [];
+      var products = [];
       for (var i = 0; i < this.props.tableInfo.length; i++)
       {
         products[i] = {
@@ -320,41 +339,38 @@ class Books extends React.Component {
                         publisher: this.props.tableInfo[i].publisher,
                         rights: this.props.tableInfo[i].rights,
                         state: this.props.tableInfo[i].state,
-                        link: this.props.tableInfo[i].link
+                        link: this.props.tableInfo[i].link 
+                    
         }
       }
       console.log(products);
-     
+
+      
       
       return(
-        <div>
-         <BootstrapTable data = {products} striped hover condensed >
-         <TableHeaderColumn isKey dataField='id'>Item Num</TableHeaderColumn>
-         <TableHeaderColumn dataField='title'>Book Title</TableHeaderColumn>
-         <TableHeaderColumn dataField='creator'>Creator</TableHeaderColumn>
-         <TableHeaderColumn dataField='collection'>Collection</TableHeaderColumn>
-         <TableHeaderColumn dataField='date'>Date</TableHeaderColumn>
-         <TableHeaderColumn dataField='description'>Description</TableHeaderColumn>
-         <TableHeaderColumn dataField='language'>Language</TableHeaderColumn>
-         <TableHeaderColumn dataField='publisher'>Publisher</TableHeaderColumn>
-         <TableHeaderColumn dataField='rights'>Rights</TableHeaderColumn>
-         <TableHeaderColumn dataField='state'>State</TableHeaderColumn>
-         <TableHeaderColumn dataField='link'>More Info</TableHeaderColumn>
+        <div className="tablesize">
+         <BootstrapTable data = {products} 
+            striped hover condensed 
+            scrollTop={ 'Top' } 
+            options={this.options}>
+         <TableHeaderColumn width='30'dataField='link' dataFormat={ this.colFormatter }></TableHeaderColumn>      
+         <TableHeaderColumn width='20' isKey dataField='id' dataSort>#</TableHeaderColumn>
+         <TableHeaderColumn width='200' dataField='title' dataSort>Book Title</TableHeaderColumn>
+         <TableHeaderColumn width='200' dataField='creator' dataSort>Creator</TableHeaderColumn> 
+         <TableHeaderColumn width='60' dataField='date' dataSort>Date</TableHeaderColumn>
+         <TableHeaderColumn width='200' dataField='publisher' dataSort>Publisher</TableHeaderColumn>
+         <TableHeaderColumn width='150' dataField='rights' dataSort>Rights</TableHeaderColumn>
+         <TableHeaderColumn width='90' dataField='state' dataSort>State</TableHeaderColumn>         
          </BootstrapTable>
         </div>
       );
     }
   }
 
-  //calls the NoResults class to notify user that no results were found 
-  class NoResult extends React.Component {
-      render() {
-        return (
-          <div>
-           <p className="NoResults"> No Results Found </p>
-          </div>
-        );
-      }
-    }
-
 export default Books;
+
+/*Other possible table rows
+<TableHeaderColumn width='200' dataField='description' dataSort>Description</TableHeaderColumn>
+<TableHeaderColumn width='200' dataField='language' dataSort>Language</TableHeaderColumn>
+<TableHeaderColumn width='200' dataField='collection' dataSort>Collection</TableHeaderColumn>
+*/
