@@ -98,11 +98,7 @@ class Books extends React.Component {
 
       //checks to see if there are any results 
       if(this.props.results.count==0){
-<<<<<<< HEAD
-        return (<NoResult />);
-=======
         return (<div className="NoResults"> No Results </div>);
->>>>>>> master
       }
 
       var allBooks = this.props.results.docs;
@@ -361,11 +357,7 @@ class Books extends React.Component {
          <TableHeaderColumn width='20' isKey dataField='id' dataSort>#</TableHeaderColumn>
          <TableHeaderColumn width='200' dataField='title' dataSort>Book Title</TableHeaderColumn>
          <TableHeaderColumn width='200' dataField='creator' dataSort>Creator</TableHeaderColumn> 
-<<<<<<< HEAD
-         <TableHeaderColumn width='55' dataField='date' dataSort>Date</TableHeaderColumn>
-=======
          <TableHeaderColumn width='60' dataField='date' dataSort>Date</TableHeaderColumn>
->>>>>>> master
          <TableHeaderColumn width='200' dataField='publisher' dataSort>Publisher</TableHeaderColumn>
          <TableHeaderColumn width='150' dataField='rights' dataSort>Rights</TableHeaderColumn>
          <TableHeaderColumn width='90' dataField='state' dataSort>State</TableHeaderColumn>         
