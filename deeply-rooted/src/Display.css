@@ -168,3 +168,63 @@
   color: gray;
   padding: 190px;
 }
+
+/*Modal CSS*/
+.modal-dialog 
+{
+    margin: 20vh auto 0px auto;
+}
+
+/*Form CSS*/
+.dropDownModal {
+  padding: 2px 2px;
+  margin: 1px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  max-width: 75%;
+  min-width: 75%;
+}
+
+.textBoxModal {
+  padding: 2px 2px;
+  margin: 1px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  box-sizing: border-box;
+  max-width: 75%;
+  min-width: 75%;
+}
+
+.tableModal
+{
+    margin: 35px 12px 0px 75px;
+    
+}
+
+
+.closeModal
+{
+  cursor: pointer;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  box-sizing: border-box;
+}
+
+.submitModal
+{
+  cursor: pointer;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  box-sizing: border-box;
+}
