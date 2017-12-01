@@ -10,7 +10,7 @@ import TextBox from './TextBox.js';
 import ApiWrapper from './ApiWrapper.js';
 import Books from './DisplayBook.js';
 import Footer from './Footer.js';
-
+import Advanced from './AdvancedSearch.js';
 
 
 class Hamburger extends Component {
@@ -19,6 +19,7 @@ class Hamburger extends Component {
       ReactDOM.render(<Footer page="other"/>, document.getElementById('footer'));
       ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
       ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
+      ReactDOM.unmountComponentAtNode(document.getElementById('adv_search'));
   }
 
   home() {
@@ -26,6 +27,8 @@ class Hamburger extends Component {
       ReactDOM.render(<Footer page="other"/>, document.getElementById('footer'));
       ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
       ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
+      ReactDOM.unmountComponentAtNode(document.getElementById('adv_search'));
+      
   }
 
   adv_search() {
@@ -33,15 +36,9 @@ class Hamburger extends Component {
       ReactDOM.render(<Form />, document.getElementById('dropbox'));
       ReactDOM.render(<TextBox selection="Subject"/>, document.getElementById('text-box'));
       ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
+      ReactDOM.render(<Advanced />, document.getElementById('adv_search'));
       ReactDOM.render(<Footer page="adv_search"/>, document.getElementById('footer'));
       
-  }
-
-  contact() {
-      ReactDOM.render(<About />, document.getElementById('root'));
-      ReactDOM.render(<Footer page="other"/>, document.getElementById('footer'));
-      ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
-      ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
   }
 
   render () {
