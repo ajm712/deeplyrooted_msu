@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './About.css';
 
 class About extends Component {
+  //Displays the default paragraph for About Page
   render() {
     return (
       <div>

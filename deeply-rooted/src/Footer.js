@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './Footer.css';
 
+//Code for footer page information
 class Footer extends Component {
   render() {
+    //Advanced search requires different CSS properties than the other pages
     if (this.props.page !== "adv_search"){
     return (
       <div className="Footer2">
@@ -13,6 +15,7 @@ class Footer extends Component {
     );
   }
 
+  //Everything else can use the default CSS properties
   else if (this.props.page === "adv_search") {
     return (
       <div className="Footer">

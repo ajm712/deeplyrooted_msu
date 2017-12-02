@@ -1,5 +1,4 @@
 /*Toggle Button CSS*/
-
 .toggleButtonLeft{
     padding: 15px 25px;
     border-right: none;
@@ -64,6 +63,12 @@
   margin: 10px;
 }
 
+/*Used for Table Book Display*/
+.tablesize
+{
+  width: 75%;
+}
+
 /*Used for Component Book Display*/
 .componentBoxBackground {
   display: inline-block;
@@ -100,8 +105,7 @@
   display: inline-block;  
 }
 
-
-/*Form CSS*/
+/*Textbox Form CSS*/
 .dropDown {
   padding: 12px 20px;
   margin: 8px 0;
@@ -161,17 +165,12 @@
   background-color: rgb(255, 228, 166);
 }
 
-/*Called when no results are found. */
+/*Used for NoResults Class*/
 .NoResults
 {
   font-size: 80px;
   color: gray;
   padding: 190px;
-}
-
-.tablesize
-{
-  width: 75%;
 }
 
 /*Advanced Search CSS*/

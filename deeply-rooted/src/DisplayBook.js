@@ -6,7 +6,7 @@ import {Popover, OverlayTrigger, Pagination} from 'react-bootstrap';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import '../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 import ApiWrapper from './ApiWrapper.js';
-
+import defaultImage from './unknown-image.png';
 
 var $ = require('jquery');
 var ReactDOM = require('react-dom');
@@ -18,13 +18,15 @@ class Books extends React.Component {
     this.changePage = this.changePage.bind(this);  
   }
 
+  //Calculates the max number of pages per result
   calculatePages() {
-    var totalBooks = this.props.results.count;
+    var totalBooks = this.props.results.count; 
     var booksPerPage = 30;
     var totalPages = Math.ceil(totalBooks/ booksPerPage);
     return totalPages;
   }
 
+  //Calls the next page of results and renders it to the screen
   changePage(event) {
     var page = event;
     var searchData = this.props.results.call;
@@ -77,6 +79,7 @@ class Books extends React.Component {
       );
     }
 
+    //Switches the display 
     displayToggle(event) {
       var buttonName = event.target.name;
       var results = this.props.results;
@@ -91,8 +94,8 @@ class Books extends React.Component {
       }
     }
 
+    //Displays Book to the screen
     _getBooks(viewType) {
-
       //checks to see if there are any results 
       if(this.props.results.count === 0){
         return (<NoResult />);
@@ -109,17 +112,17 @@ class Books extends React.Component {
         //Sets a default value for each book element
         bookObject = {
           itemNum: 0,
-          id: "Unknown",
-          title: "Unknown",
-          creator: "Unknown",
-          collection: "Unknown",
-          date: "Unknown",
-          description: "Unknown",
-          language: "Unknown",
-          publisher: "Unknown",
-          format: "Unknown",
-          rights: "Unknown",
-          state:  "Unknown",
+          id: "Unavailable",
+          title: "Unavailable",
+          creator: "Unavailable",
+          collection: "Unavailable",
+          date: "Unavailable",
+          description: "Unavailable",
+          language: "Unavailable",
+          publisher: "Unavailable",
+          format: "Unavailable",
+          rights: "Unavailable",
+          state:  "Unavailable",
         };
 
         //Assigns a numbered value to each book
@@ -178,20 +181,30 @@ class Books extends React.Component {
 
         //Searches for the publisher of the book
         if (data.hasOwnProperty('publisher'))
+        {
           bookObject.publisher = data.publisher[0];
+          //If the entire rights is not stored at index 0 then use the entire rights object
+          if(bookObject.publisher.length === 1)
+            bookObject.publisher = data.publisher;
+        }
 
         //Searches for the rights of the book
         if (data.hasOwnProperty('rights'))
         {
           bookObject.rights = data.rights[0];
-        //If the entire rights is not stored at index 0 then use the entire rights object
-         if(bookObject.rights.length === 1)
+          //If the entire rights is not stored at index 0 then use the entire rights object
+          if(bookObject.rights.length === 1)
             bookObject.rights = data.rights;
         }
 
         //Searches for the format of the book
         if (data.hasOwnProperty('format'))
+        {
           bookObject.format = data.format[0];
+          //If the entire rights is not stored at index 0 then use the entire rights object
+          if(bookObject.format.length === 1)
+            bookObject.format = data.format;
+        }
 
         //Searches for the state location of the book
         if (data.hasOwnProperty('stateLocatedIn') && data.stateLocatedIn[0].hasOwnProperty('name'))
@@ -204,8 +217,6 @@ class Books extends React.Component {
         //Stores all result into an array
         formattedBook[i] = bookObject;
       }
-
-      //TODO: Search through formattedBook and delete any entries that have major unknow categories
       
       //Send each element in formattedBooks to the BookDisplay Class
       if (viewType === "componentView")
@@ -240,6 +251,11 @@ class Books extends React.Component {
   
   //display search results in component form
   class BookDisplay extends React.Component {
+    //Assigns a default image if the books image is unavailable
+    backupImage(event) {
+      event.target.src = defaultImage;
+    }
+
     render() { 
       //Creates the popover for the books
       const popoverFocus= (
@@ -287,7 +303,7 @@ class Books extends React.Component {
       return(
         <div className="componentBoxBackground">
             <OverlayTrigger id="abc" trigger='click' rootClose placement={AutoRotate(this.props.itemNum, this.props.totalResults)} overlay={popoverFocus}>
-              <img className="bookImage" alt="Book Thumbnail" src={this.props.image} />
+              <img className="bookImage" alt="Unavailable" src={this.props.image} onError={this.backupImage} />
             </OverlayTrigger>
         </div>
         );
@@ -296,7 +312,6 @@ class Books extends React.Component {
 
   //display search results in table form
   class TableDisplay extends React.Component {
-
     constructor(props) {
       super(props);
   
@@ -358,13 +373,6 @@ class Books extends React.Component {
     }
   }
 
-        /*Other possible table rows for futrue development
-        <TableHeaderColumn width='200' dataField='description' dataSort>Description</TableHeaderColumn>
-        <TableHeaderColumn width='200' dataField='language' dataSort>Language</TableHeaderColumn>
-        <TableHeaderColumn width='200' dataField='collection' dataSort>Collection</TableHeaderColumn>
-        */
-
-
   //calls the NoResults class to notify user that no results were found 
   class NoResult extends React.Component {
     render() {
@@ -377,3 +385,11 @@ class Books extends React.Component {
   }
 
 export default Books;
+
+/*Other possible table rows for futrue development
+
+<TableHeaderColumn width='200' dataField='description' dataSort>Description</TableHeaderColumn>
+<TableHeaderColumn width='200' dataField='language' dataSort>Language</TableHeaderColumn>
+<TableHeaderColumn width='200' dataField='collection' dataSort>Collection</TableHeaderColumn>
+
+*/

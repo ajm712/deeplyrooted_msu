@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './deeply-rooted-logo-05.png';
 import './Header.css';
 
+//Creates the image header 
 class Header extends Component {
   render() {
     return (

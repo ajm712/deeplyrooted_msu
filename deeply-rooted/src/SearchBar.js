@@ -5,8 +5,7 @@ import './SearchBar.css';
 import ApiWrapper from './ApiWrapper.js';
 import Footer from './Footer.js';
 
-
-
+//Code for search bar
 class SearchBar extends React.Component {
     constructor(props) {
         super(props);
@@ -19,7 +18,7 @@ class SearchBar extends React.Component {
         this.setState({value: event.target.value});
     }
 
-    handleSubmit(event) { //Currently just prints the search result to the screen but eventually will send info to the API call
+    handleSubmit(event) { //Sends user input to the API call and sends results to BookDisplay
         var results = ApiWrapper.makeCall({
             subject: "",
             rights: "",
@@ -43,6 +42,7 @@ class SearchBar extends React.Component {
         this.nameInput.focus();
     }
 
+    //Renders search bar
     render() {
         return (
           <div className="nbarsearch">

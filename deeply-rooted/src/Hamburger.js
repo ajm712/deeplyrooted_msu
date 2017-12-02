@@ -12,7 +12,7 @@ import Books from './DisplayBook.js';
 import Footer from './Footer.js';
 import Advanced from './AdvancedSearch.js';
 
-
+//Creates and handles selections made on the hamburger menu
 class Hamburger extends Component {
     constructor(props) {
         super(props)
@@ -22,10 +22,12 @@ class Hamburger extends Component {
         this.adv_search = this.adv_search.bind(this);
     }
 
+    //Closes the hamburger menu
     closeMenu() {
         this.setState({ isMenuOpen: false })
     }
 
+    //Renders appropriate components to the screen for the about page
     about() {
         this.closeMenu();
         ReactDOM.render(<About />, document.getElementById('root'));
@@ -35,6 +37,7 @@ class Hamburger extends Component {
         ReactDOM.unmountComponentAtNode(document.getElementById('adv_search'));
     }
 
+    //Renders appropriate components to the screen for the home page
     home() {
         this.closeMenu();
         ReactDOM.render(<Home />, document.getElementById('root'));
@@ -44,6 +47,7 @@ class Hamburger extends Component {
         ReactDOM.unmountComponentAtNode(document.getElementById('adv_search'));  
     }
 
+    //Renders appropriate components to the screen for the advanced search page
     adv_search() {
         this.closeMenu();
         var results = ApiWrapper.makeCall({language:"english", page_size: "30", page: "1"});
@@ -54,6 +58,7 @@ class Hamburger extends Component {
         ReactDOM.render(<Footer page="adv_search"/>, document.getElementById('footer')); 
     }
 
+    //Creates the burger menu and selection buttons
     render () {
         return (
             <div className="Hamburger">

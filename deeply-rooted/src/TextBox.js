@@ -4,6 +4,7 @@ import './Display.css';
 import ApiWrapper from './ApiWrapper.js';
 import Books from './DisplayBook.js';
 
+//Displays the textbox for the appropriate search selected in the dropdown box
 class TextBox extends React.Component {
     constructor(props) {
       super(props);
@@ -12,56 +13,25 @@ class TextBox extends React.Component {
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event) { //Stores the user input value
+    //Stores the user input value
+    handleChange(event) { 
       var name = event.target.name;
       this.setState({[name]: event.target.value});
     }
     
-    handleDrop(event) {
-        var searchType = event.target.name;
-        var userInput = event.target.value; //selection is equal to the current value of the dropdown box  
-
-        if (userInput === "ALL")
-        {
-          return
-        }
-
-        var formData = {
-          subject: "",
-          rights: "",
-          title: "",
-          format: "",
-          collection: "",
-          state: "",
-          language: "",
-          creator: "",
-          date: "",
-          page_size: "30",
-          page: "1"
-        };
-
-        formData[searchType] = userInput;
-
-        var results = ApiWrapper.makeCall({subject: formData.subject, 
-          rights: formData.rights, 
-          title: formData.title, 
-          format: formData.format, 
-          collection: formData.collection, 
-          state: formData.state, 
-          language: formData.language, 
-          creator: formData.creator,
-          date: formData.date, 
-          page_size: formData.page_size,
-          page: formData.page,
-         });
-        
-        ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
-        
-    }
-  
-    handleSubmit(event) { 
+    //Stores the user drop down value and submits the search
+    handleDrop(event) { 
+      //Get the user input and search type from the dropdown box
       var searchType = event.target.name;
-      var userInput = this.state[searchType];
+      var userInput = event.target.value;  
+
+      //If the user select the default value do nothing
+      if (userInput === "ALL")
+      {
+        return
+      }
+
+      //Create formData with default values
       var formData = {
         subject: "",
         rights: "",
@@ -76,8 +46,53 @@ class TextBox extends React.Component {
         page: "1"
       };
 
+      //Depending on the searchType set that appropriate object (language, date, format, state) under formData to the userinput
       formData[searchType] = userInput;
 
+      //Make the api call request
+      var results = ApiWrapper.makeCall({subject: formData.subject, 
+        rights: formData.rights, 
+        title: formData.title, 
+        format: formData.format, 
+        collection: formData.collection, 
+        state: formData.state, 
+        language: formData.language, 
+        creator: formData.creator,
+        date: formData.date, 
+        page_size: formData.page_size,
+        page: formData.page,
+      });
+      
+      //Send results to BookDisplay to be rendered on to the screen
+      ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
+      event.preventDefault();
+    }
+  
+    //Handls the submission of text input
+    handleSubmit(event) { 
+      //Get the user input and search type from the dropdown box
+      var searchType = event.target.name;
+      var userInput = this.state[searchType];
+
+      //Create formData with default values
+      var formData = {
+        subject: "",
+        rights: "",
+        title: "",
+        format: "",
+        collection: "",
+        state: "",
+        language: "",
+        creator: "",
+        date: "",
+        page_size: "30",
+        page: "1"
+      };
+
+      //Depending on the searchType set that appropriate object (subject, title, rights, creator, etc.) under formData to the userinput
+      formData[searchType] = userInput;
+
+      //Send results to BookDisplay to be rendered on to the screen
       var results = ApiWrapper.makeCall({subject: formData.subject, 
                                          rights: formData.rights, 
                                          title: formData.title, 
@@ -91,12 +106,13 @@ class TextBox extends React.Component {
                                          page: formData.page,
                                         });
 
+      //Send results to BookDisplay to be rendered on to the screen
       ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root')); 
       event.preventDefault();
     }
 
     render() {
-      var selection = this.props.selection; //Based on the selection value passed in from Form.js return the appropriate text box
+      var selection = this.props.selection; //Based on the selection value passed in from Form.js return the appropriate text box/ dropdown box
 
       if(selection === "Subject")
       {

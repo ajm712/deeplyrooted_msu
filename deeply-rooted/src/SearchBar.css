@@ -1,5 +1,5 @@
 .searchBox {
-    width: 300px;
+    width: 35%;
     height: 32px;
     border: 0px;
     border-radius: 3px 0px 0px 3px;
@@ -8,7 +8,7 @@
 
 .searchButton {
     font-family: FontAwesome;
-    height: 34px;
+    height: 32px;
     border: 0px;
     border-radius: 0px 3px 3px 0px;
 }

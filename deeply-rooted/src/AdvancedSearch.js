@@ -4,33 +4,44 @@ import './Display.css';
 import ApiWrapper from './ApiWrapper.js';
 import Books from './DisplayBook.js';
 
-
+//Sets the Modal Styling for Advanced Search
 class Modal extends React.Component {
+
+    //Closes the modal if the user selects the backdrop
+    close(e) {
+        e.preventDefault()
+        if (this.props.onClose) {
+            this.props.onClose()
+        }
+    }
+
     render() {
         if (this.props.isOpen === false)
-        return null
+            return null
 
+        //Sets the modal style
         let modalStyle = {
-        position: 'absolute',
-        textAlign: 'left',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        zIndex: '9999',
-        height: 'auto',
-        margin: '0px auto 0px auto',
-        borderRadius: '10px',
-        background: 'radial-gradient(rgb(203, 196, 180), rgb(203, 196, 180), #DDBC6F)',
+            position: 'absolute',
+            textAlign: 'left',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: '9999',
+            height: 'auto',
+            margin: '0px auto 0px auto',
+            borderRadius: '10px',
+            background: 'radial-gradient(rgb(203, 196, 180), rgb(203, 196, 180), #DDBC6F)',
         }
 
+        //Sets the backgroud style
         let backdropStyle = {
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        top: '0px',
-        left: '0px',
-        zIndex: '9998',
-        background: 'rgba(0, 0, 0, 0.3)'
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            top: '0px',
+            left: '0px',
+            zIndex: '9998',
+            background: 'rgba(0, 0, 0, 0.3)'
         }
 
         return (
@@ -40,15 +51,9 @@ class Modal extends React.Component {
             </div>
         )
     }
-
-    close(e) {
-        e.preventDefault()
-        if (this.props.onClose) {
-            this.props.onClose()
-        }
-    }
 }
 
+//Generate the Modal for Advanced Search  
 class Advanced extends React.Component {
     constructor(props) {
     super(props)
@@ -58,29 +63,29 @@ class Advanced extends React.Component {
     this.handleAdvancedSearch =this.handleAdvancedSearch.bind(this);
     }
 
-    /*Handles opening and closing of modal*/
+    /*Handles opening of modal*/
     openModal() {
-        this.setState({ isModalOpen: true })
+        this.setState({ isModalOpen: true });
     }
 
+    /*Handles closing of modal*/
     closeModal() {
-        this.setState({ isModalOpen: false })
+        this.setState({ isModalOpen: false });
     }
 
-    handleChange(event) { //Stores the user input value
+    handleChange(event) { //Stores the user text box value
         var name = event.target.name;
-        this.state[name] = event.target.value;
+        this.setState({ [name]: event.target.value });
     }
 
-    handleDrop(event) {
+    handleDrop(event) { //Stores the user dropdown value
         var name = event.target.name;
-        this.state[name] = event.target.value;
+        this.setState({ [name]: event.target.value });
     }
 
-    /*Handles api call for advanced search*/
+    /*Passes the data in advanced search form to the API then calls BookDisplay to render the results to the screen*/
     handleAdvancedSearch(event) { 
         this.closeModal();
-
         var searchParameters = ["subject", "rights", "title", "format", "collection", "state", "language", "creator", "date"];
         var searchType;
         var userInput;
@@ -102,11 +107,11 @@ class Advanced extends React.Component {
         {
           searchType = searchParameters[i]
           userInput = this.state[searchType]; 
-          
+          this.setState({ [searchType]: '' });
           if (userInput !== "" && userInput !== undefined && userInput !== 'ALL')
             formData[searchType] = userInput;
         }
-        
+
         var results = ApiWrapper.makeCall({subject: formData.subject, 
                                            rights: formData.rights, 
                                            title: formData.title, 
@@ -194,6 +199,7 @@ class Advanced extends React.Component {
     }
         
     render(){
+        /*Renders the form in the modal*/
         return(
             <div className="inLine">
                 <button className="advancedButton" onClick={() => this.openModal()}>Advanced Search</button>
@@ -204,16 +210,16 @@ class Advanced extends React.Component {
                             <tr><td>&nbsp;</td></tr>
                             <tr className="tableRowModal">
                                 <td><b><p>Subject:</p></b></td>
-                                <td><input className="textBoxModal" type="text"  name="subject" value={this.state.name} onChange={this.handleChange}/></td>
+                                <td><input className="textBoxModal" type="text"  name="subject" value={this.state.name} onBlur={this.handleChange}/></td>
                             </tr>
                             <tr className="tableRowModal">
                                 <td><b><p>Title:</p></b></td>
-                                <td><input className="textBoxModal" type="text"  name="title" value={this.state.name} onChange={this.handleChange}/></td>
+                                <td><input className="textBoxModal" type="text"  name="title" value={this.state.name} onBlur={this.handleChange}/></td>
                             </tr>
                             <tr className="tableRowModal">
                                 <td><b><p>Language:</p></b></td>
                                 <td>    
-                                    <select className="dropDownModal" name="language" onChange={this.handleDrop} defaultValue="ALL">
+                                    <select className="dropDownModal" name="language" onBlur={this.handleDrop} defaultValue="ALL">
                                         <option value="ALL">--Select a Language--</option>
                                         {       
                                             this.getLanguages().map(function(languages){
@@ -225,12 +231,12 @@ class Advanced extends React.Component {
                             </tr>
                             <tr className="tableRowModal">
                                 <td><b><p>Rights:</p></b></td>
-                                <td><input className="textBoxModal" type="text"  name="rights" value={this.state.name} onChange={this.handleChange}/></td>
+                                <td><input className="textBoxModal" type="text"  name="rights" value={this.state.name} onBlur={this.handleChange}/></td>
                             </tr>
                             <tr className="tableRowModal">
                                 <td><b><p>Format:</p></b></td>
                                 <td>  
-                                    <select name="format" className="dropDownModal" onChange={this.handleDrop} defaultValue="ALL">
+                                    <select name="format" className="dropDownModal" onBlur={this.handleDrop} defaultValue="ALL">
                                         <option value="ALL">--Select a Format--</option>
                                         {
                                             this.getFormats().map(function(formats){
@@ -242,12 +248,12 @@ class Advanced extends React.Component {
                             </tr>
                             <tr className="tableRowModal">
                                 <td><b><p>Collection:</p></b></td>
-                                <td><input className="textBoxModal" type="text"  name="collection" value={this.state.name} onChange={this.handleChange}/></td>
+                                <td><input className="textBoxModal" type="text"  name="collection" value={this.state.name} onBlur={this.handleChange}/></td>
                             </tr>
                             <tr className="tableRowModal">
                                 <td><b><p>Location:</p></b></td>
                                 <td>                   
-                                    <select name="state" className="dropDownModal" onChange={this.handleDrop} defaultValue="ALL">
+                                    <select name="state" className="dropDownModal" onBlur={this.handleDrop} defaultValue="ALL">
                                         <option value="ALL">--Select a Location--</option>
                                         {
                                             this.getStates().map(function(states){
@@ -259,12 +265,12 @@ class Advanced extends React.Component {
                             </tr>
                             <tr className="tableRowModal">
                                 <td><b><p>Author:</p></b></td>
-                                <td><input className="textBoxModal" type="text"  name="author" value={this.state.name} onChange={this.handleChange}/></td>
+                                <td><input className="textBoxModal" type="text"  name="author" value={this.state.name} onBlur={this.handleChange}/></td>
                             </tr>
                             <tr className="tableRowModal">
                                 <td><b><p>Date:</p></b></td>
                                 <td>
-                                    <select name="date" className="dropDownModal" onChange={this.handleDrop} defaultValue="ALL">
+                                    <select name="date" className="dropDownModal" onBlur={this.handleDrop} defaultValue="ALL">
                                         <option value="ALL">--Select a Date--</option>
                                         {
                                             this.getDates().map(function(dates){

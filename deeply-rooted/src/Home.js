@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './deeply-rooted-logo-05.png';
 import './Home.css';
 
-
+//Code for home page information
 class Home extends Component {
   render() {
     return (
