@@ -174,7 +174,21 @@
   width: 75%;
 }
 
-/*Modal CSS*/
+/*Advanced Search CSS*/
+.advancedButton{
+  cursor: pointer;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-left: 0px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.advancedButton:hover{
+  opacity: .7;
+}
+
 .modal-dialog 
 {
     margin: 20vh auto 0px auto;
@@ -202,32 +216,40 @@
   min-width: 75%;
 }
 
+.headerModal
+{
+  text-align: center;
+}
+
 .tableModal
 {
-    margin: 35px 12px 0px 75px;
-    
+    background:white;
+}
+
+tr.tableRowModal p
+{
+  padding-left: 35px;
+  padding-right: 10px;
 }
 
 .closeModal
 {
   cursor: pointer;
-  padding: 12px 20px;
-  margin: 8px 0;
+  width: 75px;
+  height: 25px;
+  margin: 4px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
+  border-radius: 6px;
   box-sizing: border-box;
 }
 
 .submitModal
 {
   cursor: pointer;
-  padding: 12px 20px;
-  margin: 8px 0;
+  width: 75px;
+  height: 25px;
+  margin: 4px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
+  border-radius: 6px;
   box-sizing: border-box;
 }

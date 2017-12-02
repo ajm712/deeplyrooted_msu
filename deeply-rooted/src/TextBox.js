@@ -104,53 +104,6 @@ class TextBox extends React.Component {
       event.preventDefault();
     }
 
-    handleAdvancedSearch(event) { 
-      var searchParameters = ["subject", "rights", "title", "format", "collection", "state", "language", "creator", "date"];
-      var searchType;
-      var userInput;
-      var formData = {
-        subject: "",
-        rights: "",
-        title: "",
-        format: "",
-        collection: "",
-        state: "",
-        language: "",
-        creator: "",
-        date: "",
-        page_size: "30",
-        page: "1"
-      };
-
-      for (var i = 0; i < searchParameters.length; i++)
-      {
-        searchType = searchParameters[i]
-        userInput = this.state[searchType]; 
-        
-        if (userInput !== "")
-          formData[searchType] = userInput;
-      }
-      
-
-      var results = ApiWrapper.makeCall({subject: formData.subject, 
-                                         rights: formData.rights, 
-                                         title: formData.title, 
-                                         format: formData.format, 
-                                         collection: formData.collection, 
-                                         state: formData.state, 
-                                         language: formData.language, 
-                                         creator: formData.creator,
-                                         date: formData.date, 
-                                         page_size: formData.page_size,
-                                         page: formData.page,
-                                        });
-
-      console.log(results); 
-      ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root')); 
-      event.preventDefault();
-    }
-
-
     render() {
       var selection = this.props.selection; //Based on the selection value passed in from Form.js return the appropriate text box
 
@@ -316,7 +269,7 @@ class TextBox extends React.Component {
                   <option value="ALL">--Select a Date--</option>
                   {
                     datelist.map(function(dates){
-                      return <option value={dates}>{dates}</option>;
+                      return <option key={dates} value={dates}>{dates}</option>;
                     })
                   }
                 </select>
