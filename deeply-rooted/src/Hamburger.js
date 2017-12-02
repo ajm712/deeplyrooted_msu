@@ -14,45 +14,57 @@ import Advanced from './AdvancedSearch.js';
 
 
 class Hamburger extends Component {
-  about() {
-      ReactDOM.render(<About />, document.getElementById('root'));
-      ReactDOM.render(<Footer page="other"/>, document.getElementById('footer'));
-      ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
-      ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
-      ReactDOM.unmountComponentAtNode(document.getElementById('adv_search'));
-  }
+    constructor(props) {
+        super(props)
+        this.state = { isMenuOpen: false };
+        this.about = this.about.bind(this);
+        this.home = this.home.bind(this);
+        this.adv_search = this.adv_search.bind(this);
+    }
 
-  home() {
-      ReactDOM.render(<Home />, document.getElementById('root'));
-      ReactDOM.render(<Footer page="other"/>, document.getElementById('footer'));
-      ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
-      ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
-      ReactDOM.unmountComponentAtNode(document.getElementById('adv_search'));
-      
-  }
+    closeMenu() {
+        this.setState({ isMenuOpen: false })
+    }
 
-  adv_search() {
-      var results = ApiWrapper.makeCall({language:"english", page_size: "30", page: "1"});
-      ReactDOM.render(<Form />, document.getElementById('dropbox'));
-      ReactDOM.render(<TextBox selection="Subject"/>, document.getElementById('text-box'));
-      ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
-      ReactDOM.render(<Advanced />, document.getElementById('adv_search'));
-      ReactDOM.render(<Footer page="adv_search"/>, document.getElementById('footer'));
-      
-  }
+    about() {
+        this.closeMenu();
+        ReactDOM.render(<About />, document.getElementById('root'));
+        ReactDOM.render(<Footer page="other"/>, document.getElementById('footer'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('adv_search'));
+    }
 
-  render () {
-    return (
-    <div className="Hamburger">
-      <Menu>
-            <Button className="btn_burger" onClick={this.home}>Home</Button>
-            <Button className="btn_burger" onClick={this.adv_search}>Advanced Search</Button>
-            <Button className="btn_burger" onClick={this.about}>About</Button>
-      </Menu>
-     </div>
-    );
-  }
+    home() {
+        this.closeMenu();
+        ReactDOM.render(<Home />, document.getElementById('root'));
+        ReactDOM.render(<Footer page="other"/>, document.getElementById('footer'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('adv_search'));  
+    }
 
+    adv_search() {
+        this.closeMenu();
+        var results = ApiWrapper.makeCall({language:"english", page_size: "30", page: "1"});
+        ReactDOM.render(<Form />, document.getElementById('dropbox'));
+        ReactDOM.render(<TextBox selection="Subject"/>, document.getElementById('text-box'));
+        ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
+        ReactDOM.render(<Advanced />, document.getElementById('adv_search'));
+        ReactDOM.render(<Footer page="adv_search"/>, document.getElementById('footer')); 
+    }
+
+    render () {
+        return (
+            <div className="Hamburger">
+                <Menu id="hamburger-menu" isOpen={ this.state.isMenuOpen }>
+                    <Button className="btn_burger" onClick={this.home}>Home</Button>
+                    <Button className="btn_burger" onClick={this.adv_search}>Advanced Search</Button>
+                    <Button className="btn_burger" onClick={this.about}>About</Button>
+                </Menu>
+            </div>
+        );
+    }
 }
 
 export default Hamburger;

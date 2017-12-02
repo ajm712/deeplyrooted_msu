@@ -19,7 +19,6 @@ class Books extends React.Component {
   }
 
   calculatePages() {
-    console.log(this.props);
     var totalBooks = this.props.results.count;
     var booksPerPage = 30;
     var totalPages = Math.ceil(totalBooks/ booksPerPage);
@@ -29,7 +28,6 @@ class Books extends React.Component {
   changePage(event) {
     var page = event;
     var searchData = this.props.results.call;
-    console.log(this.props.results.call);
     var results = ApiWrapper.makeCall({
       subject: searchData.subject, 
       rights: searchData.rights, 
@@ -96,7 +94,7 @@ class Books extends React.Component {
     _getBooks(viewType) {
 
       //checks to see if there are any results 
-      if(this.props.results.count==0){
+      if(this.props.results.count === 0){
         return (<NoResult />);
       }
 
@@ -105,7 +103,6 @@ class Books extends React.Component {
       var bookObject = {}
       var metaData;
       var data;
-      console.log(allBooks);
       //For each book in results parse throught the data to find relevent information
       for (var i = 0; i < allBooks.length; i++)
       {
@@ -317,12 +314,9 @@ class Books extends React.Component {
     }
 
     render() {
-
-      console.log(this);
-
       //creates array of search results for use as the data within the table
       var products = this.props.tableInfo;
-      var products = [];
+      products = [];
       for (var i = 0; i < this.props.tableInfo.length; i++)
       {
         products[i] = {
@@ -339,10 +333,7 @@ class Books extends React.Component {
                         link: this.props.tableInfo[i].link 
                     
         }
-      }
-      console.log(products);
-
-      
+      }      
       
       return(
         /*creates table using "react-bootstrap-table" libraries,
@@ -367,11 +358,11 @@ class Books extends React.Component {
     }
   }
 
-/*Other possible table rows
-<TableHeaderColumn width='200' dataField='description' dataSort>Description</TableHeaderColumn>
-<TableHeaderColumn width='200' dataField='language' dataSort>Language</TableHeaderColumn>
-<TableHeaderColumn width='200' dataField='collection' dataSort>Collection</TableHeaderColumn>
-*/
+        /*Other possible table rows for futrue development
+        <TableHeaderColumn width='200' dataField='description' dataSort>Description</TableHeaderColumn>
+        <TableHeaderColumn width='200' dataField='language' dataSort>Language</TableHeaderColumn>
+        <TableHeaderColumn width='200' dataField='collection' dataSort>Collection</TableHeaderColumn>
+        */
 
 
   //calls the NoResults class to notify user that no results were found 

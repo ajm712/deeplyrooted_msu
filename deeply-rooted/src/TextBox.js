@@ -26,10 +26,6 @@ class TextBox extends React.Component {
           return
         }
 
-        console.log("Type" + searchType);
-        console.log("Value" + userInput);
-
-
         var formData = {
           subject: "",
           rights: "",
@@ -59,7 +55,6 @@ class TextBox extends React.Component {
           page: formData.page,
          });
         
-        console.log(results);
         ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
         
     }
@@ -82,9 +77,6 @@ class TextBox extends React.Component {
       };
 
       formData[searchType] = userInput;
-      console.log(formData);
-      console.log('search type:'+ searchType);
-      console.log('userInput:'+userInput);
 
       var results = ApiWrapper.makeCall({subject: formData.subject, 
                                          rights: formData.rights, 
@@ -99,7 +91,6 @@ class TextBox extends React.Component {
                                          page: formData.page,
                                         });
 
-      console.log(results); 
       ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root')); 
       event.preventDefault();
     }
@@ -148,7 +139,6 @@ class TextBox extends React.Component {
       {
         //pulls all format types from api 
         var result =ApiWrapper.getFormatFacet();
-        console.log(result);
         var formatlist=[];
         var formatFacets=result.facets["sourceResource.format"].terms;
    
@@ -158,7 +148,6 @@ class TextBox extends React.Component {
         formatlist[i]=formatFacets[i].term;
       }
       formatlist.sort();
-      console.log(formatlist)
         //returns a list of formats composed of items in formatlist
         return (
           <div className="inLine">
@@ -205,7 +194,6 @@ class TextBox extends React.Component {
           stateList[i] = stateFacets[i].term;
         }
         stateList.sort();
-        console.log(stateList);
 
         //returns list of states composed of states from statelist
         return (
@@ -258,7 +246,6 @@ class TextBox extends React.Component {
         
         //organizes the dates in dropdown box in ascending order 
         datelist.sort();
-        console.log(datelist);
 
         //returns dates composed of dates from datelist 
         return (

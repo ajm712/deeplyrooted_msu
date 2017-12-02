@@ -17,7 +17,6 @@ class Modal extends React.Component {
         left: '50%',
         transform: 'translate(-50%, -50%)',
         zIndex: '9999',
-        background: '#fff',
         height: 'auto',
         margin: '0px auto 0px auto',
         borderRadius: '10px',
@@ -107,8 +106,6 @@ class Advanced extends React.Component {
           if (userInput !== "" && userInput !== undefined && userInput !== 'ALL')
             formData[searchType] = userInput;
         }
-
-        console.log(formData);
         
         var results = ApiWrapper.makeCall({subject: formData.subject, 
                                            rights: formData.rights, 
@@ -123,7 +120,6 @@ class Advanced extends React.Component {
                                            page: formData.page,
                                           });
   
-        console.log(results); 
         ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root')); 
         event.preventDefault();
     }

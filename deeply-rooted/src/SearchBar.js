@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import Books from './DisplayBook.js';
 import './SearchBar.css';
 import ApiWrapper from './ApiWrapper.js';
+import Footer from './Footer.js';
+
 
 
 class SearchBar extends React.Component {
@@ -32,8 +34,8 @@ class SearchBar extends React.Component {
             page_size: "30",
             page: "1"
            });
-        console.log(results);
         ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
+        ReactDOM.render(<Footer page="adv_search"/>, document.getElementById('footer'));
         event.preventDefault();
     }
 

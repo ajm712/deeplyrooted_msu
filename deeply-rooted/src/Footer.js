@@ -3,7 +3,7 @@ import './Footer.css';
 
 class Footer extends Component {
   render() {
-    if (this.props.page != "adv_search"){
+    if (this.props.page !== "adv_search"){
     return (
       <div className="Footer2">
         <div>
@@ -13,7 +13,7 @@ class Footer extends Component {
     );
   }
 
-  else if (this.props.page == "adv_search") {
+  else if (this.props.page === "adv_search") {
     return (
       <div className="Footer">
         <div >
