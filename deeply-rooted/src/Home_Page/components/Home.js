@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './deeply-rooted-logo-05.png';
-import './Home.css';
+import logo from '../../Images/deeply-rooted-logo-05.png';
+import '../styles/Home.css';
 
 //Code for home page information
 class Home extends Component {

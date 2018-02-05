@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './Display.css';
-import ApiWrapper from './ApiWrapper.js';
-import Books from './DisplayBook.js';
+import ApiWrapper from '../../Services/components/ApiWrapper.js';
+import Books from '../../Display/components/DisplayBook.js';
+import '../styles/Display.css';
+
 
 //Sets the Modal Styling for Advanced Search
 class Modal extends React.Component {

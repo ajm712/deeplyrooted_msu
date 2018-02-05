@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import Header from './Header.js';
-import NavBar from './NavBar.js';
-import Hamburger from './Hamburger.js';
-import SearchBar from './SearchBar.js';
-import Home from './Home.js';
-import Footer from './Footer.js';
-import registerServiceWorker from './registerServiceWorker';
+import Header from './Header/components/Header.js';
+import NavBar from './Header/components/NavBar.js';
+import Hamburger from './Header/components/Hamburger.js';
+import SearchBar from './Header/components/SearchBar.js';
+import Home from './Home_Page/components/Home.js';
+import Footer from './Footer/components/Footer.js';
+import registerServiceWorker from './Services/components/registerServiceWorker';
 
 //What is rendered on to the screen when the website is first loaded
 ReactDOM.render(<Header />, document.getElementById('header')); //Displays the spinning react label

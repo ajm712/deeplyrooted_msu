@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Books from './DisplayBook.js';
-import './SearchBar.css';
-import ApiWrapper from './ApiWrapper.js';
-import Footer from './Footer.js';
+import Books from '../../Display/components/DisplayBook.js';
+import '../styles/SearchBar.css';
+import ApiWrapper from '../../Services/components/ApiWrapper.js';
+import Footer from '../../Footer/components/Footer.js';
 
 //Code for search bar
 class SearchBar extends React.Component {

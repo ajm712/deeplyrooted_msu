@@ -1,12 +1,12 @@
 import React from 'react';
-import './Header.css';
-import './Display.css';
-import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 import {Popover, OverlayTrigger, Pagination} from 'react-bootstrap';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import '../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
-import ApiWrapper from './ApiWrapper.js';
-import defaultImage from './unknown-image.png';
+import ApiWrapper from '../../Services/components/ApiWrapper.js';
+import defaultImage from '../../Images/unknown-image.png';
+import '../styles/Display.css';
+import '../../../node_modules/font-awesome/css/font-awesome.min.css'; 
+import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+
 
 var $ = require('jquery');
 var ReactDOM = require('react-dom');

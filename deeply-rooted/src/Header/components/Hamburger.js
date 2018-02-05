@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { slide as Menu } from 'react-burger-menu';
-import './Hamburger.css';
-import About from './About.js';
-import Home from './Home.js';
-import {Button} from 'react-bootstrap'
-import Form from './Form.js';
-import TextBox from './TextBox.js';
-import ApiWrapper from './ApiWrapper.js';
-import Books from './DisplayBook.js';
-import Footer from './Footer.js';
-import Advanced from './AdvancedSearch.js';
+import {Button} from 'react-bootstrap';
+import About from '../../About_Page/components/About.js';
+import Home from '../../Home_Page/components/Home.js';
+import Footer from '../../Footer/components/Footer.js';
+import ApiWrapper from '../../Services/components/ApiWrapper.js';
+import Books from '../../Display/components/DisplayBook.js';
+import Advanced from '../../Adv_Search/components/AdvancedSearch.js';
+import TextBox from '../../Adv_Search/components/TextBox.js';
+import Form from '../../Adv_Search/components/Form.js';
+import '../styles/Hamburger.css';
+
 
 //Creates and handles selections made on the hamburger menu
 class Hamburger extends Component {

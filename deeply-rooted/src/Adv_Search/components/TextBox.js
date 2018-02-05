@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './Display.css';
-import ApiWrapper from './ApiWrapper.js';
-import Books from './DisplayBook.js';
+import ApiWrapper from '../../Services/components/ApiWrapper.js';
+import Books from '../../Display/components/DisplayBook.js';
+import '../styles/Display.css';
 
 //Displays the textbox for the appropriate search selected in the dropdown box
 class TextBox extends React.Component {
