@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Jumbotron} from 'react-bootstrap';
 import logo from '../../Images/deeply-rooted-logo-05.png';
 import '../styles/Header.css';
 
@@ -6,12 +7,10 @@ import '../styles/Header.css';
 class Header extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Deeply Rooted @ MSU Library</h2>
-        </div>
-      </div>
+      <Jumbotron bsClass="header">
+        <img src={logo} className="header-logo" alt="logo" />
+        <h1><b>Deeply Rooted @ MSU Library</b></h1>
+      </Jumbotron>
     );
   }
 }

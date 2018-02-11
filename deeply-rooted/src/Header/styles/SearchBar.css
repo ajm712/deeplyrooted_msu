@@ -1,5 +1,5 @@
 .searchBox {
-    width: 35%;
+    width: 50%;
     height: 32px;
     border: 0px;
     border-radius: 3px 0px 0px 3px;
@@ -21,5 +21,5 @@
 }
 
 .form {
-    padding-right: 36px;
+    padding-right: 15px;
 }

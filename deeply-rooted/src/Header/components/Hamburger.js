@@ -32,7 +32,6 @@ class Hamburger extends Component {
     about() {
         this.closeMenu();
         ReactDOM.render(<About />, document.getElementById('root'));
-        ReactDOM.render(<Footer page="other"/>, document.getElementById('footer'));
         ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
         ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
         ReactDOM.unmountComponentAtNode(document.getElementById('adv_search'));
@@ -42,7 +41,6 @@ class Hamburger extends Component {
     home() {
         this.closeMenu();
         ReactDOM.render(<Home />, document.getElementById('root'));
-        ReactDOM.render(<Footer page="other"/>, document.getElementById('footer'));
         ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
         ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
         ReactDOM.unmountComponentAtNode(document.getElementById('adv_search'));  
@@ -56,7 +54,6 @@ class Hamburger extends Component {
         ReactDOM.render(<TextBox selection="Subject"/>, document.getElementById('text-box'));
         ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
         ReactDOM.render(<Advanced />, document.getElementById('adv_search'));
-        ReactDOM.render(<Footer page="adv_search"/>, document.getElementById('footer')); 
     }
 
     //Creates the burger menu and selection buttons

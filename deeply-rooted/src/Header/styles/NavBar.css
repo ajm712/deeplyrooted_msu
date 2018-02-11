@@ -1,5 +1,11 @@
 .NavBar {
   background-color: #775842;
   height: 50px;
-  vertical-align: middle;
+}
+
+.alignleft {
+	float: left;
+}
+.alignright {
+  float: right;
 }
