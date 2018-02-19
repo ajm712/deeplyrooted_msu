@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { slide as Menu } from 'react-burger-menu';
 import {Button} from 'react-bootstrap';
+import Map from '../../Map_Page/components/Map.js';
 import About from '../../About_Page/components/About.js';
 import Home from '../../Home_Page/components/Home.js';
 import Footer from '../../Footer/components/Footer.js';
@@ -19,6 +20,7 @@ class Hamburger extends Component {
         super(props)
         this.state = { isMenuOpen: false };
         this.about = this.about.bind(this);
+        this.map = this.map.bind(this);
         this.home = this.home.bind(this);
         this.adv_search = this.adv_search.bind(this);
     }
@@ -26,6 +28,15 @@ class Hamburger extends Component {
     //Closes the hamburger menu
     closeMenu() {
         this.setState({ isMenuOpen: false })
+    }
+
+    //Renders appropriate components to the screen for the about page
+    map() {
+        this.closeMenu();
+        ReactDOM.render(<Map />, document.getElementById('root'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('adv_search'));
     }
 
     //Renders appropriate components to the screen for the about page
@@ -63,6 +74,7 @@ class Hamburger extends Component {
                 <Menu id="hamburger-menu" isOpen={ this.state.isMenuOpen }>
                     <Button className="btn_burger" onClick={this.home}>Home</Button>
                     <Button className="btn_burger" onClick={this.adv_search}>Advanced Search</Button>
+                    <Button className="btn_burger" onClick={this.map}>Map</Button>
                     <Button className="btn_burger" onClick={this.about}>About</Button>
                 </Menu>
             </div>
