@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/About.css';
 
-class About extends Component {
+class About extends React.Component {
   //Displays the default paragraph for About Page
   render() {
     return (
