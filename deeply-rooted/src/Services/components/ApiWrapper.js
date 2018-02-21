@@ -53,6 +53,7 @@ class ApiWrapper{
         var props = {"sourceResource.description":"deeply rooted"}
         props["facets"] = "sourceResource.spatial.state"
         props["api_key"] = "304ebe4fa961241e648edf1035166735"
+        props["facet_size"] = "2000"
         $.getJSON(url, props, function(result){
         	// properties of results are "count", "start", "limit", "docs"
             results = result
@@ -66,6 +67,7 @@ class ApiWrapper{
         var props = {"sourceResource.description":"deeply rooted"}
         props["facets"] = "sourceResource.language"
         props["api_key"] = "304ebe4fa961241e648edf1035166735"
+        props["facet_size"] = "2000"
         $.getJSON(url, props, function(result){
         	// properties of results are "count", "start", "limit", "docs"
             results = result
@@ -79,6 +81,7 @@ class ApiWrapper{
         var props = {"sourceResource.description":"deeply rooted"}
         props["facets"] = "sourceResource.format"
         props["api_key"] = "304ebe4fa961241e648edf1035166735"
+        props["facet_size"] = "2000"
         $.getJSON(url, props, function(result){
         	// properties of results are "count", "start", "limit", "docs"
             results = result
@@ -92,6 +95,7 @@ class ApiWrapper{
         var props = {"sourceResource.description":"deeply rooted"}
         props["facets"] = "sourceResource.date"
         props["api_key"] = "304ebe4fa961241e648edf1035166735"
+        props["facet_size"] = "2000"
         $.getJSON(url, props, function(result){
         	// properties of results are "count", "start", "limit", "docs"
             results = result

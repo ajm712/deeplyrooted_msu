@@ -10,6 +10,7 @@ import Books from '../../Display/components/DisplayBook.js';
 import Advanced from '../../Adv_Search/components/AdvancedSearch.js';
 import TextBox from '../../Adv_Search/components/TextBox.js';
 import Form from '../../Adv_Search/components/Form.js';
+import RandomSelection from '../../Header/components/RandomSelection.js';
 import '../styles/Hamburger.css';
 
 
@@ -21,6 +22,7 @@ class Hamburger extends Component {
         this.about = this.about.bind(this);
         this.home = this.home.bind(this);
         this.adv_search = this.adv_search.bind(this);
+        this.rand_book = this.rand_book.bind(this);
     }
 
     //Closes the hamburger menu
@@ -56,12 +58,19 @@ class Hamburger extends Component {
         ReactDOM.render(<Advanced />, document.getElementById('adv_search'));
     }
 
+    rand_book() {
+        this.closeMenu();
+        var results = RandomSelection.random_select({page_size: 30});
+        ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
+    }
+
     //Creates the burger menu and selection buttons
     render () {
         return (
             <div className="Hamburger">
                 <Menu id="hamburger-menu" isOpen={ this.state.isMenuOpen }>
                     <Button className="btn_burger" onClick={this.home}>Home</Button>
+                    <Button className="btn_burger" onClick={this.rand_book}>Random Selection</Button>
                     <Button className="btn_burger" onClick={this.adv_search}>Advanced Search</Button>
                     <Button className="btn_burger" onClick={this.about}>About</Button>
                 </Menu>
