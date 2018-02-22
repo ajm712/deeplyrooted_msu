@@ -10,7 +10,7 @@ import Books from '../../Display/components/DisplayBook.js';
 import Advanced from '../../Adv_Search/components/AdvancedSearch.js';
 import TextBox from '../../Adv_Search/components/TextBox.js';
 import Form from '../../Adv_Search/components/Form.js';
-import RandomSelection from '../../Header/components/RandomSelection.js';
+import RandomSelection from '../../Services/components/RandomSelection.js';
 import '../styles/Hamburger.css';
 
 
@@ -62,6 +62,9 @@ class Hamburger extends Component {
         this.closeMenu();
         var results = RandomSelection.random_select({page_size: 30});
         ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('adv_search')); 
     }
 
     //Creates the burger menu and selection buttons

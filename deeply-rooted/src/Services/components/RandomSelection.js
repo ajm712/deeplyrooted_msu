@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {Button, ButtonToolbar} from 'react-bootstrap';
-import Books from '../../Display/components/DisplayBook.js';
-import ApiWrapper from '../../Services/components/ApiWrapper.js';
+import ApiWrapper from './ApiWrapper.js';
 
 class RandomButton{
     static random_select({page_size = 10} = {}) {
