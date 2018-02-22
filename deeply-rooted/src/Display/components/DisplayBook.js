@@ -113,6 +113,7 @@ class Books extends React.Component {
         bookObject = {
           itemNum: 0,
           id: "Unavailable",
+          image: defaultImage,
           title: "Unavailable",
           creator: "Unavailable",
           collection: "Unavailable",
@@ -173,7 +174,12 @@ class Books extends React.Component {
 
         //Searches for the description of the book
         if (data.hasOwnProperty('description'))
+        {
           bookObject.description = data.description[0];
+          //If the entire name is not stored at index 0 then use the entire creator object
+          if(bookObject.description.length === 1)
+            bookObject.description = data.description;
+        }
 
         //Searches for the langauge of the book
         if (data.hasOwnProperty('language') && data.language[0].hasOwnProperty('name'))
@@ -303,7 +309,7 @@ class Books extends React.Component {
       return(
         <div className="componentBoxBackground">
             <OverlayTrigger id="abc" trigger='click' rootClose placement={AutoRotate(this.props.itemNum, this.props.totalResults)} overlay={popoverFocus}>
-              <img className="bookImage" alt="Unavailable" src={this.props.image} onError={this.backupImage} />
+              <img className="bookImage" alt={this.props.title} src={this.props.image} onError={this.backupImage} />
             </OverlayTrigger>
         </div>
         );
