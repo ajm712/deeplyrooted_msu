@@ -153,16 +153,17 @@
 /*Pagination CSS*/
 .pagination li.active a {
   background-color: #DDBC6F;
-  color: white;
+  color: black;
 }
 
 .pagination li.active:hover a {
   background-color: #DDBC6F;
-  color: white;
+  color: black;
 }
 
 .pagination li:hover:not(.active) a {
   background-color: rgb(255, 228, 166);
+  color: black
 }
 
 /*Used for NoResults Class*/

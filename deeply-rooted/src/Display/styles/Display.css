@@ -152,35 +152,36 @@
 
 /*Pagination CSS*/
 .pagination li.active a {
-  color: white;
+  color: black;
   border-color: rgb(221, 187, 107);
   background-color: rgb(221, 187, 107);
   box-shadow: none;
 }
 
 .pagination li.active a.visited {
-  color: white;
+  color: black;
   border-color: rgb(221, 187, 107);
   background-color: rgb(221, 187, 107);
   box-shadow: none;
 }
 
+
 .pagination li.active:hover a {
-  color: white;
+  color: black;
   border-color: rgb(221, 187, 107);
   background-color: rgb(221, 187, 107);
   box-shadow: none;
 }
 
 .pagination li:hover:not(.active) a {
-  color: #775842;
+  color: black;
   border-color: rgb(255, 228, 166);
   background-color: rgb(255, 228, 166);
   box-shadow: none;
 }
 
 .pagination li:not(.active) a {
-  color: #775842;
+  color: black;
   background-color: rgb(255, 255, 255);
   box-shadow: none;
 }
