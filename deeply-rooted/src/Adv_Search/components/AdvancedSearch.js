@@ -211,16 +211,16 @@ class Advanced extends React.Component {
                             <tr><td>&nbsp;</td></tr>
                             <tr className="tableRowModal">
                                 <td><b><p>Subject:</p></b></td>
-                                <td><input className="textBoxModal" type="text"  name="subject" value={this.state.name} onBlur={this.handleChange}/></td>
+                                <td><input className="textBoxModal" type="text" aria-label="Subject Search Box"  name="subject" value={this.state.name} onBlur={this.handleChange}/></td>
                             </tr>
                             <tr className="tableRowModal">
                                 <td><b><p>Title:</p></b></td>
-                                <td><input className="textBoxModal" type="text"  name="title" value={this.state.name} onBlur={this.handleChange}/></td>
+                                <td><input className="textBoxModal" type="text" aria-label="Title Search Box"  name="title" value={this.state.name} onBlur={this.handleChange}/></td>
                             </tr>
                             <tr className="tableRowModal">
                                 <td><b><p>Language:</p></b></td>
                                 <td>    
-                                    <select className="dropDownModal" name="language" onBlur={this.handleDrop} defaultValue="ALL">
+                                    <select className="dropDownModal" name="language" aria-label="Language Drop Down" onBlur={this.handleDrop} defaultValue="ALL">
                                         <option value="ALL">--Select a Language--</option>
                                         {       
                                             this.getLanguages().map(function(languages){
@@ -232,12 +232,12 @@ class Advanced extends React.Component {
                             </tr>
                             <tr className="tableRowModal">
                                 <td><b><p>Rights:</p></b></td>
-                                <td><input className="textBoxModal" type="text"  name="rights" value={this.state.name} onBlur={this.handleChange}/></td>
+                                <td><input className="textBoxModal" type="text"  name="rights" aria-label="Rights Search Box" value={this.state.name} onBlur={this.handleChange}/></td>
                             </tr>
                             <tr className="tableRowModal">
                                 <td><b><p>Format:</p></b></td>
                                 <td>  
-                                    <select name="format" className="dropDownModal" onBlur={this.handleDrop} defaultValue="ALL">
+                                    <select name="format" className="dropDownModal" aria-label="Format Drop Down" onBlur={this.handleDrop} defaultValue="ALL">
                                         <option value="ALL">--Select a Format--</option>
                                         {
                                             this.getFormats().map(function(formats){
@@ -249,12 +249,12 @@ class Advanced extends React.Component {
                             </tr>
                             <tr className="tableRowModal">
                                 <td><b><p>Collection:</p></b></td>
-                                <td><input className="textBoxModal" type="text"  name="collection" value={this.state.name} onBlur={this.handleChange}/></td>
+                                <td><input className="textBoxModal" type="text"  name="collection" aria-label="Collection Search Box" value={this.state.name} onBlur={this.handleChange}/></td>
                             </tr>
                             <tr className="tableRowModal">
                                 <td><b><p>Location:</p></b></td>
                                 <td>                   
-                                    <select name="state" className="dropDownModal" onBlur={this.handleDrop} defaultValue="ALL">
+                                    <select name="state" className="dropDownModal" aria-label="State Drop Down" onBlur={this.handleDrop} defaultValue="ALL">
                                         <option value="ALL">--Select a Location--</option>
                                         {
                                             this.getStates().map(function(states){
@@ -266,12 +266,12 @@ class Advanced extends React.Component {
                             </tr>
                             <tr className="tableRowModal">
                                 <td><b><p>Author:</p></b></td>
-                                <td><input className="textBoxModal" type="text"  name="author" value={this.state.name} onBlur={this.handleChange}/></td>
+                                <td><input className="textBoxModal" type="text"  name="author" aria-label="Author Search Box" value={this.state.name} onBlur={this.handleChange}/></td>
                             </tr>
                             <tr className="tableRowModal">
                                 <td><b><p>Date:</p></b></td>
                                 <td>
-                                    <select name="date" className="dropDownModal" onBlur={this.handleDrop} defaultValue="ALL">
+                                    <select name="date" className="dropDownModal" aria-label="Date Drop Down" onBlur={this.handleDrop} defaultValue="ALL">
                                         <option value="ALL">--Select a Date--</option>
                                         {
                                             this.getDates().map(function(dates){
