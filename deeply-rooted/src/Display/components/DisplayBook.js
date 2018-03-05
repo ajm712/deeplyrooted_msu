@@ -360,7 +360,7 @@ class Books extends React.Component {
         /*creates table using "react-bootstrap-table" libraries,
           includes built in dataSort function that numerically and 
           alphabetically sorts columns of table*/
-        <div className="tablesize">
+        <div className="tablesize" role="table">
          <BootstrapTable data = {products} //sets data to product array 
             striped hover condensed //highlights rows as moused over
             scrollTop={ 'Top' } //sets scroll bar to start at top by default
