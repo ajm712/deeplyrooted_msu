@@ -12,7 +12,7 @@ class About extends Component {
              Deeply Rooted is a sub library of ASERL pulling primarily from MSU Libraries Consortium for the History of Agricultural and Rural Mississippi (CHARM) and plans of using the Digital Public Library of America as a primary discovery platform.
              You may search these archives by subject, rights, title, format, collection, state, language, creator, and date. </p>
 
-          <p>For information on how to contribute to the content of Deeply Rooted please go <a href="http://lib.msstate.edu/deeplyrooted#specs">here</a>
+          <p>For information on how to contribute to the content of Deeply Rooted please visit MSU's Deeply Rooted <a href="http://lib.msstate.edu/deeplyrooted#specs">contribution page</a>
           </p>
         </div>
       </div>
