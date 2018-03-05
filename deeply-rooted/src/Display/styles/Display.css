@@ -190,7 +190,7 @@
 .NoResults
 {
   font-size: 80px;
-  color: gray;
+  color: #ededed;
   padding: 190px;
 }
 
@@ -217,7 +217,7 @@
 .dropDownModal {
   padding: 2px 2px;
   margin: 1px 0;
-  border: 1px solid #ccc;
+  border: 1px solid #ededed;
   border-radius: 4px;
   box-sizing: border-box;
   max-width: 75%;
@@ -227,7 +227,7 @@
 .textBoxModal {
   padding: 2px 2px;
   margin: 1px 0;
-  border: 1px solid #ccc;
+  border: 1px solid ;
   border-radius: 4px;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
@@ -254,22 +254,24 @@ tr.tableRowModal p
 
 .closeModal
 {
+  color: black;
   cursor: pointer;
   width: 75px;
   height: 25px;
   margin: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid black;
   border-radius: 6px;
   box-sizing: border-box;
 }
 
 .submitModal
 {
+  color: black;
   cursor: pointer;
   width: 75px;
   height: 25px;
   margin: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid black;
   border-radius: 6px;
   box-sizing: border-box;
 }
