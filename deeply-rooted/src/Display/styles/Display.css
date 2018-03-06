@@ -1,67 +1,67 @@
 /*Toggle Button CSS*/
 .toggleButtonLeft{
-    padding: 15px 25px;
-    border-right: none;
-    border-top-left-radius: 4px; 
-    border-bottom-left-radius: 4px;
-    border-top-right-radius: 0cm;
-    border-bottom-right-radius: 0cm;
-    background: #ededed;
-    margin: 15px;  
-    margin-right: 0px;     
-    cursor: pointer;
-  }
+  padding: 15px 25px;
+  border-right: none;
+  border-top-left-radius: 4px; 
+  border-bottom-left-radius: 4px;
+  border-top-right-radius: 0cm;
+  border-bottom-right-radius: 0cm;
+  background: #ededed;
+  margin: 15px;  
+  margin-right: 0px;     
+  cursor: pointer;
+}
 
-  .toggleButtonLeft:disabled{
-    padding: 15px 25px;
-    border-right: none;
-    border-top-left-radius: 4px; 
-    border-bottom-left-radius: 4px;
-    border-top-right-radius: 0cm;
-    border-bottom-right-radius: 0cm;
-    background: linear-gradient(rgb(170, 170, 170), rgb(206, 205, 204), #ECECEC);
-    box-shadow: inset 0px 0px 4px #ccc;
-    outline: none;
-    margin: 15px;   
-    margin-right: 0px; 
-    cursor: not-allowed;
-  }
+.toggleButtonLeft:disabled{
+  padding: 15px 25px;
+  border-right: none;
+  border-top-left-radius: 4px; 
+  border-bottom-left-radius: 4px;
+  border-top-right-radius: 0cm;
+  border-bottom-right-radius: 0cm;
+  background: rgb(255, 255, 255);
+  box-shadow: inset 0px 0px 4px #ccc;
+  outline: none;
+  margin: 15px;   
+  margin-right: 0px; 
+  cursor: not-allowed;
+}
 
-  .toggleButtonRight{
-    padding: 15px 25px;
-    border-left: none;
-    border-top-right-radius: 4px; 
-    border-bottom-right-radius: 4px;
-    border-top-left-radius: 0cm;
-    border-bottom-left-radius: 0cm;
-    background: #ededed;
-    margin: 15px;   
-    margin-left: 0px;     
-    cursor: pointer;
-  }
+.toggleButtonRight{
+  padding: 15px 25px;
+  border-left: none;
+  border-top-right-radius: 4px; 
+  border-bottom-right-radius: 4px;
+  border-top-left-radius: 0cm;
+  border-bottom-left-radius: 0cm;
+  background: #ededed;
+  margin: 15px;   
+  margin-left: 0px;     
+  cursor: pointer;
+}
 
-  .toggleButtonRight:disabled{
-    padding: 15px 25px;
-    border-left: none;
-    border-top-right-radius: 4px; 
-    border-bottom-right-radius: 4px;
-    border-top-left-radius: 0cm;
-    border-bottom-left-radius: 0cm;
-    background: linear-gradient(rgb(170, 170, 170), rgb(206, 205, 204), #ECECEC);
-    box-shadow: inset 0px 0px 4px #ccc;
-    outline: none;
-    margin: 15px;
-    margin-left: 0px;     
-    cursor: not-allowed;
-  }
+.toggleButtonRight:disabled{
+  padding: 15px 25px;
+  border-left: none;
+  border-top-right-radius: 4px; 
+  border-bottom-right-radius: 4px;
+  border-top-left-radius: 0cm;
+  border-bottom-left-radius: 0cm;
+  background: rgb(255, 255, 255);
+  box-shadow: inset 0px 0px 4px #ccc;
+  outline: none;
+  margin: 15px;
+  margin-left: 0px;     
+  cursor: not-allowed;
+}
 
-  .border-shadow{
+  /* .border-shadow{
   position: relative;
   border-radius: 25px;    
   padding: 5px;
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, .5);
   margin: 10px;
-}
+} */
 
 /*Used for Table Book Display*/
 .tablesize
@@ -152,35 +152,36 @@
 
 /*Pagination CSS*/
 .pagination li.active a {
-  color: white;
+  color: black;
   border-color: rgb(221, 187, 107);
   background-color: rgb(221, 187, 107);
   box-shadow: none;
 }
 
 .pagination li.active a.visited {
-  color: white;
+  color: black;
   border-color: rgb(221, 187, 107);
   background-color: rgb(221, 187, 107);
   box-shadow: none;
 }
 
+
 .pagination li.active:hover a {
-  color: white;
+  color: black;
   border-color: rgb(221, 187, 107);
   background-color: rgb(221, 187, 107);
   box-shadow: none;
 }
 
 .pagination li:hover:not(.active) a {
-  color: #775842;
+  color: black;
   border-color: rgb(255, 228, 166);
   background-color: rgb(255, 228, 166);
   box-shadow: none;
 }
 
 .pagination li:not(.active) a {
-  color: #775842;
+  color: black;
   background-color: rgb(255, 255, 255);
   box-shadow: none;
 }
@@ -189,7 +190,7 @@
 .NoResults
 {
   font-size: 80px;
-  color: gray;
+  color: #ededed;
   padding: 190px;
 }
 
@@ -216,7 +217,7 @@
 .dropDownModal {
   padding: 2px 2px;
   margin: 1px 0;
-  border: 1px solid #ccc;
+  border: 1px solid #ededed;
   border-radius: 4px;
   box-sizing: border-box;
   max-width: 75%;
@@ -226,7 +227,7 @@
 .textBoxModal {
   padding: 2px 2px;
   margin: 1px 0;
-  border: 1px solid #ccc;
+  border: 1px solid ;
   border-radius: 4px;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
@@ -253,22 +254,24 @@ tr.tableRowModal p
 
 .closeModal
 {
+  color: black;
   cursor: pointer;
   width: 75px;
   height: 25px;
   margin: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid black;
   border-radius: 6px;
   box-sizing: border-box;
 }
 
 .submitModal
 {
+  color: black;
   cursor: pointer;
   width: 75px;
   height: 25px;
   margin: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid black;
   border-radius: 6px;
   box-sizing: border-box;
 }
