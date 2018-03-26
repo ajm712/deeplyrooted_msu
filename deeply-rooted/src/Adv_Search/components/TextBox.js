@@ -230,6 +230,40 @@ class TextBox extends React.Component {
         );
       }
 
+      else if(selection === "University")
+      {
+        //pulls all states from api calls 
+        var universityList = [];
+        result = ApiWrapper.getUniversityFacet();
+        var universityFacets=result.facets["admin.contributingInstitution"].terms;
+        
+     
+        //places all states from states facets in the statelist list if it's not already there 
+        for(i = 0; i<universityFacets.length; i++){
+          if(universityList.indexOf(result)<0)
+          universityList[i] = universityFacets[i].term;
+        }
+        universityList.sort();
+
+        //returns list of states composed of states from statelist
+        return (
+          <div className="inLine">
+            <form>
+              <label>
+                <select name="university" className="dropDown" onChange={this.handleDrop} defaultValue="ALL">
+                  <option value="ALL">--Select a University--</option>
+                  {
+                    universityList.map(function(university){
+                      return <option key={university} value={university}>{university}</option>;
+                    })
+                  }
+                </select>
+              </label>
+            </form>
+          </div>
+        );
+      }
+
       else if(selection === "Creator")
       {
         return (

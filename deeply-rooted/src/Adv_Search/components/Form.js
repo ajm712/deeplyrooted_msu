@@ -22,6 +22,7 @@ class Form extends React.Component {
               <option value="Format" role="menuitem">Format</option>
               <option value="Collection" role="menuitem">Collection</option>
               <option value="State" role="menuitem">Location</option>
+              <option value="University" role="menuitem">University</option>
               <option value="Author" role="menuitem">Author</option>
               <option value="Date" role="menuitem">Date</option>
               <option value="Language" role="menuitem">Language</option>

@@ -210,7 +210,7 @@ class Advanced extends React.Component {
             universitylist[i]=universityFacets[i].term;
         }
 
-        //organizes the languages in dropdown box in ascending order 
+        //organizes the universities in dropdown box in ascending order 
         universitylist.sort();
         return universitylist;
     }
@@ -275,6 +275,19 @@ class Advanced extends React.Component {
                                         {
                                             this.getStates().map(function(states){
                                                 return <option key={states} value={states}>{states}</option>;
+                                            })
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr className="tableRowModal">
+                                <td><b><p>University:</p></b></td>
+                                <td>                   
+                                    <select name="university" className="dropDownModal" aria-label="University Drop Down" onBlur={this.handleDrop} defaultValue="ALL">
+                                        <option value="ALL">--Select a University--</option>
+                                        {
+                                            this.getUniversities().map(function(university){
+                                                return <option key={university} value={university}>{university}</option>;
                                             })
                                         }
                                     </select>
