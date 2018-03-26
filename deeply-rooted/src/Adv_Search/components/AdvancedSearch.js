@@ -198,6 +198,22 @@ class Advanced extends React.Component {
         languagelist.sort();
         return languagelist;
     }
+
+    getUniversities(){
+        var universitylist=[];
+        var result =ApiWrapper.getUniversityFacet();
+        var universityFacets=result.facets["admin.contributingInstitution"].terms;      
+        
+        //adds all dates to universitylist list if it's not already there 
+        for(var i = 0; i < universityFacets.length; i++){
+            if(universitylist.indexOf(result)<0)
+            universitylist[i]=universityFacets[i].term;
+        }
+
+        //organizes the languages in dropdown box in ascending order 
+        universitylist.sort();
+        return universitylist;
+    }
         
     render(){
         /*Renders the form in the modal*/

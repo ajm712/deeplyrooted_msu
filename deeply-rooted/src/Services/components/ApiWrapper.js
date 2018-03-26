@@ -102,6 +102,20 @@ class ApiWrapper{
         });
         return results
     }
+
+    static getUniversityFacet(){
+        var url = "https://api.dp.la/v2/items?"
+        var results
+        var props = {"sourceResource.description":"deeply rooted"}
+        props["facets"] = "admin.contributingInstitution"
+        props["api_key"] = "304ebe4fa961241e648edf1035166735"
+        props["facet_size"] = "2000"
+        $.getJSON(url, props, function(result){
+        	// properties of results are "count", "start", "limit", "docs"
+            results = result
+        });
+        return results
+    }
 }
 
 export default ApiWrapper;
