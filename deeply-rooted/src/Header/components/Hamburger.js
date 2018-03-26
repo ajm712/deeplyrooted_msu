@@ -4,7 +4,6 @@ import { slide as Menu } from 'react-burger-menu';
 import {Button} from 'react-bootstrap';
 import About from '../../About_Page/components/About.js';
 import Home from '../../Home_Page/components/Home.js';
-import Footer from '../../Footer/components/Footer.js';
 import ApiWrapper from '../../Services/components/ApiWrapper.js';
 import Books from '../../Display/components/DisplayBook.js';
 import Advanced from '../../Adv_Search/components/AdvancedSearch.js';

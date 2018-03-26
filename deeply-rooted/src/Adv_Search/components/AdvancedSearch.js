@@ -219,9 +219,9 @@ class Advanced extends React.Component {
         /*Renders the form in the modal*/
         return(
             <div className="inLine">
-                <button className="advancedButton" onClick={() => this.openModal()}>Advanced Search</button>
+                <button className="advancedButton" onClick={() => this.openModal()}>Filtered Search</button>
                 <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
-                    <h1 className="headerModal"><b>Advanced Search</b></h1>
+                    <h1 className="headerModal"><b>Filtered Search</b></h1>
                     <table className='tableModal'> 
                         <tbody>
                             <tr><td>&nbsp;</td></tr>
