@@ -128,7 +128,7 @@ class Advanced extends React.Component {
                                            page: formData.page,
                                           });
   
-        ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root')); 
+        ReactDOM.render(<Books view="componentView" results={results} pageSize= "30" />, document.getElementById('root')); 
         event.preventDefault();
     }
     

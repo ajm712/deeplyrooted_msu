@@ -66,7 +66,7 @@ class TextBox extends React.Component {
       });
       
       //Send results to BookDisplay to be rendered on to the screen
-      ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
+      ReactDOM.render(<Books view="componentView" results={results} pageSize= "30"/>, document.getElementById('root'));
       event.preventDefault();
     }
   
@@ -109,7 +109,7 @@ class TextBox extends React.Component {
                                         });
 
       //Send results to BookDisplay to be rendered on to the screen
-      ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root')); 
+      ReactDOM.render(<Books view="componentView" results={results} pageSize= "30"/>, document.getElementById('root')); 
       event.preventDefault();
     }
 
