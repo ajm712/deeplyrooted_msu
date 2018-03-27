@@ -24,6 +24,80 @@ class Hamburger extends Component {
         this.rand_book = this.rand_book.bind(this);
     }
 
+        /*Get lists for format, state, date, and language dropdown boxes*/
+        getLists(){
+            //Calls several facets from the api
+            var resultFormat =ApiWrapper.getFormatFacet();
+            var resultDate = ApiWrapper.getDateBeforeFacet();
+            var resultLocation = ApiWrapper.getLocationFacet();
+            var resultLanguage =ApiWrapper.getLanguageFacet();
+            var resultUniversity =ApiWrapper.getUniversityFacet();
+
+            //Parses through each facet api call
+            var formatFacets=resultFormat.facets["sourceResource.format"].terms;
+            var dateFacets=resultDate.facets["sourceResource.date.begin"].entries;
+            var stateFacets=resultLocation.facets["sourceResource.spatial.state"].terms;
+            var languageFacets=resultLanguage.facets["sourceResource.language.name"].terms; 
+            var universityFacets=resultUniversity.facets["admin.contributingInstitution"].terms; 
+
+            //Declares several empty lists for facet storage
+            var formatlist=[];
+            var datelist=[];
+            var stateList = [];
+            var languagelist=[];
+            var universitylist=[];
+            var year = [];
+            var i = 0;
+
+            //adds items from "format" facets to the drop down box if it's not already there 
+            for(i=0; i<formatFacets.length; i++){
+                if(formatlist.indexOf(resultFormat)<0)
+                    formatlist[i]=formatFacets[i].term;
+            }
+      
+            //places all states from states facets in the statelist list if it's not already there 
+            for(i = 0; i<stateFacets.length; i++){
+                if(stateList.indexOf(resultLocation)<0)
+                    stateList[i] = stateFacets[i].term;
+            }
+                        
+            //adds all dates to the datelist list if it's not already there 
+            for(i = 0; i<dateFacets.length; i++){
+                //takes only the year from the date rather than month and day too
+                year = dateFacets[i].time[0] + dateFacets[i].time[1] + dateFacets[i].time[2] + dateFacets[i].time[3];
+                if(datelist.indexOf(year)<0)
+                    datelist[i] = year;
+            }
+                        
+            //adds all dates to languagelist list if it's not already there 
+            for(i = 0; i < languageFacets.length; i++){
+                if(languagelist.indexOf(resultLanguage)<0)
+                    languagelist[i]=languageFacets[i].term;
+            }     
+            
+            //adds all dates to universitylist list if it's not already there 
+            for(i = 0; i < universityFacets.length; i++){
+                if(universitylist.indexOf(resultUniversity)<0)
+                universitylist[i]=universityFacets[i].term;
+            }
+      
+            //organizes the lists in dropdown box in ascending order 
+            formatlist.sort();
+            datelist.sort(); 
+            stateList.sort();
+            languagelist.sort();
+            universitylist.sort();
+
+            //returns all lists
+            return {
+                getFormats: formatlist,
+                getStates: stateList, 
+                getDates: datelist, 
+                getLanguages: languagelist, 
+                getUniversities: universitylist,
+            }
+        }
+
     //Closes the hamburger menu
     closeMenu() {
         this.setState({ isMenuOpen: false })
@@ -51,10 +125,11 @@ class Hamburger extends Component {
     adv_search() {
         this.closeMenu();
         var results = ApiWrapper.makeCall({language:"english", page_size: "30", page: "1"});
+        var getLists = this.getLists();
         ReactDOM.render(<Form />, document.getElementById('dropbox'));
-        ReactDOM.render(<TextBox selection="Subject"/>, document.getElementById('text-box'));
-        ReactDOM.render(<Books view="componentView" results={results} pageSize= "30"/>, document.getElementById('root'));
-        ReactDOM.render(<Advanced />, document.getElementById('adv_search'));
+        ReactDOM.render(<TextBox Lists={getLists} selection="Subject"/>, document.getElementById('text-box'));
+        ReactDOM.render(<Books Lists={getLists} view="componentView" results={results} pageSize= "30"/>, document.getElementById('root'));
+        ReactDOM.render(<Advanced Lists={getLists} />, document.getElementById('adv_search'));
     }
 
     rand_book() {
