@@ -54,14 +54,14 @@ class Hamburger extends Component {
         var results = ApiWrapper.makeCall({language:"english", page_size: "30", page: "1"});
         ReactDOM.render(<Form />, document.getElementById('dropbox'));
         ReactDOM.render(<TextBox selection="Subject"/>, document.getElementById('text-box'));
-        ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
+        ReactDOM.render(<Books view="componentView" results={results} pageSize= "30"/>, document.getElementById('root'));
         ReactDOM.render(<Advanced />, document.getElementById('adv_search'));
     }
 
     rand_book() {
         this.closeMenu();
         var results = RandomSelection.random_select({page_size: 30});
-        ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
+        ReactDOM.render(<Books view="componentView" results={results} pageSize= "30"/>, document.getElementById('root'));
         ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
         ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
         ReactDOM.unmountComponentAtNode(document.getElementById('adv_search')); 
