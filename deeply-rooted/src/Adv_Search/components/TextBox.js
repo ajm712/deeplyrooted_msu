@@ -119,7 +119,7 @@ class TextBox extends React.Component {
         return (
           <div className="inLine">
             <form>
-              <input className="textBox" type="text"  name="subject" placeholder="Insert Subject Here" value={this.state.name} onChange={this.handleChange}/> 
+              <input className="textBox" aria-label="Subject Search Box" type="text"  name="subject" placeholder="Insert Subject Here" value={this.state.name} onChange={this.handleChange}/> 
               <input className="submitButton" type="submit" name="subject" value="Submit" onClick={this.handleSubmit}/>
             </form>
           </div>
@@ -131,7 +131,7 @@ class TextBox extends React.Component {
         return (
           <div className="inLine">
           <form>
-          <input className="textBox" type="text" name="title" placeholder="Insert Title Here" value={this.state.name} onChange={this.handleChange}/>
+          <input className="textBox" aria-label="Title Search Box" type="text" name="title" placeholder="Insert Title Here" value={this.state.name} onChange={this.handleChange}/>
           <input className="submitButton" type="submit" name="title" value="Submit" onClick={this.handleSubmit}/>
           </form>
           </div>
@@ -143,7 +143,7 @@ class TextBox extends React.Component {
         return (
           <div className="inLine">
           <form>
-          <input className="textBox" type="text" name="rights" placeholder="Insert Rights Here" value={this.state.name} onChange={this.handleChange}/>
+          <input className="textBox" aria-label="Rights Search Box" type="text" name="rights" placeholder="Insert Rights Here" value={this.state.name} onChange={this.handleChange}/>
           <input className="submitButton" type="submit" name="rights" value="Submit" onClick={this.handleSubmit}/>
           </form>
           </div>
@@ -188,7 +188,7 @@ class TextBox extends React.Component {
         return (
           <div className="inLine">
           <form>
-          <input className="textBox" type="text" name="collection" placeholder="Insert Collection Here" value={this.state.name} onChange={this.handleChange}/>
+          <input className="textBox" aria-label="Collection Search Box" type="text" name="collection" placeholder="Insert Collection Here" value={this.state.name} onChange={this.handleChange}/>
           <input className="submitButton" type="submit" name="collection" value="Submit" onClick={this.handleSubmit}/>
           </form>
           </div>
@@ -235,8 +235,8 @@ class TextBox extends React.Component {
         return (
           <div className="inLine">
             <form>
-                <input className="textBox" type="text" name="creator" placeholder="Insert Author Here" value={this.state.name} onChange={this.handleChange}/>
-                <input className="submitButton" type="submit" name="creator" value="Submit" onClick={this.handleSubmit}/>
+              <input className="textBox" aria-label="Creator Search Box" type="text" name="creator" placeholder="Insert Author Here" value={this.state.name} onChange={this.handleChange}/>
+              <input className="submitButton" type="submit" name="creator" value="Submit" onClick={this.handleSubmit}/>
             </form>
           </div>
         );

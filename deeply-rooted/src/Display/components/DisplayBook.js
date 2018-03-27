@@ -385,19 +385,19 @@ class Books extends React.Component {
         /*creates table using "react-bootstrap-table" libraries,
           includes built in dataSort function that numerically and 
           alphabetically sorts columns of table*/
-        <div className="tablesize">
+        <div className="tablesize" role="table">
          <BootstrapTable data = {products} //sets data to product array 
             striped hover condensed //highlights rows as moused over
             scrollTop={ 'Top' } //sets scroll bar to start at top by default
             options={this.options}> 
-         <TableHeaderColumn width='35'dataField='link' dataFormat={ this.colFormatter }>View</TableHeaderColumn>      
-         <TableHeaderColumn width='20' isKey dataField='id' dataSort>#</TableHeaderColumn>
-         <TableHeaderColumn width='200' dataField='title' dataSort>Book Title</TableHeaderColumn>
-         <TableHeaderColumn width='200' dataField='creator' dataSort>Creator</TableHeaderColumn> 
-         <TableHeaderColumn width='60' dataField='date' dataSort>Date</TableHeaderColumn>
-         <TableHeaderColumn width='200' dataField='publisher' dataSort>Publisher</TableHeaderColumn>
-         <TableHeaderColumn width='150' dataField='rights' dataSort>Rights</TableHeaderColumn>
-         <TableHeaderColumn width='90' dataField='state' dataSort>State</TableHeaderColumn>         
+         <TableHeaderColumn width='100px' dataField='link' dataFormat={ this.colFormatter }>Source</TableHeaderColumn>      
+         <TableHeaderColumn width='100px' isKey dataField='id' dataSort>#</TableHeaderColumn>
+         <TableHeaderColumn width='200px' dataField='title' dataSort>Book Title</TableHeaderColumn>
+         <TableHeaderColumn width='200px' dataField='creator' dataSort>Creator</TableHeaderColumn> 
+         <TableHeaderColumn width='100px' dataField='date' dataSort>Date</TableHeaderColumn>
+         <TableHeaderColumn width='200px' dataField='publisher' dataSort>Publisher</TableHeaderColumn>
+         <TableHeaderColumn width='100px' dataField='language' dataSort>Language</TableHeaderColumn>
+         <TableHeaderColumn width='100px' dataField='state' dataSort>State</TableHeaderColumn>         
          </BootstrapTable>
         </div>
       );
@@ -420,7 +420,7 @@ export default Books;
 /*Other possible table rows for futrue development
 
 <TableHeaderColumn width='200' dataField='description' dataSort>Description</TableHeaderColumn>
-<TableHeaderColumn width='200' dataField='language' dataSort>Language</TableHeaderColumn>
+<TableHeaderColumn width='200px' dataField='rights' dataSort>Rights</TableHeaderColumn>
 <TableHeaderColumn width='200' dataField='collection' dataSort>Collection</TableHeaderColumn>
 
 */
