@@ -87,7 +87,7 @@ class Advanced extends React.Component {
     /*Passes the data in advanced search form to the API then calls BookDisplay to render the results to the screen*/
     handleAdvancedSearch(event) { 
         this.closeModal();
-        var searchParameters = ["subject", "rights", "title", "format", "collection", "state", "language", "creator", "date"];
+        var searchParameters = ["subject", "rights", "title", "format", "collection", "state", "university", "language", "creator", "date"];
         var searchType;
         var userInput;
         var formData = {
@@ -97,6 +97,7 @@ class Advanced extends React.Component {
           format: "",
           collection: "",
           state: "",
+          university: "",
           language: "",
           creator: "",
           date: "",
@@ -112,13 +113,14 @@ class Advanced extends React.Component {
           if (userInput !== "" && userInput !== undefined && userInput !== 'ALL')
             formData[searchType] = userInput;
         }
-
+        console.log(formData);
         var results = ApiWrapper.makeCall({subject: formData.subject, 
                                            rights: formData.rights, 
                                            title: formData.title, 
                                            format: formData.format, 
                                            collection: formData.collection, 
                                            state: formData.state, 
+                                           university: formData.university,
                                            language: formData.language, 
                                            creator: formData.creator,
                                            date: formData.date, 

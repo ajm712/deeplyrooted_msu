@@ -36,6 +36,7 @@ class Books extends React.Component {
       title: searchData.title, 
       format: searchData.format, 
       collection: searchData.collection, 
+      university: searchData.university,
       state: searchData.state, 
       language: searchData.language, 
       creator: searchData.creator,
