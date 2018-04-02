@@ -1,6 +1,3 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import {Button, ButtonToolbar} from 'react-bootstrap';
 import ApiWrapper from './ApiWrapper.js';
 
 class RandomButton{
