@@ -20,8 +20,12 @@ class Books extends React.Component {
     this.changePageSize = this.changePageSize.bind(this);
   }
   changePageSize(event) {
-    this.setState({pageSize: event.target.value});
-    this.changePage(this.props.results.call.page);
+    var currentPage = this.props.results.call.page;
+    this.setState({
+      pageSize: event.target.value
+    }, (currentPage) => {
+      this.changePage(currentPage);;
+    })
 
   }
 
