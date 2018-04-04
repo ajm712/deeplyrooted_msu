@@ -402,7 +402,7 @@ class Books extends React.Component {
                 {
                   Header: "Source",
                   accessor: "link",
-                  Cell: cell =><a href={cell.value}> View </a>,
+                  Cell: cell =><a href={cell.value} target="_blank"> View </a>,
                   width: 100
               
                 },
