@@ -59,6 +59,7 @@ class Advanced extends React.Component {
     constructor(props) {
     super(props)
     this.state = { value: '', isModalOpen: false };
+    this.Lists = this.props.Lists;
     this.handleChange = this.handleChange.bind(this);
     this.handleDrop = this.handleChange.bind(this);
     this.handleAdvancedSearch =this.handleAdvancedSearch.bind(this);
@@ -87,7 +88,7 @@ class Advanced extends React.Component {
     /*Passes the data in advanced search form to the API then calls BookDisplay to render the results to the screen*/
     handleAdvancedSearch(event) { 
         this.closeModal();
-        var searchParameters = ["subject", "rights", "title", "format", "collection", "state", "language", "creator", "date"];
+        var searchParameters = ["subject", "rights", "title", "format", "collection", "state", "university", "language", "creator", "date"];
         var searchType;
         var userInput;
         var formData = {
@@ -97,6 +98,7 @@ class Advanced extends React.Component {
           format: "",
           collection: "",
           state: "",
+          university: "",
           language: "",
           creator: "",
           date: "",
@@ -112,13 +114,14 @@ class Advanced extends React.Component {
           if (userInput !== "" && userInput !== undefined && userInput !== 'ALL')
             formData[searchType] = userInput;
         }
-
+        console.log(formData);
         var results = ApiWrapper.makeCall({subject: formData.subject, 
                                            rights: formData.rights, 
                                            title: formData.title, 
                                            format: formData.format, 
                                            collection: formData.collection, 
                                            state: formData.state, 
+                                           university: formData.university,
                                            language: formData.language, 
                                            creator: formData.creator,
                                            date: formData.date, 
@@ -126,86 +129,17 @@ class Advanced extends React.Component {
                                            page: formData.page,
                                           });
   
-        ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root')); 
+        ReactDOM.render(<Books view="componentView" results={results} pageSize= "30" />, document.getElementById('root')); 
         event.preventDefault();
-    }
-    
-
-    /*Get lists for format, state, date, and language dropdown boxes*/
-    getFormats(){
-        var result =ApiWrapper.getFormatFacet();
-        var formatlist=[];
-        var formatFacets=result.facets["sourceResource.format"].terms;
-   
-        //adds items from "format" facets to the drop down box if it's not already there 
-        for(var i=0; i<formatFacets.length; i++){
-            if(formatlist.indexOf(result)<0)
-                formatlist[i]=formatFacets[i].term;
-        }
-
-        //organizes the formats in dropdown box in ascending order 
-        formatlist.sort();
-        return formatlist;
-    }
-    
-    getStates(){
-        var stateList = [];
-        var result = ApiWrapper.getLocationFacet();
-        var stateFacets=result.facets["sourceResource.spatial.state"].terms;
-        
-        //places all states from states facets in the statelist list if it's not already there 
-        for(var i = 0; i<stateFacets.length; i++){
-            if(stateList.indexOf(result)<0)
-                stateList[i] = stateFacets[i].term;
-        }
-                
-        //organizes the states in dropdown box in ascending order 
-        stateList.sort();
-        return stateList;
-    }
-    
-    getDates(){
-        var datelist=[];
-        var year;
-        var result = ApiWrapper.getDateBeforeFacet();
-        var dateFacets=result.facets["sourceResource.date.begin"].entries;
-        
-        //adds all dates to the datelist list if it's not already there 
-        for(var i = 0; i<dateFacets.length; i++){
-            //takes only the year from the date rather than month and day too
-            year = dateFacets[i].time[0] + dateFacets[i].time[1] + dateFacets[i].time[2] + dateFacets[i].time[3];
-            if(datelist.indexOf(year)<0)
-                datelist[i] = year;
-        }
-        
-        //organizes the dates in dropdown box in ascending order 
-        datelist.sort();
-        return datelist;
-    }
-    
-    getLanguages(){
-        var languagelist=[];
-        var result =ApiWrapper.getLanguageFacet();
-        var languageFacets=result.facets["sourceResource.language.name"].terms;      
-        
-        //adds all dates to languagelist list if it's not already there 
-        for(var i = 0; i < languageFacets.length; i++){
-            if(languagelist.indexOf(result)<0)
-                languagelist[i]=languageFacets[i].term;
-        }
-
-        //organizes the languages in dropdown box in ascending order 
-        languagelist.sort();
-        return languagelist;
     }
         
     render(){
         /*Renders the form in the modal*/
         return(
             <div className="inLine">
-                <button className="advancedButton" onClick={() => this.openModal()}>Advanced Search</button>
+                <button className="advancedButton" onClick={() => this.openModal()}>Filtered Search</button>
                 <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
-                    <h1 className="headerModal"><b>Advanced Search</b></h1>
+                    <h1 className="headerModal"><b>Filtered Search</b></h1>
                     <table className='tableModal'> 
                         <tbody>
                             <tr><td>&nbsp;</td></tr>
@@ -223,7 +157,7 @@ class Advanced extends React.Component {
                                     <select className="dropDownModal" name="language" aria-label="Language Drop Down" onBlur={this.handleDrop} defaultValue="ALL">
                                         <option value="ALL">--Select a Language--</option>
                                         {       
-                                            this.getLanguages().map(function(languages){
+                                            this.Lists.getLanguages.map(function(languages){
                                                 return <option key={languages} value={languages}>{languages}</option>;
                                             })
                                         }
@@ -240,7 +174,7 @@ class Advanced extends React.Component {
                                     <select name="format" className="dropDownModal" aria-label="Format Drop Down" onBlur={this.handleDrop} defaultValue="ALL">
                                         <option value="ALL">--Select a Format--</option>
                                         {
-                                            this.getFormats().map(function(formats){
+                                            this.Lists.getFormats.map(function(formats){
                                                 return <option key={formats} value={formats}>{formats}</option>;
                                             })
                                         }
@@ -257,8 +191,21 @@ class Advanced extends React.Component {
                                     <select name="state" className="dropDownModal" aria-label="State Drop Down" onBlur={this.handleDrop} defaultValue="ALL">
                                         <option value="ALL">--Select a Location--</option>
                                         {
-                                            this.getStates().map(function(states){
+                                            this.Lists.getStates.map(function(states){
                                                 return <option key={states} value={states}>{states}</option>;
+                                            })
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr className="tableRowModal">
+                                <td><b><p>University:</p></b></td>
+                                <td>                   
+                                    <select name="university" className="dropDownModal" aria-label="University Drop Down" onBlur={this.handleDrop} defaultValue="ALL">
+                                        <option value="ALL">--Select a University--</option>
+                                        {
+                                            this.Lists.getUniversities.map(function(university){
+                                                return <option key={university} value={university}>{university}</option>;
                                             })
                                         }
                                     </select>
@@ -274,7 +221,7 @@ class Advanced extends React.Component {
                                     <select name="date" className="dropDownModal" aria-label="Date Drop Down" onBlur={this.handleDrop} defaultValue="ALL">
                                         <option value="ALL">--Select a Date--</option>
                                         {
-                                            this.getDates().map(function(dates){
+                                            this.Lists.getDates.map(function(dates){
                                                 return <option key={dates} value={dates}>{dates}</option>;
                                             })
                                         }

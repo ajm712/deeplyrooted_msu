@@ -14,14 +14,25 @@ var ReactDOM = require('react-dom');
 class Books extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {pageSize: this.props.pageSize};
     this.displayToggle = this.displayToggle.bind(this);
     this.changePage = this.changePage.bind(this);  
+    this.changePageSize = this.changePageSize.bind(this);
+  }
+  changePageSize(event) {
+    var currentPage = this.props.results.call.page;
+    this.setState({
+      pageSize: event.target.value
+    }, (currentPage) => {
+      this.changePage(currentPage);;
+    })
+
   }
 
   //Calculates the max number of pages per result
   calculatePages() {
     var totalBooks = this.props.results.count; 
-    var booksPerPage = 30;
+    var booksPerPage = this.state.pageSize;
     var totalPages = Math.ceil(totalBooks/ booksPerPage);
     return totalPages;
   }
@@ -36,16 +47,17 @@ class Books extends React.Component {
       title: searchData.title, 
       format: searchData.format, 
       collection: searchData.collection, 
+      university: searchData.university,
       state: searchData.state, 
       language: searchData.language, 
       creator: searchData.creator,
       other: searchData.other,
       date: searchData.date, 
-      page_size: "30",
+      page_size: this.state.pageSize,
       page: page,
      });
-
-     ReactDOM.render(<Books view={this.props.view} results={results}/>, document.getElementById('root'));     
+     console.log(this.state.pageSize, results);
+     ReactDOM.render(<Books view={this.props.view} results={results} pageSize={this.state.pageSize}/>, document.getElementById('root'));     
     }
 
     render() {
@@ -56,6 +68,24 @@ class Books extends React.Component {
           <span className="inline">
             <button autoFocus id="component" name="componentView" disabled={this.props.view === "componentView"} className="toggleButtonLeft fa fa-th-large" onClick={this.displayToggle}>  Image View</button>
             <button autoFocus id="table" name="tableView" disabled={this.props.view === "tableView"} className="toggleButtonRight fa fa-table" onClick={this.displayToggle}>  Table View</button>
+            <div className="inLine">
+        <form>
+          <label>
+            <select className="dropDown" onChange={this.changePageSize} defaultValue="30">
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="40">40</option>
+              <option value="50">50</option>
+              <option value="60">60</option>
+              <option value="70">70</option>
+              <option value="80">80</option>
+              <option value="90">90</option>
+              <option value = "100">100</option>
+            </select>
+          </label>
+        </form>
+      </div>
           </span>  
           <div>
             {api}
@@ -85,12 +115,12 @@ class Books extends React.Component {
       var results = this.props.results;
       if (buttonName === "componentView")
       {
-        ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
+        ReactDOM.render(<Books view="componentView" results={results} pageSize= "30"/>, document.getElementById('root'));
       }
   
       else
       {
-        ReactDOM.render(<Books view="tableView" results={results}/>, document.getElementById('root'));      
+        ReactDOM.render(<Books view="tableView" results={results} pageSize= "30"/>, document.getElementById('root'));      
       }
     }
 
