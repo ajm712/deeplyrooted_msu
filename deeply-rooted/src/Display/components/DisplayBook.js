@@ -283,7 +283,7 @@ class Books extends React.Component {
 
       else
       {
-        return (<TableDisplay tableInfo ={formattedBook}  />);         
+        return (<TableDisplay pageSize = {this.state.pageSize} tableInfo ={formattedBook}  />);         
       }
     }
   }
@@ -353,7 +353,7 @@ class Books extends React.Component {
   class TableDisplay extends React.Component {
     constructor(props) {
       super(props);
-  
+      this.state = {pageSize: this.props.pageSize};
       this.options = {
         defaultSortName: 'id',  // default sort column name
         defaultSortOrder: 'asc',  // default sort order
@@ -397,6 +397,7 @@ class Books extends React.Component {
         <ReactTable
           options={this.options}
           data={products}
+          showPagination = {false}
           columns={[
             
                 {
@@ -448,7 +449,10 @@ class Books extends React.Component {
               ]
 
           }
-          defaultPageSize={30}
+          defaultPageSize={-1}
+          pageSize = {100}
+          minRows =  {10}
+          resizable = {true}
           className="-striped -highlight"
         />
         </div>
