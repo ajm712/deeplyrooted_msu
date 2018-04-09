@@ -11,6 +11,7 @@ import TextBox from '../../Adv_Search/components/TextBox.js';
 import Form from '../../Adv_Search/components/Form.js';
 import RandomSelection from '../../Services/components/RandomSelection.js';
 import '../styles/Hamburger.css';
+import Questions from '../../Faq_Page/components/Questions.js';
 
 
 //Creates and handles selections made on the hamburger menu
@@ -22,6 +23,7 @@ class Hamburger extends Component {
         this.home = this.home.bind(this);
         this.adv_search = this.adv_search.bind(this);
         this.rand_book = this.rand_book.bind(this);
+        this.questions = this.questions.bind(this);
     }
 
         /*Get lists for format, state, date, and language dropdown boxes*/
@@ -141,6 +143,14 @@ class Hamburger extends Component {
         ReactDOM.unmountComponentAtNode(document.getElementById('adv_search')); 
     }
 
+    questions() {
+        this.closeMenu();
+        ReactDOM.render(<Questions />, document.getElementById('root'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('adv_search'));
+    }
+
     //Creates the burger menu and selection buttons
     render () {
         return (
@@ -150,6 +160,7 @@ class Hamburger extends Component {
                     <Button className="btn_burger" onClick={this.rand_book}>Random Selection</Button>
                     <Button className="btn_burger" onClick={this.adv_search}>Advanced Search</Button>
                     <Button className="btn_burger" onClick={this.about}>About</Button>
+                    <Button className="btn_burger" onClick={this.questions}>FAQs</Button>
                 </Menu>
             </div>
         );
