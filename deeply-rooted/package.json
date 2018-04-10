@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "font-awesome": "^4.7.0",
+    "google-maps-react": "^1.1.2",
     "grid-gallery": "^2.0.1",
     "jquery": "^3.2.1",
     "leaflet": "^1.3.1",
