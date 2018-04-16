@@ -64,7 +64,17 @@ ReactJS natively renders
  - Stuff
  
 ## Potential Deployment
- - Stuff
+ - When you are truly ready to deploy your program you first need to run the command "npm run eject". This is a permanent action meaning that you will be responsible for handling customization of the app without the help of create-react-app. Be sure to create a backup of your old code.
+ - Afterwards you should see a lot of new files in the root in the /config and /scripts directories.
+ - Now we need to install .dotenv to help us load environment variables (.env) into the ENV of our app in our environments. We do this by saying npm install --save-dev dotenv.
+ - What we are doing is 
+    - Loading our default .env file
+    - Loading any environment .env file
+    - Merging these two variables together as well as any default variables (such as the NODE_ENV)
+    - Creating a new object with all of our environment variables and sanitize each value.
+    - Updatinh the initial object for the existing environment creator.
+ - We first need to load the .env file, and after that we need to  import the dotenv package. We'll also have to import the path library from the standard node library and set up a few variables for paths.
+
  
 ## Search Engine Optimization
  - Stuff
