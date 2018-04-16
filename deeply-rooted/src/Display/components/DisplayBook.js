@@ -390,7 +390,7 @@ class Books extends React.Component {
       }      
       
       return(
-        /*creates table using "react-bootstrap-table" libraries,
+        /*creates table using "react-table" libraries,
           includes built in dataSort function that numerically and 
           alphabetically sorts columns of table*/
         <div className="tablesize" role="table">
@@ -398,51 +398,67 @@ class Books extends React.Component {
           options={this.options}
           data={products}
           showPagination = {false}
+          
           columns={[
             
                 {
-                  Header: "Source",
-                  accessor: "link",
-                  Cell: cell =><a href={cell.value} target="_blank"> View </a>,
-                  width: 100
+                  Header: "Source",                 
+                  columns:[{
+                    accessor: "link",
+                    Cell: cell =><a href={cell.value} target="_blank"> View </a>,
+                    width: 100
+                  }]
               
                 },
                 {
                   Header: "#",
-                  accessor: "id",
-                  width: 50
+                  columns:[{
+                    accessor: "id",
+                    width: 50
+                  }]
                   
                 },
                 {
                   Header: "Title",
-                  accessor: "title",
-                  width: 500
-                 
+                  columns:[{
+                    accessor: "title",
+                    width: 500
+                  }]
                 },
                 {
                   Header: "Date",
-                  accessor: "date",
-                  width: 100
+                  columns:[{
+                    accessor: "date",
+                    width: 100
+                  }]
                 },
                 {
                   Header: "Language",
-                  accessor: "language",
-                  width: 100
+                  columns:[{
+                    accessor: "language",
+                    width: 100
+                  }]
                 },
                 {
                   Header: "State",
-                  accessor: "state",
-                  width: 200
+                  columns:[{
+                    accessor: "state",
+                    width: 200
+                  }]
                 },
                 {
                   Header: "Creator",
-                  accessor: "creator",
-                  width: 300
+                  columns:[{
+                    accessor: "creator",
+                    width: 300
+                  }]
                 },               
                 {
                   Header: "Publisher",
-                  accessor: "publisher",
-                  width: 300
+                  columns:[{
+                    accessor: "publisher",
+                    width: 300
+                  }]
                 },
             
 
