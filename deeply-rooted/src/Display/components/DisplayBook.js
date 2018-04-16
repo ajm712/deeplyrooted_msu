@@ -390,7 +390,7 @@ class Books extends React.Component {
       }      
       
       return(
-        /*creates table using "react-table" libraries,
+        /*creates table using "react-table" library,
           includes built in dataSort function that numerically and 
           alphabetically sorts columns of table*/
         <div className="tablesize" role="table">
