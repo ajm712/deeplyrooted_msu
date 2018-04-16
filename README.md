@@ -20,12 +20,17 @@ Welcome to the Deeply Rooted Web Application repository
 ## Table of Contents
 
 - [Introduction](#introduction)
+- [What is ReactJS](#what-is-reactjs)
 - [Setup and Use Instructions](#setup-and-use-instructions)
 - [File and Class Descriptions](#file-and-class-descriptions)
 
 ## Introduction
 
 The Deeply Rooted Web Application will allow users to efficiently search through books in the Deeply Rooted database and will display information about each book a user chooses. The application will be using the DPLA API and the React JavaScript Library.
+
+## What is ReactJS
+
+ReactJS natively renders
 
 ## Setup and Use Instructions
 
@@ -48,18 +53,76 @@ The Deeply Rooted Web Application will allow users to efficiently search through
 
 ## File and Class Descriptions 
 
-- About.js - Information for the About page
-- AdvancedSearch.js -  Creates the advanced search modal
-- ApiWrapper.js	- Pulls data from the DPLA API and returns them as a json object
-- DisplayBook.js - Displays books and its corresponding information based on api call results
-- Footer.js	- Footer at the bottom of each page
-- Form.js - Class that renders a dropdown box of the categories
-- Hamburger.js - Hamburger sidebar on each page
-- Header.js	- Header for each page
-- Home.js - The home page of the application
-- indext.js - Renders the default classes onto the screen when the application is first loaded
-- NavBar.js - Navigation bar at the top of the screen of each page
-- SearchBar.js - Search Bar is the class that renders the search bar in each page
-- TextBox.js - Text Box allows the user to change what category they are searching for
+- ### About_Page/components/About.js
+     - Renders Code for the About page of the website.
+     - Classes:
+          - About - Returns the paragraph for About Page.   
+- ### Adv_Search/components/AdvancedSearch.js
+     - Renders Code for the Filtered Search button.
+     - Classes:
+          - Modal - Handles the opening, closing, positioning, sizing, and general stylings of the pop up modal.
+	   - Advanced - Handles the creation of every text box/ drop down box on to the modal. Also handles the submission of the user input into the modal.
+- ### Adv_Search/components/Form.js
+     - Renders Code for the drop down box on the advanced search page.
+     - Classes:
+          - Form - Returns selection options for the drop down box (Subject, Title, Rights, etc). Once a selection is made this class calls the Textbox class in Textbox.js to render an appropriate textbox or drop down box for user input.  .
+- ### Adv_Search/components/TextBox.js
+     - Renders Code for the text boxes or drop down boxes that are adjacent to the (Subject, Title, etc.) drop boxes on the advanced search page.
+     - Classes:
+          - TextBox - Based on what the user selects (Subject, Title, etc.) this displays the appropriate accompaning text box or drop down box. It also handles user submission after a selection is made.
+	        - Example - If the user selects Subject then it will be accompanied with a text box, but if the user selects State the it will be accompanied with a list of states in drop down box.
+- ### Display/components/DisplayBook.js
+     - Renders Code for two different ways to display books (component view or table view)
+     - Classes:
+          - Books - Handles several required features for displaying books. Allows the user to dynamically change the amount of books that is displayed on the screen at one time. Renders the pagination at the bottom of the page and handles user request to change pages. Calculates the total amount of pages for pagination by taking into account the total number of books and books per page. Toggles the display between component view and table view. Lastly, parses through the JSON returned from the api and sorts the data into readable formats.  
+	   - BookDisplay - Takes the book data for the Books class and renders it on to the screen in a component format. The component view allows users to click on a book image to view a popover with more information about the book. This class not only populates the popover with data, but also auto rotates the orientation of the popover depending on window size and books per page. 
+	    - TableDisplay - Takes the book data for the Books class and renders it on to the screen in a table format.
+	     - NoResult - If there is no book data returned from the api then a default text is rendered on to the screen.	     
+- ### Footer/components/Footer.js
+     - Renders Code for the footer at the bottom of the website.
+     - Classes:
+          - Footer - Returns the text and stylings for footer.  
+- ### Header/components/Hamburger.js
+     - Renders Code for the hamburger menu at the top left of the website.
+     - Classes:
+          - Hamburger - Handles the opening and closing of the menu; in addition, it handles all of the button selections. 
+	   - Example - When the user selects the about button the menu closes then renders the about class on to the screen and removes any other classes that were previously rendered.
+	    - When a user selects the Advanced_Search button it first calls all data for the dropdown boxes on the advanced search page so that the data only has to be called once. ***This may slow down the Advanced Search page load times due to internet connection speeds and api connection speed***
+- ### Header/components/Header.js
+     - Renders Code for the header at the top of the website.
+     - Classes:
+          - Header - Returns the text and stylings for header. 
+- ### Header/components/NavBar.js
+     - Renders Code that handles the alignment of both the hamburger and searchbar.
+     - Classes:
+          - NavBar - Returns the hamburger menu, which is aligned left and searchbar, which is aligned right. 
+- ### Header/components/SearchBar.js
+     - Renders Code for the search bar at the top of the website.
+     - Classes:
+          - SearchBar - Renders a search bar on to the website and handles searches from the user input.
+- ### Home_Page/components/Home.js
+     - Renders Code for the Home page of the website.
+     - Classes:
+          - Home - Returns the paragraph and image for Home Page. 
+- ### Services/components/ApiWrapper.js
+     - Handles all api calls to the DPLA api used throughout the website
+     - Classes:
+          - ApiWrapper - Takes several parameters from the user and requests that particular information from the api and if there is no input for that field then it defaults to an empty string.
+	   - Example - If the user selects the state Alaska then ApiWrapper requests all deeply rooted books from Alaska and returns taht data. The other fields that did not contain user input defaults to "" and is not passed in the api request. 
+	   - There are several classes getLocation, getLanguage, getFormat, getDate, and getUniversity that is used for drop down boxes on the website. These functions return all possible terms for a particualr field up to 2000 items
+	    - Example - getLocation calls for all possible states that contain deeply rooted material and returns this list.
+- ### Services/components/RandomSelection.js
+     - Displays a random selection of books to the screen.
+     - Classes:
+          - RandomButton - Calls all books in the deeply rooted api and selects a random page from out of that selection then returns those results. 
+- ### Services/components/registerServiceWorker.js
+     - This file was generated with the default reactJS folder structure. It is supposed to store local cache to help with loading times during subsequent visits to the site.
+- ### Images/
+     - This folder contains several images used throughout the website.
+- ### indext.js 
+     - Renders the default classes onto the screen when the application is first loaded
+     - In this case we render the Header, NavBar, Home, and Footer classes.
+     
+    
 
 	*files inside of C:\deeplyrooted\deeply-rooted\src*
