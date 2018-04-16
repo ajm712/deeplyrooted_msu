@@ -22,6 +22,10 @@ Welcome to the Deeply Rooted Web Application repository
 - [Introduction](#introduction)
 - [What is ReactJS](#what-is-reactjs)
 - [Setup and Use Instructions](#setup-and-use-instructions)
+- [Accomplished Objectives](#accomplished-objectives)
+- [Future Objectives](#future-objectives)
+- [Potential Deployment](#potential-deployment)
+- [Search Engine Optimization](#search-engine-optimization)
 - [File and Class Descriptions](#file-and-class-descriptions)
 
 ## Introduction
@@ -50,6 +54,20 @@ ReactJS natively renders
 7. To start the server for local testing again navigate to to the deeply-rooted folder  and type in the command ```npm start``` then press Enter
 
       - After a few minutes your default browser should open and load the website. If this does not happen open a browser of your choice and go to the following url: ```http://localhost:3000/```
+
+## Accomplished Objectives
+ - Stuff
+ - Stuff
+ 
+## Future Objectives
+ - Stuff
+ - Stuff
+ 
+## Potential Deployment
+ - Stuff
+ 
+## Search Engine Optimization
+ - Stuff
 
 ## File and Class Descriptions 
 
