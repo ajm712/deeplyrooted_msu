@@ -1,8 +1,8 @@
 # Deeply Rooted Web Application
 
-Welcome to the Deeply Rooted Web Application repo
+Welcome to the Deeply Rooted Web Application repository
 
-### Team Members
+## Team Members
 * [Will Lee](https://github.com/henryjr1)
 * [Joseph Sumner](https://github.com/jjs451)
 * [Will Nobles](https://github.com/willtnobles)
@@ -12,12 +12,16 @@ Welcome to the Deeply Rooted Web Application repo
 * [Dalton Webb](https://github.com/dcw293)
 * [Michael Johnston](https://github.com/MichaelJohnston92)
 * [Jack Brand](https://github.com/jwb623)
+* [Savannah Goodin](https://github.com/slg427)
+* [Damon Stamps](https://github.com/DStampsJr)
+* [Teri Jackson](https://github.com/teriannaj)
+* [Austin Markham](https://github.com/ajm712)
 
 ## Table of Contents
 
 - [Introduction](#introduction)
 - [Setup and Use Instructions](#setup-and-use-instructions)
-- [Class Descriptions](#class-descriptions)
+- [File and Class Descriptions](#file-and-class-descriptions)
 
 ## Introduction
 
@@ -25,42 +29,24 @@ The Deeply Rooted Web Application will allow users to efficiently search through
 
 ## Setup and Use Instructions
 
-1. Download node.js (using 64 bit Windows in this case, get the .zip)
+1. Download [node.js](https://nodejs.org/en/) in this case download the LTS version (Windows)
 
-2. Extract the download to C:\deeplyrooted
+2. Follow the installation wizard and add nodejs to the ```C:\Program Files\nodejs``` directory
 
-3. At this point your folder should look like this
-	* Deeplyrooted
-		* etc
-		* node_module
-		* node.exe
-		* and so on
+3. Create a folder in the C drive called ```DeeplyRooted``` on your machine
 
-4. Add C:\deeplyrooted to your system PATH
+4. Navigate to the DeeplyRooted folder created earlier and clone the deeplyrooted_msu repository
 
-5. Clone the repo in C:\deeplyrooted
+5. At this point you should have to following file structure: ```C:\DeeplyRooted\deeply-rooted```
 
-6. Run ```npm install -g create-react-app``` and ```create-react-app deeplyrooted_msu``` while in C:\deeplyrooted (this will take a while)
-	* This will create some source files and overwrite any checked out source files.  Pull from the repo to make sure the src folder is up to date
+6. Open the command prompt or terminal and navigate to the deeply-rooted folder and type in the command ```npm install``` then press Enter
+      - Make sure .gitignore exists and has npm_modules in the file
 
-7. You’ll now have a folder “C:\deeplyrooted\deeply-rooted”
+7. To start the server for local testing again navigate to to the deeply-rooted folder  and type in the command ```npm start``` then press Enter
 
-8. To start the server for local testing, navigate to “C:\deeplyrooted\deeply-rooted” and run “npm start”
+      - After a few minutes your default browser should open and load the website. If this does not happen open a browser of your choice and go to the following url: ```http://localhost:3000/```
 
-9. Make sure .gitignore exists and has npm_modules in the file.  Node should have done this for you
-
-10. Also run these commands inside C:\deeplyrooted\deeply-rooted: 
-	```npm install jquery```
-	```npm install --save react react-dom```
-	```npm install --save react-bootstrap```
-	```npm install --save react-bootstrap-table```
-	```npm install --save font-awesome```
-	```npm install --save grid-gallery```
-	```npm install --save jquery```
-	```npm install --save react-burger-menu```
-	```npm install --save react-popper```
-
-## Class Descriptions 
+## File and Class Descriptions 
 
 - About.js - Information for the About page
 - AdvancedSearch.js -  Creates the advanced search modal
