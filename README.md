@@ -67,7 +67,42 @@ ReactJS natively renders
  - Stuff
  
 ## Search Engine Optimization
- - Stuff
+Deeply Rooted current and future developers should look to the steps below to optimize the likeliness of the website being found on any given search through a search engine, and the likeliness a user will click on the website. Steps will be broken into pre-deployment steps, which may or may not need to be continually taken, and steps that should be taken after webpage deployment. The effectiveness of these methods is accumulative, meaning that the Deeply Rooted website’s total SEO is based around how many of the steps can be taken.
+
+Pre-Deployment:
+
+* File Naming – The names of every file should hold specific relevance that a search engine can pick up.  Homepage.html < Deeply-Rooted-Homepage.html
+
+* Title Attribute – Navigation tabs, including <href> links, need titles that appropriately state where they will take you.
+	
+* Title Tags – The tag should be no more than 70 characters (or google won’t recognize it). The tag should contain the most relevant information based on a search for Deeply Rooted
+
+* Meta Description – A short description of the link covered.
+
+* Image Alt – Search engines require this information to be found. This is also an important step for user accessibility.
+
+* Keyword Optimization – Frequently mention the word that is most important to Deeply Rooted, in relevant orders for a search, and close to each other when important. Ex. Deeply Rooted, MSU, Mississippi State University, History, ect…
+
+Post-Deployment:
+
+* Reassess – Consider actions currently taken and whether they are optimal. When changes are made to the website, the steps above should be taken again.
+
+* Analyze – Check currently likeliness that a search engine will find the webpage when searched. Reconsider the steps taken in pre-deployment and make appropriate changes. Continue to test success.
+
+* Sitemaps – Submit HTML and XML sitemaps through Google and Bing search engines with webmaster tools. 
+
+Optional:
+
+* Heading Tags – Anything placed between a heading tag is more easily recognized by a search engine. Keep it relevant and don’t saturate word significance with too many header tags nor compromise design.
+
+* Crosslinks – Links navigating the Deeply Rooted website should have keywords for the linking page.
+
+Visit here for more specific information:
+
+http://www.alibiproductions.com/articles/13-easy-steps-to-on-site-seo-and-how-to-implement-them/
+
+https://www.entrepreneur.com/article/231235
+
 
 ## File and Class Descriptions 
 
