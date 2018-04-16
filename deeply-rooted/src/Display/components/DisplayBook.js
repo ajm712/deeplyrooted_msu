@@ -54,7 +54,6 @@ class Books extends React.Component {
       page_size: this.state.pageSize,
       page: page,
      });
-     console.log(this.state.pageSize, results);
      ReactDOM.render(<Books view={this.props.view} results={results} pageSize={this.state.pageSize}/>, document.getElementById('root'));     
     }
 
