@@ -21,9 +21,8 @@ class Books extends React.Component {
   }
   changePageSize(event) {
     var currentPage = this.props.results.call.page;
-    this.setState({
-      pageSize: event.target.value
-    }, (currentPage) => {
+    this.setState({pageSize: event.target.value}, (currentPage) => 
+    {
       this.changePage(currentPage);;
     })
 
@@ -70,7 +69,7 @@ class Books extends React.Component {
             <div className="inLine">
         <form>
           <label>
-            <select className="dropDown" onChange={this.changePageSize} defaultValue="30">
+            <select className="dropDown" onChange={this.changePageSize} value = {this.props.value} defaultValue="30">
               <option value="10">10</option>
               <option value="20">20</option>
               <option value="30">30</option>
