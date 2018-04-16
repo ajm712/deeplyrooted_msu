@@ -6,6 +6,9 @@ import defaultImage from '../../Images/unknown-image.png';
 import '../styles/Display.css';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css'; 
 import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+import ReactTable from 'react-table'
+import "react-table/react-table.css"
+
 
 
 var $ = require('jquery');
@@ -14,14 +17,25 @@ var ReactDOM = require('react-dom');
 class Books extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {pageSize: this.props.pageSize};
     this.displayToggle = this.displayToggle.bind(this);
     this.changePage = this.changePage.bind(this);  
+    this.changePageSize = this.changePageSize.bind(this);
+  }
+  changePageSize(event) {
+    var currentPage = this.props.results.call.page;
+    this.setState({
+      pageSize: event.target.value
+    }, (currentPage) => {
+      this.changePage(currentPage);;
+    })
+
   }
 
   //Calculates the max number of pages per result
   calculatePages() {
     var totalBooks = this.props.results.count; 
-    var booksPerPage = 30;
+    var booksPerPage = this.state.pageSize;
     var totalPages = Math.ceil(totalBooks/ booksPerPage);
     return totalPages;
   }
@@ -36,16 +50,17 @@ class Books extends React.Component {
       title: searchData.title, 
       format: searchData.format, 
       collection: searchData.collection, 
+      university: searchData.university,
       state: searchData.state, 
       language: searchData.language, 
       creator: searchData.creator,
       other: searchData.other,
       date: searchData.date, 
-      page_size: "30",
+      page_size: this.state.pageSize,
       page: page,
      });
-
-     ReactDOM.render(<Books view={this.props.view} results={results}/>, document.getElementById('root'));     
+     console.log(this.state.pageSize, results);
+     ReactDOM.render(<Books view={this.props.view} results={results} pageSize={this.state.pageSize}/>, document.getElementById('root'));     
     }
 
     render() {
@@ -56,6 +71,24 @@ class Books extends React.Component {
           <span className="inline">
             <button autoFocus id="component" name="componentView" disabled={this.props.view === "componentView"} className="toggleButtonLeft fa fa-th-large" onClick={this.displayToggle}>  Image View</button>
             <button autoFocus id="table" name="tableView" disabled={this.props.view === "tableView"} className="toggleButtonRight fa fa-table" onClick={this.displayToggle}>  Table View</button>
+            <div className="inLine">
+        <form>
+          <label>
+            <select className="dropDown" onChange={this.changePageSize} defaultValue="30">
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="40">40</option>
+              <option value="50">50</option>
+              <option value="60">60</option>
+              <option value="70">70</option>
+              <option value="80">80</option>
+              <option value="90">90</option>
+              <option value = "100">100</option>
+            </select>
+          </label>
+        </form>
+      </div>
           </span>  
           <div>
             {api}
@@ -85,12 +118,12 @@ class Books extends React.Component {
       var results = this.props.results;
       if (buttonName === "componentView")
       {
-        ReactDOM.render(<Books view="componentView" results={results}/>, document.getElementById('root'));
+        ReactDOM.render(<Books view="componentView" results={results} pageSize= "30"/>, document.getElementById('root'));
       }
   
       else
       {
-        ReactDOM.render(<Books view="tableView" results={results}/>, document.getElementById('root'));      
+        ReactDOM.render(<Books view="tableView" results={results} pageSize= "30"/>, document.getElementById('root'));      
       }
     }
 
@@ -113,6 +146,7 @@ class Books extends React.Component {
         bookObject = {
           itemNum: 0,
           id: "Unavailable",
+          image: defaultImage,
           title: "Unavailable",
           creator: "Unavailable",
           collection: "Unavailable",
@@ -173,7 +207,12 @@ class Books extends React.Component {
 
         //Searches for the description of the book
         if (data.hasOwnProperty('description'))
+        {
           bookObject.description = data.description[0];
+          //If the entire name is not stored at index 0 then use the entire creator object
+          if(bookObject.description.length === 1)
+            bookObject.description = data.description;
+        }
 
         //Searches for the langauge of the book
         if (data.hasOwnProperty('language') && data.language[0].hasOwnProperty('name'))
@@ -244,7 +283,7 @@ class Books extends React.Component {
 
       else
       {
-        return (<TableDisplay tableInfo ={formattedBook}  />);         
+        return (<TableDisplay pageSize = {this.state.pageSize} tableInfo ={formattedBook}  />);         
       }
     }
   }
@@ -303,7 +342,7 @@ class Books extends React.Component {
       return(
         <div className="componentBoxBackground">
             <OverlayTrigger id="abc" trigger='click' rootClose placement={AutoRotate(this.props.itemNum, this.props.totalResults)} overlay={popoverFocus}>
-              <img className="bookImage" alt="Unavailable" src={this.props.image} onError={this.backupImage} />
+              <img className="bookImage" alt={this.props.title} src={this.props.image} onError={this.backupImage} />
             </OverlayTrigger>
         </div>
         );
@@ -314,7 +353,7 @@ class Books extends React.Component {
   class TableDisplay extends React.Component {
     constructor(props) {
       super(props);
-  
+      this.state = {pageSize: this.props.pageSize};
       this.options = {
         defaultSortName: 'id',  // default sort column name
         defaultSortOrder: 'asc',  // default sort order
@@ -354,20 +393,68 @@ class Books extends React.Component {
         /*creates table using "react-bootstrap-table" libraries,
           includes built in dataSort function that numerically and 
           alphabetically sorts columns of table*/
-        <div className="tablesize">
-         <BootstrapTable data = {products} //sets data to product array 
-            striped hover condensed //highlights rows as moused over
-            scrollTop={ 'Top' } //sets scroll bar to start at top by default
-            options={this.options}> 
-         <TableHeaderColumn width='35'dataField='link' dataFormat={ this.colFormatter }>View</TableHeaderColumn>      
-         <TableHeaderColumn width='20' isKey dataField='id' dataSort>#</TableHeaderColumn>
-         <TableHeaderColumn width='200' dataField='title' dataSort>Book Title</TableHeaderColumn>
-         <TableHeaderColumn width='200' dataField='creator' dataSort>Creator</TableHeaderColumn> 
-         <TableHeaderColumn width='60' dataField='date' dataSort>Date</TableHeaderColumn>
-         <TableHeaderColumn width='200' dataField='publisher' dataSort>Publisher</TableHeaderColumn>
-         <TableHeaderColumn width='150' dataField='rights' dataSort>Rights</TableHeaderColumn>
-         <TableHeaderColumn width='90' dataField='state' dataSort>State</TableHeaderColumn>         
-         </BootstrapTable>
+        <div className="tablesize" role="table">
+        <ReactTable
+          options={this.options}
+          data={products}
+          showPagination = {false}
+          columns={[
+            
+                {
+                  Header: "Source",
+                  accessor: "link",
+                  Cell: cell =><a href={cell.value} target="_blank"> View </a>,
+                  width: 100
+              
+                },
+                {
+                  Header: "#",
+                  accessor: "id",
+                  width: 50
+                  
+                },
+                {
+                  Header: "Title",
+                  accessor: "title",
+                  width: 500
+                 
+                },
+                {
+                  Header: "Date",
+                  accessor: "date",
+                  width: 100
+                },
+                {
+                  Header: "Language",
+                  accessor: "language",
+                  width: 100
+                },
+                {
+                  Header: "State",
+                  accessor: "state",
+                  width: 200
+                },
+                {
+                  Header: "Creator",
+                  accessor: "creator",
+                  width: 300
+                },               
+                {
+                  Header: "Publisher",
+                  accessor: "publisher",
+                  width: 300
+                },
+            
+
+              ]
+
+          }
+          defaultPageSize={-1}
+          pageSize = {100}
+          minRows =  {10}
+          resizable = {true}
+          className="-striped -highlight"
+        />
         </div>
       );
     }
@@ -389,7 +476,7 @@ export default Books;
 /*Other possible table rows for futrue development
 
 <TableHeaderColumn width='200' dataField='description' dataSort>Description</TableHeaderColumn>
-<TableHeaderColumn width='200' dataField='language' dataSort>Language</TableHeaderColumn>
+<TableHeaderColumn width='200px' dataField='rights' dataSort>Rights</TableHeaderColumn>
 <TableHeaderColumn width='200' dataField='collection' dataSort>Collection</TableHeaderColumn>
 
 */

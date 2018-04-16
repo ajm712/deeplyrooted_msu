@@ -16,15 +16,16 @@ class Form extends React.Component {
         <form>
           <label>
             <select className="dropDown" onChange={this.changeInput} defaultValue="Subject">
-              <option value="Subject">Subject</option>
-              <option value="Title">Title</option>
-              <option value="Rights">Rights</option>
-              <option value="Format">Format</option>
-              <option value="Collection">Collection</option>
-              <option value="State">Location</option>
-              <option value="Author">Author</option>
-              <option value="Date">Date</option>
-              <option value="Language">Language</option>
+              <option value="Subject" role="menuitem">Subject</option>
+              <option value="Title" role="menuitem">Title</option>
+              <option value="Rights" role="menuitem">Rights</option>
+              <option value="Format" role="menuitem">Format</option>
+              <option value="Collection" role="menuitem">Collection</option>
+              <option value="State" role="menuitem">Location</option>
+              <option value="University" role="menuitem">University</option>
+              <option value="Author" role="menuitem">Author</option>
+              <option value="Date" role="menuitem">Date</option>
+              <option value="Language" role="menuitem">Language</option>
             </select>
           </label>
         </form>

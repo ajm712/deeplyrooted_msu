@@ -4,7 +4,7 @@ $.ajaxSetup({
   });
 
 class ApiWrapper{
-    static makeCall({subject="", rights="", title="", format="", collection="", state="", creator="", date="", other="", language="", page="", page_size="10"} = {}) {
+    static makeCall({subject="", rights="", title="", format="", collection="", state="", university="", creator="", date="", other="", language="", page="", page_size="10"} = {}) {
         // sends a request to the dpla api and returns a list of json objects
         // example call: ApiWrapper.makeCall({language:"english"})
         // date should be YYYY-MM-DD 
@@ -18,6 +18,7 @@ class ApiWrapper{
         if(format !== "") props["sourceResource.format"] = format
         if(collection !== "") props["sourceResource.collection"] = collection
         if(state !== "") props["sourceResource.spatial.state"] = state
+        if(university !== "") props["dataProvider"] = university
         if(creator !== "") props["sourceResource.creator"] = creator
         if(date !== "") props["sourceResource.date.displayDate"] = date
         if(other !== "") props["q"] = other
@@ -37,6 +38,7 @@ class ApiWrapper{
                 format: format,
                 collection: collection,
                 state: state,
+                university: university,
                 language: language,
                 other: other,
                 creator: creator,
@@ -53,6 +55,7 @@ class ApiWrapper{
         var props = {"sourceResource.description":"deeply rooted"}
         props["facets"] = "sourceResource.spatial.state"
         props["api_key"] = "304ebe4fa961241e648edf1035166735"
+        props["facet_size"] = "2000"
         $.getJSON(url, props, function(result){
         	// properties of results are "count", "start", "limit", "docs"
             results = result
@@ -93,6 +96,7 @@ class ApiWrapper{
         var props = {"sourceResource.description":"deeply rooted"}
         props["facets"] = "sourceResource.format"
         props["api_key"] = "304ebe4fa961241e648edf1035166735"
+        props["facet_size"] = "2000"
         $.getJSON(url, props, function(result){
         	// properties of results are "count", "start", "limit", "docs"
             results = result
@@ -106,6 +110,21 @@ class ApiWrapper{
         var props = {"sourceResource.description":"deeply rooted"}
         props["facets"] = "sourceResource.date"
         props["api_key"] = "304ebe4fa961241e648edf1035166735"
+        props["facet_size"] = "2000"
+        $.getJSON(url, props, function(result){
+        	// properties of results are "count", "start", "limit", "docs"
+            results = result
+        });
+        return results
+    }
+
+    static getUniversityFacet(){
+        var url = "https://api.dp.la/v2/items?"
+        var results
+        var props = {"sourceResource.description":"deeply rooted"}
+        props["facets"] = "admin.contributingInstitution"
+        props["api_key"] = "304ebe4fa961241e648edf1035166735"
+        props["facet_size"] = "2000"
         $.getJSON(url, props, function(result){
         	// properties of results are "count", "start", "limit", "docs"
             results = result

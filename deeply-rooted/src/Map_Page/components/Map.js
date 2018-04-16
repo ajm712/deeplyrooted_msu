@@ -57,13 +57,15 @@ class CustomComponent extends React.Component {
       )
     }
     return (
-      <Map id="mapid" center={center} zoom={this.state.zoom}>
-        <TileLayer
-          attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <MyMarkersList markers={markers} />
-      </Map>
+      <div className="willdumbidea">
+        <Map id="mapid" center={center} zoom={this.state.zoom}>
+          <TileLayer
+            attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <MyMarkersList markers={markers} />
+        </Map>
+      </div>
     )
   }
 }
