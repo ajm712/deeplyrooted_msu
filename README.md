@@ -99,9 +99,9 @@ Optional:
 
 Visit here for more specific information:
 
-http://www.alibiproductions.com/articles/13-easy-steps-to-on-site-seo-and-how-to-implement-them/
+* [www.alibiproductions.com](http://www.alibiproductions.com/articles/13-easy-steps-to-on-site-seo-and-how-to-implement-them/)
 
-https://www.entrepreneur.com/article/231235
+* [www.entrepreneur.com](https://www.entrepreneur.com/article/231235)
 
 
 ## File and Class Descriptions 
