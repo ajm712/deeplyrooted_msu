@@ -27,6 +27,7 @@ Welcome to the Deeply Rooted Web Application repository
 - [Potential Deployment](#potential-deployment)
 - [Search Engine Optimization](#search-engine-optimization)
 - [File Structure Explanation](#file-structure-explanation)
+- [Installed Node Libraries](#installed-node-libraries)
 - [File and Class Descriptions](#file-and-class-descriptions)
 
 ## Introduction
@@ -105,7 +106,30 @@ Visit here for more specific information:
 * [www.entrepreneur.com](https://www.entrepreneur.com/article/231235)
 
 ## File Structure Explanation
+* DeeplyRooted
+	* deeply-rooted ```Main folder```
+	* README.md ```Readme for the project```
+		* .vs ```Contains project settings```
+		* .node_modules [```Node libraries for the project```](https://docs.npmjs.com/files/folders#node-modules)
+		* public ```Contains the index html and css```
+		* src ```Contains all javascript files```
+		* .gitignore [```Tells github to ignore certain files when uploading```](https://git-scm.com/docs/gitignore)
+		* npm-debug.log ```Debug file for npm```
+		* package.json [```Contains downloaded node libraries```](https://docs.npmjs.com/files/package.json)
+		* package-lock.json [```Contains npm download tree information```](https://docs.npmjs.com/files/package-lock.json)
+		* README.md ```Default readme created for reactjs and node```
 
+## Installed Node Libraries
+* [Font Awesome](https://fontawesome.com/icons?d=gallery)
+* [Grid Gallery](https://benhowell.github.io/react-grid-gallery/)
+* Jquery
+* React
+* [React Bootstrap](https://react-bootstrap.github.io/components/alerts/)
+* [React Bootstrap Table](http://allenfang.github.io/react-bootstrap-table/example.html)
+* [React Burger Menu](https://negomi.github.io/react-burger-menu/)
+* React Dom
+* [React Popper](https://www.npmjs.com/package/react-popper)
+* React Scripts
 
 ## File and Class Descriptions 
 
