@@ -26,6 +26,7 @@ Welcome to the Deeply Rooted Web Application repository
 - [Future Objectives](#future-objectives)
 - [Potential Deployment](#potential-deployment)
 - [Search Engine Optimization](#search-engine-optimization)
+- [File Structure Explanation](#file-structure-explanation)
 - [File and Class Descriptions](#file-and-class-descriptions)
 
 ## Introduction
@@ -102,6 +103,8 @@ Visit here for more specific information:
 * [www.alibiproductions.com](http://www.alibiproductions.com/articles/13-easy-steps-to-on-site-seo-and-how-to-implement-them/)
 
 * [www.entrepreneur.com](https://www.entrepreneur.com/article/231235)
+
+## File Structure Explanation
 
 
 ## File and Class Descriptions 
