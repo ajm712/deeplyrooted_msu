@@ -33,7 +33,7 @@ class SearchBar extends React.Component {
             page_size: "30",
             page: "1"
            });
-            ReactDOM.render(<Books view="compnentview" results={results} pageSize="30" value = {this.state.pageSize}/>, document.getElementById('root'));
+        ReactDOM.render(<Books view="componentView" results={results} pageSize="30" />, document.getElementById('root'));
         ReactDOM.render(<Footer page="adv_search"/>, document.getElementById('footer'));
         event.preventDefault();
     }

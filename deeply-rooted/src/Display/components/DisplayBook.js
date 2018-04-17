@@ -68,7 +68,7 @@ class Books extends React.Component {
             <div className="inLine">
         <form>
           <label>
-            <select className="dropDown" onChange={this.changePageSize} value = {this.props.value} defaultValue="30">
+            <select className="dropDown" onChange={this.changePageSize} value={this.props.pageSize}>
               <option value="10">10</option>
               <option value="20">20</option>
               <option value="30">30</option>
