@@ -6,6 +6,9 @@ import defaultImage from '../../Images/unknown-image.png';
 import '../styles/Display.css';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css'; 
 import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+import ReactTable from 'react-table'
+import "react-table/react-table.css"
+
 
 
 var $ = require('jquery');
@@ -19,13 +22,14 @@ class Books extends React.Component {
     this.changePage = this.changePage.bind(this);  
     this.changePageSize = this.changePageSize.bind(this);
   }
+  
   changePageSize(event) {
     var currentPage = this.props.results.call.page;
-    this.setState({pageSize: event.target.value}, (currentPage) => 
-    {
+    this.setState({
+      pageSize: event.target.value
+    }, (currentPage) => {
       this.changePage(currentPage);;
     })
-
   }
 
   //Calculates the max number of pages per result
@@ -46,6 +50,7 @@ class Books extends React.Component {
       title: searchData.title, 
       format: searchData.format, 
       collection: searchData.collection, 
+      university: searchData.university,
       state: searchData.state, 
       language: searchData.language, 
       creator: searchData.creator,
@@ -277,7 +282,7 @@ class Books extends React.Component {
 
       else
       {
-        return (<TableDisplay tableInfo ={formattedBook}  />);         
+        return (<TableDisplay pageSize = {this.state.pageSize} tableInfo ={formattedBook}  />);         
       }
     }
   }
@@ -347,7 +352,7 @@ class Books extends React.Component {
   class TableDisplay extends React.Component {
     constructor(props) {
       super(props);
-  
+      this.state = {pageSize: this.props.pageSize};
       this.options = {
         defaultSortName: 'id',  // default sort column name
         defaultSortOrder: 'asc',  // default sort order
@@ -388,19 +393,67 @@ class Books extends React.Component {
           includes built in dataSort function that numerically and 
           alphabetically sorts columns of table*/
         <div className="tablesize" role="table">
-         <BootstrapTable data = {products} //sets data to product array 
-            striped hover condensed //highlights rows as moused over
-            scrollTop={ 'Top' } //sets scroll bar to start at top by default
-            options={this.options}> 
-         <TableHeaderColumn width='100px' dataField='link' dataFormat={ this.colFormatter }>Source</TableHeaderColumn>      
-         <TableHeaderColumn width='100px' isKey dataField='id' dataSort>#</TableHeaderColumn>
-         <TableHeaderColumn width='200px' dataField='title' dataSort>Book Title</TableHeaderColumn>
-         <TableHeaderColumn width='200px' dataField='creator' dataSort>Creator</TableHeaderColumn> 
-         <TableHeaderColumn width='100px' dataField='date' dataSort>Date</TableHeaderColumn>
-         <TableHeaderColumn width='200px' dataField='publisher' dataSort>Publisher</TableHeaderColumn>
-         <TableHeaderColumn width='100px' dataField='language' dataSort>Language</TableHeaderColumn>
-         <TableHeaderColumn width='100px' dataField='state' dataSort>State</TableHeaderColumn>         
-         </BootstrapTable>
+        <ReactTable
+          options={this.options}
+          data={products}
+          showPagination = {false}
+          columns={[
+            
+                {
+                  Header: "Source",
+                  accessor: "link",
+                  Cell: cell =><a href={cell.value} target="_blank"> View </a>,
+                  width: 100
+              
+                },
+                {
+                  Header: "#",
+                  accessor: "id",
+                  width: 50
+                  
+                },
+                {
+                  Header: "Title",
+                  accessor: "title",
+                  width: 500
+                 
+                },
+                {
+                  Header: "Date",
+                  accessor: "date",
+                  width: 100
+                },
+                {
+                  Header: "Language",
+                  accessor: "language",
+                  width: 100
+                },
+                {
+                  Header: "State",
+                  accessor: "state",
+                  width: 200
+                },
+                {
+                  Header: "Creator",
+                  accessor: "creator",
+                  width: 300
+                },               
+                {
+                  Header: "Publisher",
+                  accessor: "publisher",
+                  width: 300
+                },
+            
+
+              ]
+
+          }
+          defaultPageSize={-1}
+          pageSize = {100}
+          minRows =  {10}
+          resizable = {true}
+          className="-striped -highlight"
+        />
         </div>
       );
     }
