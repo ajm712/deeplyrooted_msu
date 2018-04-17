@@ -9,7 +9,7 @@ import Footer from '../../Footer/components/Footer.js';
 class SearchBar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
+        this.state = {value: '', pageSize: "30"};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -33,7 +33,7 @@ class SearchBar extends React.Component {
             page_size: "30",
             page: "1"
            });
-        ReactDOM.render(<Books view="componentView" results={results} pageSize= "30"/>, document.getElementById('root'));
+        ReactDOM.render(<Books view="componentView" results={results} pageSize="30" />, document.getElementById('root'));
         ReactDOM.render(<Footer page="adv_search"/>, document.getElementById('footer'));
         event.preventDefault();
     }
