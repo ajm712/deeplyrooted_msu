@@ -137,7 +137,22 @@ class Books extends React.Component {
         for (var i = 0; i < limit; i++) {
           newResult += result[i];
         }
-        newResult += '...';
+
+        //Places three dots at the end of a trailing word
+        var index = newResult.length - 1;
+        while(1){
+          index = newResult.length - 1;
+          if (newResult[index] !== ' ') {
+            newResult = newResult.slice(0, -1);
+            index--;
+          }
+
+          else {
+            newResult = newResult.slice(0, -1);
+            newResult += '...';
+            break;
+          }
+        }
         return newResult
       }
     }
