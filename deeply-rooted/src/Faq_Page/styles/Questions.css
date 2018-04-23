@@ -3,3 +3,9 @@
     padding-left: 30%;
     padding-right: 30%
 }
+
+.center {
+    display: block;
+    width: 70%;
+    height: auto;
+}
