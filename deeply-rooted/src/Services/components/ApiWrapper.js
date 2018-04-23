@@ -85,7 +85,8 @@ class ApiWrapper{
         props["api_key"] = "304ebe4fa961241e648edf1035166735"
         props["facet_size"] = "2000"
         $.getJSON(url, props, function(result){
-        	// properties of results are "count", "start", "limit", "docs" 
+            // properties of results are "count", "start", "limit", "docs" 
+            results = result
         });
         return results
     }
