@@ -92,7 +92,20 @@ For more information visit the * [React Website](https://reactjs.org/)
  - Create an app for deeply rooted 
  
 ## Potential Deployment
- - Stuff
+ - When you are truly ready to deploy your program you first need to run the command "npm run eject". This is a permanent action meaning that you will be responsible for handling customization of the app without the help of create-react-app. Be sure to create a backup of your old code.
+ - Afterwards you should see a lot of new files in the root in the /config and /scripts directories.
+ - Now we need to install .dotenv to help us load environment variables (.env) into the ENV of our app in our environments. We do this by saying npm install --save-dev dotenv.
+ - What we are doing is 
+    - Loading our default .env file
+    - Loading any environment .env file
+    - Merging these two variables together as well as any default variables (such as the NODE_ENV)
+    - Creating a new object with all of our environment variables and sanitize each value.
+    - Updatinh the initial object for the existing environment creator.
+    
+ - You can make static and dynamic servers. For Node environments, the best way to use a static server is to install serve and let it handle the code. For dynamic servers you will ned Express
+
+ - For more information visit https://www.fullstackreact.com/30-days-of-react/day-27/ and https://github.com/facebook/create-react-app/blob/v1.1.4/packages/react-scripts/template/README.md#deployment
+ 
  
 ## Search Engine Optimization
 Deeply Rooted current and future developers should look to the steps below to optimize the likeliness of the website being found on any given search through a search engine, and the likeliness a user will click on the website. Steps will be broken into pre-deployment steps, which may or may not need to be continually taken, and steps that should be taken after webpage deployment. The effectiveness of these methods is accumulative, meaning that the Deeply Rooted website’s total SEO is based around how many of the steps can be taken.
