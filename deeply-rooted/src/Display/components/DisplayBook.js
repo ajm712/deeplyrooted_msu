@@ -126,6 +126,45 @@ class Books extends React.Component {
       }
     }
 
+    //Limits the size of a given result from the api
+    limitCharacter(result, size, limit) {
+      if (size < limit) {
+        return result;
+      }
+      else {
+        var newResult = '';
+        for (var i = 0; i < limit; i++) {
+          newResult += result[i];
+        }
+
+        //Places three dots at the end of a trailing word
+        var index = newResult.length - 1;
+        while(1){
+          index = newResult.length - 1;
+          if (newResult[index] !== ' ') {
+            newResult = newResult.slice(0, -1);
+            index--;
+          }
+
+          else {
+            newResult = newResult.slice(0, -1);
+            newResult += '...';
+            break;
+          }
+        }
+        return newResult
+      }
+    }
+
+    //Correct parsing f materials because some book.item[0] while others are stored in book.item
+    indexCorrection(result) {
+      var newResult = result[0];
+      if(newResult.length === 1) {
+            newResult = result;
+      }
+      return newResult;
+    }
+
     //Displays Book to the screen
     _getBooks(viewType) {
       //checks to see if there are any results 
@@ -181,76 +220,71 @@ class Books extends React.Component {
         //Searches for the title of the book
         if (data.hasOwnProperty('title'))
         {
-          bookObject.title = data.title[0];
-          //If the entire title is not stored at index 0 then use the entire title object
-          if(bookObject.title.length === 1)
-            bookObject.title = data.title;
+          bookObject.title = this.indexCorrection(data.title);
+          bookObject.title = this.limitCharacter(bookObject.title, bookObject.title.length, 50);
         }
 
         //Searches for the creator of the book
         if (data.hasOwnProperty('creator'))
         {
-          bookObject.creator = data.creator[0];
-          //If the entire name is not stored at index 0 then use the entire creator object
-          if(bookObject.creator.length === 1)
-            bookObject.creator = data.creator;
+          bookObject.creator = this.indexCorrection(data.creator);
+          bookObject.creator = this.limitCharacter(bookObject.creator, bookObject.creator.length, 100);
         }
 
         //Searches for the collection name of the book
-        if (data.hasOwnProperty('collection') && data.collection.hasOwnProperty('title'))
-          bookObject.collection = data.collection.title; 
+        if (data.hasOwnProperty('collection') && data.collection.hasOwnProperty('title')){
+          bookObject.collection = this.indexCorrection(data.collection.title);
+          bookObject.collection = this.limitCharacter(bookObject.collection, bookObject.collection.length, 100);
+        }
 
         //Searches for the data of the book
-        if (data.hasOwnProperty('date') && data.date.hasOwnProperty('displayDate'))
-          bookObject.date = data.date.displayDate;
-
+        if (data.hasOwnProperty('date') && data.date.hasOwnProperty('displayDate')) {
+          bookObject.date = this.indexCorrection(data.date.displayDate);
+          bookObject.date = this.limitCharacter(bookObject.date, bookObject.date.length, 50);
+        }
+        
         //Searches for the description of the book
-        if (data.hasOwnProperty('description'))
-        {
-          bookObject.description = data.description[0];
-          //If the entire name is not stored at index 0 then use the entire creator object
-          if(bookObject.description.length === 1)
-            bookObject.description = data.description;
+        if (data.hasOwnProperty('description')) {
+          bookObject.description = this.indexCorrection(data.description);
+          bookObject.description = this.limitCharacter(bookObject.description, bookObject.description.length, 250);
         }
 
         //Searches for the langauge of the book
-        if (data.hasOwnProperty('language') && data.language[0].hasOwnProperty('name'))
-          bookObject.language = data.language[0].name;
+        if (data.hasOwnProperty('language') && data.language[0].hasOwnProperty('name')) {
+          bookObject.language = this.indexCorrection(data.language[0].name);
+          bookObject.language = this.limitCharacter(bookObject.language, bookObject.language.length, 50)
+        }
 
         //Searches for the publisher of the book
-        if (data.hasOwnProperty('publisher'))
-        {
-          bookObject.publisher = data.publisher[0];
-          //If the entire rights is not stored at index 0 then use the entire rights object
-          if(bookObject.publisher.length === 1)
-            bookObject.publisher = data.publisher;
+        if (data.hasOwnProperty('publisher')) {
+          bookObject.publisher = this.indexCorrection(data.publisher);
+          bookObject.publisher = this.limitCharacter(bookObject.publisher, bookObject.publisher.length, 150)
         }
 
         //Searches for the rights of the book
-        if (data.hasOwnProperty('rights'))
-        {
-          bookObject.rights = data.rights[0];
-          //If the entire rights is not stored at index 0 then use the entire rights object
-          if(bookObject.rights.length === 1)
-            bookObject.rights = data.rights;
+        if (data.hasOwnProperty('rights')) {
+          bookObject.rights = this.indexCorrection(data.rights);
+          bookObject.rights = this.limitCharacter(bookObject.rights, bookObject.rights.length, 150)
         }
 
         //Searches for the format of the book
         if (data.hasOwnProperty('format'))
         {
-          bookObject.format = data.format[0];
-          //If the entire rights is not stored at index 0 then use the entire rights object
-          if(bookObject.format.length === 1)
-            bookObject.format = data.format;
+          bookObject.format = this.indexCorrection(data.format);
+          bookObject.format = this.limitCharacter(bookObject.format, bookObject.format.length, 50)
         }
 
         //Searches for the state location of the book
-        if (data.hasOwnProperty('stateLocatedIn') && data.stateLocatedIn[0].hasOwnProperty('name'))
-          bookObject.state = data.stateLocatedIn[0].name;
+        if (data.hasOwnProperty('stateLocatedIn') && data.stateLocatedIn[0].hasOwnProperty('name')) {
+          bookObject.state = this.indexCorrection(data.stateLocatedIn[0].name);
+          bookObject.state = this.limitCharacter(bookObject.state, bookObject.state.length, 50)
+        }
         
         //Searches a second field for the location of the book in case the previous if statement fails
-        else if (!data.hasOwnProperty('stateLocatedIn') && data.hasOwnProperty('spatial'))
-          bookObject.state = data.spatial[0].state;
+        else if (!data.hasOwnProperty('stateLocatedIn') && data.hasOwnProperty('spatial')) {
+          bookObject.state = this.indexCorrection(data.spatial[0].state);
+          bookObject.state = this.limitCharacter(bookObject.state, bookObject.state.length, 50)
+        }
 
         //Stores all result into an array
         formattedBook[i] = bookObject;

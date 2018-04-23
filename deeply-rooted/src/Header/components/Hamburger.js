@@ -143,13 +143,14 @@ class Hamburger extends Component {
 
     //Creates the burger menu and selection buttons
     render () {
+        var FontAwesome = require('react-fontawesome');
         return (
             <div className="Hamburger">
                 <Menu id="hamburger-menu" isOpen={ this.state.isMenuOpen }>
-                    <Button className="btn_burger" onClick={this.home}>Home</Button>
-                    <Button className="btn_burger" onClick={this.rand_book}>Random Selection</Button>
-                    <Button className="btn_burger" onClick={this.adv_search}>Advanced Search</Button>
-                    <Button className="btn_burger" onClick={this.about}>About</Button>
+                    <Button className="btn_burger" onClick={this.home} style={{textAlign: 'left'}}><FontAwesome name='home' style={{paddingLeft: '10%', paddingRight: '5%'}} /><b>Home</b></Button>
+                    <Button className="btn_burger" onClick={this.rand_book} style={{textAlign: 'left'}}><FontAwesome name='random' style={{paddingLeft: '10%', paddingRight: '5%'}} /><b>Random Selection</b></Button>
+                    <Button className="btn_burger" onClick={this.adv_search} style={{textAlign: 'left'}}><FontAwesome name='search' style={{paddingLeft: '10%', paddingRight: '5%'}} /><b>Advanced Search</b></Button>
+                    <Button className="btn_burger" onClick={this.about} style={{textAlign: 'left'}}><FontAwesome name='info' style={{paddingLeft: '10%', paddingRight: '9%'}} /><b>About</b></Button>
                 </Menu>
             </div>
         );
