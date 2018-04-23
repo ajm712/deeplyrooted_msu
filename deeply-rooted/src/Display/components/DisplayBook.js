@@ -115,12 +115,12 @@ class Books extends React.Component {
     displayToggle(event) {
       var buttonName = event.target.name;
       var results = this.props.results;
-      if (buttonName === "componentView")
+      if (buttonName === "componentView") //switches to component view
       {
         ReactDOM.render(<Books view="componentView" results={results} pageSize= "30"/>, document.getElementById('root'));
       }
   
-      else
+      else //switches to table view
       {
         ReactDOM.render(<Books view="tableView" results={results} pageSize= "30"/>, document.getElementById('root'));      
       }
@@ -423,34 +423,32 @@ class Books extends React.Component {
       }      
       
       return(
-        /*creates table using "react-bootstrap-table" libraries,
-          includes built in dataSort function that numerically and 
+        /*creates table using "react-table" library,
+          includes built in sorting that numerically and 
           alphabetically sorts columns of table*/
         <div className="tablesize" role="table">
         <ReactTable
           options={this.options}
-          data={products}
-          showPagination = {false}
+          data={products} //data for use in table
+          showPagination = {false} //removes default pagination from table
+          
           columns={[
             
                 {
-                  Header: "Source",
-                  accessor: "link",
-                  Cell: cell =><a href={cell.value} target="_blank"> View </a>,
-                  width: 100
-              
+                  Header: "Source", //header of column                
+                  accessor: "link", //data to be put in cell
+                  Cell: cell =><a href={cell.value} target="_blank"> View </a>, //formats data in cell as a link
+                  width: 100 //set a fixed width for the column, does not auto size
                 },
                 {
                   Header: "#",
                   accessor: "id",
-                  width: 50
-                  
+                  width: 50                 
                 },
                 {
-                  Header: "Title",
+                  Header: "Title", 
                   accessor: "title",
                   width: 500
-                 
                 },
                 {
                   Header: "Date",
@@ -461,11 +459,12 @@ class Books extends React.Component {
                   Header: "Language",
                   accessor: "language",
                   width: 100
+                
                 },
                 {
                   Header: "State",
                   accessor: "state",
-                  width: 200
+                  width: 200 
                 },
                 {
                   Header: "Creator",
@@ -482,11 +481,11 @@ class Books extends React.Component {
               ]
 
           }
-          defaultPageSize={-1}
-          pageSize = {100}
-          minRows =  {10}
-          resizable = {true}
-          className="-striped -highlight"
+          defaultPageSize={-1} //exploits bug in react-table to allow custom number of results to be generated
+          pageSize = {100} //sets default number of results shown, also used to exploit above bug
+          minRows =  {10} //sets minimum number of results shown 
+          resizable = {true} //allows table to be resizable 
+          className="-striped -highlight" //style of table
         />
         </div>
       );
@@ -506,10 +505,10 @@ class Books extends React.Component {
 
 export default Books;
 
-/*Other possible table rows for futrue development
+/*Other possible data for table in future development
 
-<TableHeaderColumn width='200' dataField='description' dataSort>Description</TableHeaderColumn>
-<TableHeaderColumn width='200px' dataField='rights' dataSort>Rights</TableHeaderColumn>
-<TableHeaderColumn width='200' dataField='collection' dataSort>Collection</TableHeaderColumn>
+description
+rights
+collection
 
 */
