@@ -73,8 +73,11 @@ ReactJS natively renders
     - Merging these two variables together as well as any default variables (such as the NODE_ENV)
     - Creating a new object with all of our environment variables and sanitize each value.
     - Updatinh the initial object for the existing environment creator.
- - We first need to load the .env file, and after that we need to  import the dotenv package. We'll also have to import the path library from the standard node library and set up a few variables for paths.
+    
+ - You can make static and dynamic servers. For Node environments, the best way to use a static server is to install serve and let it handle the code. For dynamic servers you will ned Express
 
+ - For more information visit https://www.fullstackreact.com/30-days-of-react/day-27/ and https://github.com/facebook/create-react-app/blob/v1.1.4/packages/react-scripts/template/README.md#deployment
+ 
  
 ## Search Engine Optimization
  - Stuff
