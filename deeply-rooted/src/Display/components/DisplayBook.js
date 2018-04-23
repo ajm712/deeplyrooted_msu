@@ -22,6 +22,7 @@ class Books extends React.Component {
     this.changePage = this.changePage.bind(this);  
     this.changePageSize = this.changePageSize.bind(this);
   }
+  
   changePageSize(event) {
     var currentPage = this.props.results.call.page;
     this.setState({
@@ -29,7 +30,6 @@ class Books extends React.Component {
     }, (currentPage) => {
       this.changePage(currentPage);;
     })
-
   }
 
   //Calculates the max number of pages per result
@@ -59,7 +59,6 @@ class Books extends React.Component {
       page_size: this.state.pageSize,
       page: page,
      });
-     console.log(this.state.pageSize, results);
      ReactDOM.render(<Books view={this.props.view} results={results} pageSize={this.state.pageSize}/>, document.getElementById('root'));     
     }
 
@@ -74,7 +73,7 @@ class Books extends React.Component {
             <div className="inLine">
         <form>
           <label>
-            <select className="dropDown" onChange={this.changePageSize} defaultValue="30">
+            <select className="dropDown" onChange={this.changePageSize} value={this.props.pageSize}>
               <option value="10">10</option>
               <option value="20">20</option>
               <option value="30">30</option>
@@ -317,7 +316,7 @@ class Books extends React.Component {
 
       else
       {
-        return (<TableDisplay tableInfo ={formattedBook}  />);         
+        return (<TableDisplay pageSize = {this.state.pageSize} tableInfo ={formattedBook}  />);         
       }
     }
   }
@@ -387,7 +386,7 @@ class Books extends React.Component {
   class TableDisplay extends React.Component {
     constructor(props) {
       super(props);
-  
+      this.state = {pageSize: this.props.pageSize};
       this.options = {
         defaultSortName: 'id',  // default sort column name
         defaultSortOrder: 'asc',  // default sort order
@@ -431,6 +430,7 @@ class Books extends React.Component {
         <ReactTable
           options={this.options}
           data={products}
+          showPagination = {false}
           columns={[
             
                 {
@@ -482,7 +482,10 @@ class Books extends React.Component {
               ]
 
           }
-          defaultPageSize={30}
+          defaultPageSize={-1}
+          pageSize = {100}
+          minRows =  {10}
+          resizable = {true}
           className="-striped -highlight"
         />
         </div>
