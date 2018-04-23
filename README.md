@@ -63,12 +63,33 @@ For more information visit the * [React Website](https://reactjs.org/)
       - After a few minutes your default browser should open and load the website. If this does not happen open a browser of your choice and go to the following url: ```http://localhost:3000/```
 
 ## Accomplished Objectives
- - Stuff
- - Stuff
+ - Created and implemented a design for the Deeply Rooted Website
+ - Pulled "deeply rooted" data from the DPLA api
+ - Sorted "deeply rooted" data so that it could be searched
+ - Created ability to search the data by multiple different queries
+ - Created ability to search the data by a combination of queries
+ - Created two seperate displays
+ 	- visual display using modals and popovers 
+	- table display where all data is presented in a table
+ - Finished working prototype by December 2017
+ - Added a random search feature that presents the user with results from a random query 
+ - Added a map feature that shows results for a location displayed on a map 
+ 	- uses Google Maps api
+ - Created all styling and css for website
+ - Met all assessiblity requirements for website
+ - In addition to search feaures created the following pages
+ 	- Home page
+	- About page
+	- Faq page
+ - Finished complete first version of website by May 2018 
  
 ## Future Objectives
- - Stuff
- - Stuff
+ - Improve search engine optimization 
+ - Add a graphical view of data
+ - Improve loading time of advanced search page
+ - Refine all elements of website to a higher degree
+ - Create a mobile specific version of website
+ - Create an app for deeply rooted 
  
 ## Potential Deployment
  - Stuff
