@@ -36,7 +36,12 @@ The Deeply Rooted Web Application will allow users to efficiently search through
 
 ## What is ReactJS
 
-ReactJS natively renders
+ReactJS is a javascript library that allows developers to create encapsulated compnents that can keep track of their own state and can be rendered to any webpage on the website. These components are essentially reusbale modules that implement a render() method that takes input data and returns what to display. 
+
+In addition to taking input data (accessed via this.props), a component can maintain internal state data (accessed via this.state). When a component’s state data changes, the rendered markup will be updated by re-invoking render().
+
+For more information visit the * [React Website](https://reactjs.org/)
+
 
 ## Setup and Use Instructions
 
