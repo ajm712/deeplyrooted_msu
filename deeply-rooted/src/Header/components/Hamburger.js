@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { slide as Menu } from 'react-burger-menu';
 import {Button} from 'react-bootstrap';
+import Map from '../../Map_Page/components/Map.js';
 import About from '../../About_Page/components/About.js';
 import Home from '../../Home_Page/components/Home.js';
 import ApiWrapper from '../../Services/components/ApiWrapper.js';
@@ -19,6 +20,7 @@ class Hamburger extends Component {
         super(props)
         this.state = { isMenuOpen: false };
         this.about = this.about.bind(this);
+        this.map = this.map.bind(this);
         this.home = this.home.bind(this);
         this.adv_search = this.adv_search.bind(this);
         this.rand_book = this.rand_book.bind(this);
@@ -104,6 +106,15 @@ class Hamburger extends Component {
     }
 
     //Renders appropriate components to the screen for the about page
+    map() {
+        this.closeMenu();
+        ReactDOM.render(<Map />, document.getElementById('root'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('adv_search'));
+    }
+
+    //Renders appropriate components to the screen for the about page
     about() {
         this.closeMenu();
         ReactDOM.render(<About />, document.getElementById('root'));
@@ -150,6 +161,7 @@ class Hamburger extends Component {
                     <Button className="btn_burger" onClick={this.home} style={{textAlign: 'left'}}><FontAwesome name='home' style={{paddingLeft: '10%', paddingRight: '5%'}} /><b>Home</b></Button>
                     <Button className="btn_burger" onClick={this.rand_book} style={{textAlign: 'left'}}><FontAwesome name='random' style={{paddingLeft: '10%', paddingRight: '5%'}} /><b>Random Selection</b></Button>
                     <Button className="btn_burger" onClick={this.adv_search} style={{textAlign: 'left'}}><FontAwesome name='search' style={{paddingLeft: '10%', paddingRight: '5%'}} /><b>Advanced Search</b></Button>
+                    <Button className="btn_burger" onClick={this.map} style={{textAlign: 'left'}}><FontAwesome name='map' style={{paddingLeft: '10%', paddingRight: '5%'}} /><b>Map</b></Button>                    
                     <Button className="btn_burger" onClick={this.about} style={{textAlign: 'left'}}><FontAwesome name='info' style={{paddingLeft: '10%', paddingRight: '9%'}} /><b>About</b></Button>
                 </Menu>
             </div>

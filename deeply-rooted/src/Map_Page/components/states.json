@@ -1,0 +1,221 @@
+{
+    "states":
+    [
+        {
+            "name": "Georgia",
+            "latitude":  32.165622,
+            "longitude": -82.900075,
+            "count": 0
+        },
+
+        {
+            "name": "Alabama",
+            "latitude":  32.318231,
+            "longitude": -86.902298,
+            "count": 0
+        },
+
+        {
+            "name": "Florida",
+            "latitude":  27.664827,
+            "longitude": -81.515754,
+            "count": 0
+        },
+
+        {
+            "name": "Mississippi",
+            "latitude":  32.354668,
+            "longitude": -89.398528,
+            "count": 0
+        },
+
+        {
+            "name": "Kentucky",
+            "latitude":  37.839333,
+            "longitude": -84.270018,
+            "count": 0
+        },
+
+        {
+            "name": "North Carolina",
+            "latitude":  35.759573,
+            "longitude": -79.019300,
+            "count": 0
+        },
+
+        {
+            "name": "Texas",
+            "latitude":  31.968599,
+            "longitude": -99.901813,
+            "count": 0
+        },
+
+        {
+            "name": "South Carolina",
+            "latitude":  33.836081,
+            "longitude": -81.163725,
+            "count": 0
+        },
+
+        {
+            "name": "Virginia",
+            "latitude":  123,
+            "longitude": 123,
+            "count": 0
+        },
+
+        {
+            "name": "Tennessee",
+            "latitude":  37.431573,
+            "longitude": -78.656894,
+            "count": 0
+        },
+
+        {
+            "name": "Oklahoma",
+            "latitude":  35.007752,
+            "longitude": -97.092877,
+            "count": 0
+        },
+
+        {
+            "name": "Washington",
+            "latitude":  47.751074,
+            "longitude": -120.740139,
+            "count": 0
+        },
+
+        {
+            "name": "Maryland",
+            "latitude":  39.045755,
+            "longitude": -76.641271,
+            "count": 0
+        },
+
+        {
+            "name": "Minnesota",
+            "latitude":  46.729553,
+            "longitude": -94.685900,
+            "count": 0
+        },
+
+        {
+            "name": "Ohio",
+            "latitude":  40.417287,
+            "longitude": -82.907123,
+            "count": 0
+        },
+
+        {
+            "name": "Illinois",
+            "latitude":  40.633125,
+            "longitude": -89.398528,
+            "count": 0
+        },
+
+        {
+            "name": "Attica",
+            "latitude":  123,
+            "longitude": 123,
+            "count": 0
+        },
+
+        {
+            "name": "Pennsylvania",
+            "latitude":  41.203322,
+            "longitude": -77.194525,
+            "count": 0
+        },
+
+        {
+            "name": "New York",
+            "latitude":  43.299428,
+            "longitude": -74.217933,
+            "count": 0
+        },
+
+        {
+            "name": "Missouri",
+            "latitude":  37.964253,
+            "longitude": -91.831833,
+            "count": 0
+        },
+
+        {
+            "name": "Michigan",
+            "latitude":  44.314844,
+            "longitude": -85.602364,
+            "count": 0
+        },
+
+        {
+            "name": "Massachusetts",
+            "latitude":  42.407211,
+            "longitude": -71.382437,
+            "count": 0
+        },
+
+        {
+            "name": "Indiana",
+            "latitude":  42.407211,
+            "longitude": -71.382437,
+            "count": 0
+        },
+
+        {
+            "name": "Iowa",
+            "latitude":  41.878003,
+            "longitude": -93.097702,
+            "count": 0
+        },
+
+        {
+            "name": "Vermont",
+            "latitude":  44.558803,
+            "longitude": -72.577841,
+            "count": 0
+        },
+
+        {
+            "name": "Arkansas",
+            "latitude":  35.201050,
+            "longitude": -91.831833,
+            "count": 0
+        },
+
+        {
+            "name": "Île-de-France",
+            "latitude":  48.849920,
+            "longitude": 2.637041,
+            "count": 0
+        },
+
+        {
+            "name": "Zhejiang Sheng",
+            "latitude":  29.141643,
+            "longitude": 119.788925,
+            "count": 0
+        },
+
+        {
+            "name": "Washington, D.C.",
+            "latitude":  38.907192,
+            "longitude": -77.036871,
+            "count": 0
+        },
+
+        {
+            "name": "New Jersey",
+            "latitude":  40.058324,
+            "longitude": -74.405661,
+            "count": 0
+        },
+
+        {
+            "name": "Nevada",
+            "latitude":  38.802610,
+            "longitude": -116.419389,
+            "count": 0
+        }
+    ]
+}

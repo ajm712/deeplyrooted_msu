@@ -341,7 +341,7 @@ class Books extends React.Component {
           <p><b>Language:</b> {this.props.language}</p>
           <p><b>Location:</b> {this.props.state}</p>
           <p><b>Format:</b> {this.props.format}</p>
-          <b><a className="pull-right" href={this.props.link} rel="noopener noreferrer" target="_blank">More Info</a></b>
+          <b><a className="pull-right" href={this.props.link} rel="noopener noreferrer" target="_blank">More Information</a></b>
         </Popover>
       );
       
