@@ -6,8 +6,8 @@ import '../styles/Header.css';
 //Creates the image header 
 class Header extends Component {
   render() {
-    return (
-      <Jumbotron bsClass="header">
+    return ( //uses Jumbotron from react-bootstrap
+      <Jumbotron bsClass="header"> 
         <img src={logo} className="header-logo" alt="Deeply Rooted Logo" />
         <h1><b>Deeply Rooted @ MSU Library</b></h1>
       </Jumbotron>
