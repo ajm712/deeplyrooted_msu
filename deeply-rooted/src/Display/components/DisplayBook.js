@@ -157,7 +157,11 @@ class Books extends React.Component {
     }
 
     //Correct parsing f materials because some book.item[0] while others are stored in book.item
-    indexCorrection(result) {
+    indexCorrection(result) { //If passed in result is undefined, return unavaliable 
+      if (result === undefined){
+        return "Unvailable"
+      }
+
       var newResult = result[0];
       if(newResult.length === 1) {
             newResult = result;
@@ -483,7 +487,7 @@ class Books extends React.Component {
           }
           defaultPageSize={-1} //exploits bug in react-table to allow custom number of results to be generated
           pageSize = {100} //sets default number of results shown, also used to exploit above bug
-          minRows =  {10} //sets minimum number of results shown 
+          minRows =  {1} //sets minimum number of results shown 
           resizable = {true} //allows table to be resizable 
           className="-striped -highlight" //style of table
         />
