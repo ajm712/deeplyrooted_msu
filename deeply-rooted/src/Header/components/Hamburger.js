@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { slide as Menu } from 'react-burger-menu';
 import {Button} from 'react-bootstrap';
+import Map from '../../Map_Page/components/Map.js';
 import About from '../../About_Page/components/About.js';
 import Home from '../../Home_Page/components/Home.js';
 import ApiWrapper from '../../Services/components/ApiWrapper.js';
@@ -20,6 +21,7 @@ class Hamburger extends Component {
         super(props)
         this.state = { isMenuOpen: false };
         this.about = this.about.bind(this);
+        this.map = this.map.bind(this);
         this.home = this.home.bind(this);
         this.adv_search = this.adv_search.bind(this);
         this.rand_book = this.rand_book.bind(this);
@@ -106,6 +108,15 @@ class Hamburger extends Component {
     }
 
     //Renders appropriate components to the screen for the about page
+    map() {
+        this.closeMenu();
+        ReactDOM.render(<Map />, document.getElementById('root'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('adv_search'));
+    }
+
+    //Renders appropriate components to the screen for the about page
     about() {
         this.closeMenu();
         ReactDOM.render(<About />, document.getElementById('root'));
@@ -137,7 +148,7 @@ class Hamburger extends Component {
     rand_book() {
         this.closeMenu();
         var results = RandomSelection.random_select({page_size: 30});
-        ReactDOM.render(<Books view="componentView" results={results} pageSize= "30"/>, document.getElementById('root'));
+        ReactDOM.render(<Books view="componentView" results={results} pageSize="30" />, document.getElementById('root'));
         ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
         ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
         ReactDOM.unmountComponentAtNode(document.getElementById('adv_search')); 
@@ -153,14 +164,16 @@ class Hamburger extends Component {
 
     //Creates the burger menu and selection buttons
     render () {
+        var FontAwesome = require('react-fontawesome');
         return (
             <div className="Hamburger">
                 <Menu id="hamburger-menu" isOpen={ this.state.isMenuOpen }>
-                    <Button className="btn_burger" onClick={this.home}>Home</Button>
-                    <Button className="btn_burger" onClick={this.rand_book}>Random Selection</Button>
-                    <Button className="btn_burger" onClick={this.adv_search}>Advanced Search</Button>
-                    <Button className="btn_burger" onClick={this.about}>About</Button>
-                    <Button className="btn_burger" onClick={this.questions}>FAQs</Button>
+                    <Button className="btn_burger" onClick={this.home} style={{textAlign: 'left'}}><FontAwesome name='home' style={{paddingLeft: '10%', paddingRight: '5%'}} /><b>Home</b></Button>
+                    <Button className="btn_burger" onClick={this.rand_book} style={{textAlign: 'left'}}><FontAwesome name='random' style={{paddingLeft: '10%', paddingRight: '5%'}} /><b>Random Selection</b></Button>
+                    <Button className="btn_burger" onClick={this.adv_search} style={{textAlign: 'left'}}><FontAwesome name='search' style={{paddingLeft: '10%', paddingRight: '5%'}} /><b>Advanced Search</b></Button>
+                    <Button className="btn_burger" onClick={this.map} style={{textAlign: 'left'}}><FontAwesome name='map' style={{paddingLeft: '10%', paddingRight: '5%'}} /><b>Map</b></Button>                    
+                    <Button className="btn_burger" onClick={this.about} style={{textAlign: 'left'}}><FontAwesome name='info' style={{paddingLeft: '10%', paddingRight: '9%'}} /><b>About</b></Button>
+                    <Button className="btn_burger" onClick={this.questions} style={{textAlign: 'left'}}><FontAwesome name='question' style={{paddingLeft: '10%', paddingRight: '9%'}} /><b>F.A.Q.</b></Button>
                 </Menu>
             </div>
         );

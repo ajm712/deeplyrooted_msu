@@ -116,10 +116,10 @@ class TextBox extends React.Component {
 
     render() {
       var selection = this.props.selection; //Based on the selection value passed in from Form.js return the appropriate text box/ dropdown box
-      if(selection === "Subject")
+      if(selection === "Subject") //subject selected
       {
         return (
-          <div className="inLine">
+          <div className="inLine"> 
             <form>
               <input className="textBox" aria-label="Subject Search Box" type="text"  name="subject" placeholder="Insert Subject Here" value={this.state.name} onChange={this.handleChange}/> 
               <input className="submitButton" type="submit" name="subject" value="Submit" onClick={this.handleSubmit}/>
@@ -128,7 +128,7 @@ class TextBox extends React.Component {
         );
       }
 
-      else if(selection === "Title")
+      else if(selection === "Title") //title selected
       {
         return (
           <div className="inLine">
@@ -140,7 +140,7 @@ class TextBox extends React.Component {
         );
       }
 
-      else if(selection === "Rights")
+      else if(selection === "Rights") //rights selected 
       {
         return (
           <div className="inLine">
@@ -174,7 +174,7 @@ class TextBox extends React.Component {
         );
       }
 
-      else if(selection === "Collection")
+      else if(selection === "Collection") //collection selected 
       {
         return (
           <div className="inLine">
@@ -208,7 +208,7 @@ class TextBox extends React.Component {
         );
       }
 
-      else if(selection === "University")
+      else if(selection === "University") //University selected 
       {
         //returns list of states composed of states from statelist
         return (
@@ -229,7 +229,7 @@ class TextBox extends React.Component {
         );
       }
 
-      else if(selection === "Author")
+      else if(selection === "Author") //Author selected 
       {
         return (
           <div className="inLine">

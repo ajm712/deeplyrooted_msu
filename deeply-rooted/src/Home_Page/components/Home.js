@@ -5,7 +5,7 @@ import '../styles/Home.css';
 //Code for home page information
 class Home extends Component {
   render() {
-    return (
+    return ( // uses deeply rooted logo 
         <div>
           <div className="homepage">
             <h2>Deeply Rooted</h2>
