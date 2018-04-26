@@ -40,7 +40,9 @@ ReactJS is a javascript library that allows developers to create encapsulated co
 
 In addition to taking input data (accessed via this.props), a component can maintain internal state data (accessed via this.state). When a component’s state data changes, the rendered markup will be updated by re-invoking render().
 
-For more information visit the * [React Website](https://reactjs.org/)
+For more information visit: [React Website](https://reactjs.org/)
+
+For tutorial videos visit: [Google Drive](https://drive.google.com/drive/folders/0B-tmza2d2c0NazVzU3MwTVNGUWM?usp=sharing) 
 
 
 ## Setup and Use Instructions
