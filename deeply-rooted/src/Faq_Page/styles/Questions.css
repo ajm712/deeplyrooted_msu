@@ -1,7 +1,5 @@
 .questionspage {
     text-align: center;
-    padding-left: 30%;
-    padding-right: 30%
 }
 
 .center {
@@ -9,6 +7,7 @@
     width: 70%;
     height: auto;
 }
+
 
 .table{
     width: 50%

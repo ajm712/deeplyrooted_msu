@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import '../styles/Questions.css';
-import logo1 from '../../Images/Random-Selection(1).gif';
-import logo2 from '../../Images/Random-Selection(2).gif';
-import logo3 from '../../Images/tablevsimage.gif';
+import adv from '../../Images/deeplyrootedadvanced.GIF';
+import map from '../../Images/deeplyrootedmap.GIF';
+import ran from '../../Images/deeplyrooted-random.GIF';
 import {Button,Panel}from 'react-bootstrap';
 
 class Questions extends Component {
@@ -15,19 +15,27 @@ class Questions extends Component {
   render() {
     return (
       <div>
-        <div className="center">
+        <div className="center" style={{paddingRight: '15%'}}>
           <h2>Frequently Asked Questions</h2>
           <div align="left">
             <p><b>1. What is Random Selection?</b></p>
             <p> Random Selection performs a random search and then displays the results from it.</p>
            
-            <img src={logo1} alt="Random Selection Example" className="center" />
+            <img src={ran} alt="Random Selection Example" className="center" /><br></br>
 
   
 
            
-           <b> 2. What is the difference between image view and table view?</b>
-             <br></br> Image view displays images from search that display infomration when you click on it. Table view displays the information in a table with no images.
+          <p><b> 2. What is the difference between image view and table view? How to conduct an advanced search?</b></p>
+              Image view displays images from search that display infomration when you click on it.<br></br> Table view displays the information in a table with no images.<br></br>
+      
+             <img src={adv} alt="Advanced Example" className="center" /><br></br>
+
+
+              <p><b> 3.How to search via map?</b></p>
+              <img src={map} alt="Advanced Example" className="center" />
+
+             
               
              </div> 
           <br></br><br></br>
