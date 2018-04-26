@@ -12,6 +12,7 @@ import TextBox from '../../Adv_Search/components/TextBox.js';
 import Form from '../../Adv_Search/components/Form.js';
 import RandomSelection from '../../Services/components/RandomSelection.js';
 import '../styles/Hamburger.css';
+import Questions from '../../Faq_Page/components/Questions.js';
 
 
 //Creates and handles selections made on the hamburger menu
@@ -24,6 +25,7 @@ class Hamburger extends Component {
         this.home = this.home.bind(this);
         this.adv_search = this.adv_search.bind(this);
         this.rand_book = this.rand_book.bind(this);
+        this.questions = this.questions.bind(this);
     }
 
         /*Get lists for format, state, date, and language dropdown boxes*/
@@ -152,6 +154,14 @@ class Hamburger extends Component {
         ReactDOM.unmountComponentAtNode(document.getElementById('adv_search')); 
     }
 
+    questions() {
+        this.closeMenu();
+        ReactDOM.render(<Questions />, document.getElementById('root'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('text-box'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('dropbox'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('adv_search'));
+    }
+
     //Creates the burger menu and selection buttons
     render () {
         var FontAwesome = require('react-fontawesome');
@@ -163,6 +173,7 @@ class Hamburger extends Component {
                     <Button className="btn_burger" onClick={this.adv_search} style={{textAlign: 'left'}}><FontAwesome name='search' style={{paddingLeft: '10%', paddingRight: '5%'}} /><b>Advanced Search</b></Button>
                     <Button className="btn_burger" onClick={this.map} style={{textAlign: 'left'}}><FontAwesome name='map' style={{paddingLeft: '10%', paddingRight: '5%'}} /><b>Map</b></Button>                    
                     <Button className="btn_burger" onClick={this.about} style={{textAlign: 'left'}}><FontAwesome name='info' style={{paddingLeft: '10%', paddingRight: '9%'}} /><b>About</b></Button>
+                    <Button className="btn_burger" onClick={this.questions} style={{textAlign: 'left'}}><FontAwesome name='question' style={{paddingLeft: '10%', paddingRight: '9%'}} /><b>F.A.Q.</b></Button>
                 </Menu>
             </div>
         );
