@@ -116,7 +116,7 @@ class Advanced extends React.Component {
           if (userInput !== "" && userInput !== undefined && userInput !== 'ALL')
             formData[searchType] = userInput;
         }
-        console.log(formData);
+        
         var results = ApiWrapper.makeCall({subject: formData.subject, 
                                            rights: formData.rights, 
                                            title: formData.title, 

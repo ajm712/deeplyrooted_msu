@@ -1,6 +1,5 @@
 import React from 'react';
 import {Popover, OverlayTrigger, Pagination} from 'react-bootstrap';
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import ApiWrapper from '../../Services/components/ApiWrapper.js';
 import defaultImage from '../../Images/unknown-image.png';
 import '../styles/Display.css';

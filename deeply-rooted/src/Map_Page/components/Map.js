@@ -5,9 +5,6 @@ import {Map, TileLayer, Marker, Popup, PropTypes as MapPropTypes,  } from 'react
 import PropTypes from 'prop-types'
 import Books from '../../Display/components/DisplayBook.js';
 import ApiWrapper from '../../Services/components/ApiWrapper.js';
-import Advanced from '../../Adv_Search/components/AdvancedSearch.js';
-import TextBox from '../../Adv_Search/components/TextBox.js';
-import Form from '../../Adv_Search/components/Form.js';
 
 class CustomComponent extends React.Component {
   constructor(props) {

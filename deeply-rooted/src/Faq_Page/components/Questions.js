@@ -3,7 +3,6 @@ import '../styles/Questions.css';
 import adv from '../../Images/deeplyrootedadvanced.GIF';
 import map from '../../Images/deeplyrootedmap.GIF';
 import ran from '../../Images/deeplyrootedrandom.GIF';
-import {Button,Panel}from 'react-bootstrap';
 
 class Questions extends Component {
   constructor(props) {
