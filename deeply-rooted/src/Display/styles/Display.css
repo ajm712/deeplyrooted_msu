@@ -136,6 +136,7 @@
 
 .submitButton{
   cursor: pointer;
+  background: lightgrey;
   padding: 12px 20px;
   margin: 8px 0;
   border: 1px solid #ccc;
@@ -203,6 +204,7 @@
   border-left: 0px;
   border-radius: 4px;
   box-sizing: border-box;
+  background: lightgrey;
 }
 
 .advancedButton:hover{
@@ -255,6 +257,7 @@ tr.tableRowModal p
 .closeModal
 {
   color: black;
+  background: lightgrey;
   cursor: pointer;
   width: 75px;
   height: 25px;
@@ -267,6 +270,7 @@ tr.tableRowModal p
 .submitModal
 {
   color: black;
+  background: lightgrey;
   cursor: pointer;
   width: 75px;
   height: 25px;
@@ -274,4 +278,27 @@ tr.tableRowModal p
   border: 1px solid black;
   border-radius: 6px;
   box-sizing: border-box;
+}
+
+/*Results Per Page*/
+.perPageLabel{
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  background: lightgrey;
+  border-right: 0px;
+  border-radius: 4px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  box-sizing: border-box;
+}
+
+.dropDownPerPage{
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }

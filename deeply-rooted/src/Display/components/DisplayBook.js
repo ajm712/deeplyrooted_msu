@@ -70,23 +70,24 @@ class Books extends React.Component {
             <button autoFocus id="component" name="componentView" disabled={this.props.view === "componentView"} className="toggleButtonLeft fa fa-th-large" onClick={this.displayToggle}>  Image View</button>
             <button autoFocus id="table" name="tableView" disabled={this.props.view === "tableView"} className="toggleButtonRight fa fa-table" onClick={this.displayToggle}>  Table View</button>
             <div className="inLine">
-        <form>
-          <label>
-            <select className="dropDown" onChange={this.changePageSize} value={this.props.pageSize}>
-              <option value="10">10</option>
-              <option value="20">20</option>
-              <option value="30">30</option>
-              <option value="40">40</option>
-              <option value="50">50</option>
-              <option value="60">60</option>
-              <option value="70">70</option>
-              <option value="80">80</option>
-              <option value="90">90</option>
-              <option value = "100">100</option>
-            </select>
-          </label>
-        </form>
-      </div>
+              <form>
+              <span className="perPageLabel">Results Per Page</span>
+                <label>
+                  <select className="dropDownPerPage" onChange={this.changePageSize} value={this.props.pageSize}>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                    <option value="70">70</option>
+                    <option value="80">80</option>
+                    <option value="90">90</option>
+                    <option value = "100">100</option>
+                  </select>
+                </label>
+              </form>
+            </div>
           </span>  
           <div>
             {api}
