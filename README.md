@@ -4,7 +4,7 @@ Welcome to the Deeply Rooted Web Application repository
 
 ## Team Members
 * [William Lee](https://github.com/henryjr1)
-* [Joseph Sumner](https://github.com/jjs451)
+* [Joseph Sommer](https://github.com/jjs451)
 * [Will Nobles](https://github.com/willtnobles)
 * [Kyra Johnson](https://github.com/kvj18)
 * [Brandon Stone](https://github.com/brandonstone)
